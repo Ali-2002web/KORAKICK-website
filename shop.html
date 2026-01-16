@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - KoraKick | Jerseys, Socks & Accessories</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png">
+
+    <!-- Google Fonts - Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'soccer-green': '#10b981',
+                        'dark-green': '#052e16',
+                        'dark-green-light': '#14532d',
+                    },
+                    fontFamily: {
+                        'sans': ['Poppins', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { overflow-x: hidden; }
+
+        /* Smooth theme transition - only for main elements */
+        body, nav, section, footer, main, header, .card, .glow-card {
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        h1, h2, h3, h4, h5, h6, p, span, a, li {
+            transition: color 0.3s ease;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f8fafc; }
+        .dark ::-webkit-scrollbar-track { background: #052e16; }
+        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #059669; }
+
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hover-lift:hover {
+            transform: translateY(-8px);
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-image {
+            transition: transform 0.4s ease;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cart-badge {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .filter-btn.active {
+            background-color: #10b981;
+            color: white;
+        }
+    </style>
+
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+</head>
+<body class="bg-white dark:bg-dark-green text-gray-900 dark:text-gray-100 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 bg-white/90 dark:bg-dark-green/90 backdrop-blur-lg border-b border-gray-100 dark:border-dark-green-light">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex items-center gap-2">
+                    <img src="images/logo.png" alt="KoraKick" class="w-8 h-8">
+                    <span class="text-lg font-bold">Kora<span style="color: #65FF13;">Kick</span></span>
+                </a>
+                <div class="hidden md:flex gap-8">
+                    <a href="index.html" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition" data-translate="navHome">Home</a>
+                    <a href="index.html#about" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition" data-translate="navAbout">About</a>
+                    <a href="index.html#features" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition" data-translate="navFeatures">Features</a>
+                    <a href="shop.html" class="text-sm font-medium text-soccer-green transition" data-translate="navShop">Shop</a>
+                </div>
+                <div class="flex items-center gap-3">
+                    <!-- Language Toggle -->
+                    <button id="lang-toggle" class="px-3 py-1.5 text-sm font-semibold border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-green-light transition">
+                        FR
+                    </button>
+                    <!-- Cart Button -->
+                    <button id="cart-btn" class="relative p-2 hover:bg-gray-100 dark:hover:bg-dark-green-light rounded-lg transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                        </svg>
+                        <span id="cart-count" class="cart-badge absolute -top-1 -right-1 bg-soccer-green text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold hidden">0</span>
+                    </button>
+                    <button id="theme-toggle" class="p-2 hover:bg-gray-100 dark:hover:bg-dark-green-light rounded-lg transition">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Shop Header -->
+    <section class="pt-32 pb-12 px-6 lg:px-8 bg-gradient-to-br from-soccer-green/10 to-emerald-500/5 dark:from-dark-green dark:to-dark-green-light">
+        <div class="max-w-7xl mx-auto text-center">
+            <span class="text-soccer-green font-semibold text-sm tracking-wider">KORAKICK STORE</span>
+            <h1 class="text-4xl lg:text-6xl font-bold mt-3 mb-4" data-translate="shopTitle">
+                Official <span class="text-gradient">Shop</span>
+            </h1>
+            <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-translate="shopDesc">
+                Gear up with premium quality jerseys, socks, and accessories. Look good, play better.
+            </p>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="py-8 px-6 lg:px-8 border-b border-gray-100 dark:border-dark-green-light sticky top-16 bg-white/95 dark:bg-dark-green/95 backdrop-blur-lg z-40">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-wrap gap-3 justify-center">
+                <button class="filter-btn active px-6 py-2 rounded-full border border-gray-200 dark:border-gray-700 font-medium text-sm transition hover:border-soccer-green" data-filter="all" data-translate="allProducts">
+                    All Products
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full border border-gray-200 dark:border-gray-700 font-medium text-sm transition hover:border-soccer-green" data-filter="jerseys" data-translate="jerseys">
+                    Jerseys
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full border border-gray-200 dark:border-gray-700 font-medium text-sm transition hover:border-soccer-green" data-filter="accessories" data-translate="accessories">
+                    Accessories
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="py-16 px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+                <!-- Jersey 1 - KoraKick Red -->
+                <div class="product-card bg-white dark:bg-dark-green-light rounded-2xl overflow-hidden shadow-sm hover-lift" data-category="jerseys">
+                    <div class="relative overflow-hidden bg-transparent group jersey-slider">
+                        <img src="images/redjersey11.png" alt="KoraKick Red Jersey Front" class="jersey-img active w-full h-72 object-contain p-2 transition-opacity duration-300">
+                        <img src="images/redjersey2.png" alt="KoraKick Red Jersey Back" class="jersey-img w-full h-72 object-contain p-2 absolute inset-0 opacity-0 transition-opacity duration-300">
+                        <span class="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10" data-translate="badgeHot">HOT</span>
+                        <!-- Navigation Arrows -->
+                        <button class="slider-prev absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/80 dark:bg-dark-green-light/80 rounded-full flex items-center justify-center shadow-md hover:bg-white dark:hover:bg-dark-green-light transition z-10">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                        </button>
+                        <button class="slider-next absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/80 dark:bg-dark-green-light/80 rounded-full flex items-center justify-center shadow-md hover:bg-white dark:hover:bg-dark-green-light transition z-10">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                        <!-- Dots Indicator -->
+                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                            <span class="slider-dot active w-2 h-2 rounded-full bg-soccer-green"></span>
+                            <span class="slider-dot w-2 h-2 rounded-full bg-gray-400"></span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-soccer-green font-semibold" data-translate="categoryJerseys">JERSEYS</span>
+                        <h3 class="font-bold text-lg mt-1 mb-2" data-translate="redKitName">KoraKick Red Kit</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4" data-translate="kitDesc">Official kit with jersey + shorts</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-soccer-green">170 DH</span>
+                            <button class="add-to-cart bg-soccer-green text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-emerald-600 transition" data-name="KoraKick Red Kit" data-price="170" data-translate="addToCart">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jersey 2 - KoraKick Green -->
+                <div class="product-card bg-white dark:bg-dark-green-light rounded-2xl overflow-hidden shadow-sm hover-lift" data-category="jerseys">
+                    <div class="relative overflow-hidden bg-transparent group jersey-slider">
+                        <img src="images/maillotvert1.png" alt="KoraKick Green Jersey Front" class="jersey-img active w-full h-72 object-contain p-2 transition-opacity duration-300">
+                        <img src="images/maillotvert2.png" alt="KoraKick Green Jersey Back" class="jersey-img w-full h-72 object-contain p-2 absolute inset-0 opacity-0 transition-opacity duration-300">
+                        <span class="absolute top-4 left-4 bg-soccer-green text-white text-xs font-bold px-3 py-1 rounded-full z-10" data-translate="badgeBestseller">BESTSELLER</span>
+                        <!-- Navigation Arrows -->
+                        <button class="slider-prev absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/80 dark:bg-dark-green-light/80 rounded-full flex items-center justify-center shadow-md hover:bg-white dark:hover:bg-dark-green-light transition z-10">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                        </button>
+                        <button class="slider-next absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/80 dark:bg-dark-green-light/80 rounded-full flex items-center justify-center shadow-md hover:bg-white dark:hover:bg-dark-green-light transition z-10">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                        <!-- Dots Indicator -->
+                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                            <span class="slider-dot active w-2 h-2 rounded-full bg-soccer-green"></span>
+                            <span class="slider-dot w-2 h-2 rounded-full bg-gray-400"></span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-soccer-green font-semibold" data-translate="categoryJerseys">JERSEYS</span>
+                        <h3 class="font-bold text-lg mt-1 mb-2" data-translate="greenKitName">KoraKick Green Kit</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4" data-translate="kitDesc">Official kit with jersey + shorts</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-soccer-green">170 DH</span>
+                            <button class="add-to-cart bg-soccer-green text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-emerald-600 transition" data-name="KoraKick Green Kit" data-price="170" data-translate="addToCart">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jersey 3 - KoraKick White -->
+                <div class="product-card bg-white dark:bg-dark-green-light rounded-2xl overflow-hidden shadow-sm hover-lift" data-category="jerseys">
+                    <div class="relative overflow-hidden bg-transparent group jersey-slider">
+                        <img src="images/whitejersey1.png" alt="KoraKick White Jersey Front" class="jersey-img active w-full h-72 object-contain p-2 transition-opacity duration-300">
+                        <img src="images/whitejerseyback2.png" alt="KoraKick White Jersey Back" class="jersey-img w-full h-72 object-contain p-2 absolute inset-0 opacity-0 transition-opacity duration-300">
+                        <span class="absolute top-4 left-4 bg-gray-800 text-white text-xs font-bold px-3 py-1 rounded-full z-10" data-translate="badgeNew">NEW</span>
+                        <!-- Navigation Arrows -->
+                        <button class="slider-prev absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/80 dark:bg-dark-green-light/80 rounded-full flex items-center justify-center shadow-md hover:bg-white dark:hover:bg-dark-green-light transition z-10">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                        </button>
+                        <button class="slider-next absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/80 dark:bg-dark-green-light/80 rounded-full flex items-center justify-center shadow-md hover:bg-white dark:hover:bg-dark-green-light transition z-10">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                        <!-- Dots Indicator -->
+                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                            <span class="slider-dot active w-2 h-2 rounded-full bg-soccer-green"></span>
+                            <span class="slider-dot w-2 h-2 rounded-full bg-gray-400"></span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-soccer-green font-semibold" data-translate="categoryJerseys">JERSEYS</span>
+                        <h3 class="font-bold text-lg mt-1 mb-2" data-translate="whiteKitName">KoraKick White Kit</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4" data-translate="kitDesc">Official kit with jersey + shorts</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-soccer-green">170 DH</span>
+                            <button class="add-to-cart bg-soccer-green text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-emerald-600 transition" data-name="KoraKick White Kit" data-price="170" data-translate="addToCart">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jersey 4 - KoraKick Black -->
+                <div class="product-card bg-white dark:bg-dark-green-light rounded-2xl overflow-hidden shadow-sm hover-lift" data-category="jerseys">
+                    <div class="relative overflow-hidden bg-transparent group jersey-slider">
+                        <img src="images/blackjersey1.png" alt="KoraKick Black Jersey Front" class="jersey-img active w-full h-72 object-contain p-2 transition-opacity duration-300">
+                        <img src="images/blackjersey2.png" alt="KoraKick Black Jersey Back" class="jersey-img w-full h-72 object-contain p-2 absolute inset-0 opacity-0 transition-opacity duration-300">
+                        <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-bold px-3 py-1 rounded-full z-10" data-translate="badgeNew">NEW</span>
+                        <!-- Navigation Arrows -->
+                        <button class="slider-prev absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/80 dark:bg-dark-green-light/80 rounded-full flex items-center justify-center shadow-md hover:bg-white dark:hover:bg-dark-green-light transition z-10">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                        </button>
+                        <button class="slider-next absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/80 dark:bg-dark-green-light/80 rounded-full flex items-center justify-center shadow-md hover:bg-white dark:hover:bg-dark-green-light transition z-10">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                        <!-- Dots Indicator -->
+                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                            <span class="slider-dot active w-2 h-2 rounded-full bg-soccer-green"></span>
+                            <span class="slider-dot w-2 h-2 rounded-full bg-gray-400"></span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-soccer-green font-semibold" data-translate="categoryJerseys">JERSEYS</span>
+                        <h3 class="font-bold text-lg mt-1 mb-2" data-translate="blackKitName">KoraKick Black Kit</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4" data-translate="kitDesc">Official kit with jersey + shorts</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-soccer-green">170 DH</span>
+                            <button class="add-to-cart bg-soccer-green text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-emerald-600 transition" data-name="KoraKick Black Kit" data-price="170" data-translate="addToCart">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Socks - Green -->
+                <div class="product-card bg-white dark:bg-dark-green-light rounded-2xl overflow-hidden shadow-sm hover-lift" data-category="accessories">
+                    <div class="relative overflow-hidden bg-gray-100 dark:bg-dark-green-light">
+                        <img src="images/greensocks.png" alt="Pro Socks Green" class="product-image w-full h-64 object-contain p-4">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-soccer-green font-semibold" data-translate="categoryAccessories">ACCESSORIES</span>
+                        <h3 class="font-bold text-lg mt-1 mb-2" data-translate="greenSocksName">Pro Socks - Green</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4" data-translate="socksDesc">High-performance socks with cushioned sole</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-soccer-green">59 DH</span>
+                            <button class="add-to-cart bg-soccer-green text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-emerald-600 transition" data-name="Pro Socks - Green" data-price="59" data-translate="addToCart">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Socks - Black -->
+                <div class="product-card bg-white dark:bg-dark-green-light rounded-2xl overflow-hidden shadow-sm hover-lift" data-category="accessories">
+                    <div class="relative overflow-hidden bg-gray-100 dark:bg-dark-green-light">
+                        <img src="images/blacksocks.png" alt="Pro Socks Black" class="product-image w-full h-64 object-contain p-4">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-soccer-green font-semibold" data-translate="categoryAccessories">ACCESSORIES</span>
+                        <h3 class="font-bold text-lg mt-1 mb-2" data-translate="blackSocksName">Pro Socks - Black</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4" data-translate="socksDesc">High-performance socks with cushioned sole</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-soccer-green">59 DH</span>
+                            <button class="add-to-cart bg-soccer-green text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-emerald-600 transition" data-name="Pro Socks - Black" data-price="59" data-translate="addToCart">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Socks - Red -->
+                <div class="product-card bg-white dark:bg-dark-green-light rounded-2xl overflow-hidden shadow-sm hover-lift" data-category="accessories">
+                    <div class="relative overflow-hidden bg-gray-100 dark:bg-dark-green-light">
+                        <img src="images/redsocks1.png" alt="Pro Socks Red" class="product-image w-full h-64 object-contain p-4">
+                        <span class="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full" data-translate="badgeNew">NEW</span>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-soccer-green font-semibold" data-translate="categoryAccessories">ACCESSORIES</span>
+                        <h3 class="font-bold text-lg mt-1 mb-2" data-translate="redSocksName">Pro Socks - Red</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4" data-translate="socksDesc">High-performance socks with cushioned sole</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-soccer-green">59 DH</span>
+                            <button class="add-to-cart bg-soccer-green text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-emerald-600 transition" data-name="Pro Socks - Red" data-price="59" data-translate="addToCart">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Socks - White -->
+                <div class="product-card bg-white dark:bg-dark-green-light rounded-2xl overflow-hidden shadow-sm hover-lift" data-category="accessories">
+                    <div class="relative overflow-hidden bg-gray-100 dark:bg-dark-green-light">
+                        <img src="images/whitesosks.png" alt="Pro Socks White" class="product-image w-full h-64 object-contain p-4">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-soccer-green font-semibold" data-translate="categoryAccessories">ACCESSORIES</span>
+                        <h3 class="font-bold text-lg mt-1 mb-2" data-translate="whiteSocksName">Pro Socks - White</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4" data-translate="socksDesc">High-performance socks with cushioned sole</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-soccer-green">59 DH</span>
+                            <button class="add-to-cart bg-soccer-green text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-emerald-600 transition" data-name="Pro Socks - White" data-price="59" data-translate="addToCart">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backpack -->
+                <div class="product-card bg-white dark:bg-dark-green-light rounded-2xl overflow-hidden shadow-sm hover-lift" data-category="accessories">
+                    <div class="relative overflow-hidden bg-transparent group jersey-slider">
+                        <img src="images/backpack.png" alt="KoraKick Backpack Front" class="jersey-img active w-full h-64 object-cover transition-opacity duration-300">
+                        <img src="images/backpack2.png" alt="KoraKick Backpack Back" class="jersey-img w-full h-64 object-cover absolute inset-0 opacity-0 transition-opacity duration-300">
+                        <span class="absolute top-4 left-4 bg-soccer-green text-white text-xs font-bold px-3 py-1 rounded-full z-10" data-translate="badgeNew">NEW</span>
+                        <!-- Navigation Arrows -->
+                        <button class="slider-prev absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/80 dark:bg-dark-green-light/80 rounded-full flex items-center justify-center shadow-md hover:bg-white dark:hover:bg-dark-green-light transition z-10">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                        </button>
+                        <button class="slider-next absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/80 dark:bg-dark-green-light/80 rounded-full flex items-center justify-center shadow-md hover:bg-white dark:hover:bg-dark-green-light transition z-10">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                        <!-- Dots Indicator -->
+                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                            <span class="slider-dot active w-2 h-2 rounded-full bg-soccer-green"></span>
+                            <span class="slider-dot w-2 h-2 rounded-full bg-gray-400"></span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-soccer-green font-semibold" data-translate="categoryAccessories">ACCESSORIES</span>
+                        <h3 class="font-bold text-lg mt-1 mb-2" data-translate="backpackName">KoraKick Backpack</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4" data-translate="backpackDesc">Spacious backpack for all your gear</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-soccer-green">50 DH</span>
+                            <button class="add-to-cart bg-soccer-green text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-emerald-600 transition" data-name="KoraKick Backpack" data-price="50" data-translate="addToCart">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Water Bottle -->
+                <div class="product-card bg-white dark:bg-dark-green-light rounded-2xl overflow-hidden shadow-sm hover-lift" data-category="accessories">
+                    <div class="relative overflow-hidden bg-gray-100 dark:bg-dark-green-light">
+                        <img src="images/gourde.png" alt="KoraKick Water Bottle" class="product-image w-full h-64 object-contain p-2">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-soccer-green font-semibold" data-translate="categoryAccessories">ACCESSORIES</span>
+                        <h3 class="font-bold text-lg mt-1 mb-2" data-translate="bottleName">KoraKick Water Bottle</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4" data-translate="bottleDesc">750ml sports bottle - stays cold for 24h</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-soccer-green">70 DH</span>
+                            <button class="add-to-cart bg-soccer-green text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-emerald-600 transition" data-name="KoraKick Water Bottle" data-price="70" data-translate="addToCart">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Keychain -->
+                <div class="product-card bg-white dark:bg-dark-green-light rounded-2xl overflow-hidden shadow-sm hover-lift" data-category="accessories">
+                    <div class="relative overflow-hidden bg-gray-100 dark:bg-dark-green-light">
+                        <img src="images/keychain.png" alt="KoraKick Keychain" class="product-image w-full h-64 object-contain p-4">
+                        <span class="absolute top-4 left-4 bg-soccer-green text-white text-xs font-bold px-3 py-1 rounded-full" data-translate="badgeNew">NEW</span>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-soccer-green font-semibold" data-translate="categoryAccessories">ACCESSORIES</span>
+                        <h3 class="font-bold text-lg mt-1 mb-2" data-translate="keychainName">KoraKick Keychain</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4" data-translate="keychainDesc">Show your KoraKick pride with this sleek keychain</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-soccer-green">20 DH</span>
+                            <button class="add-to-cart bg-soccer-green text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-emerald-600 transition" data-name="KoraKick Keychain" data-price="20" data-translate="addToCart">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coffee Mug -->
+                <div class="product-card bg-white dark:bg-dark-green-light rounded-2xl overflow-hidden shadow-sm hover-lift" data-category="accessories">
+                    <div class="relative overflow-hidden bg-gray-100 dark:bg-dark-green-light">
+                        <img src="images/coffeemug.png" alt="KoraKick Coffee Mug" class="product-image w-full h-64 object-contain p-4">
+                        <span class="absolute top-4 left-4 bg-soccer-green text-white text-xs font-bold px-3 py-1 rounded-full" data-translate="badgeNew">NEW</span>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-soccer-green font-semibold" data-translate="categoryAccessories">ACCESSORIES</span>
+                        <h3 class="font-bold text-lg mt-1 mb-2" data-translate="mugName">KoraKick Coffee Mug</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4" data-translate="mugDesc">Start your day right with our premium ceramic mug</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-soccer-green">50 DH</span>
+                            <button class="add-to-cart bg-soccer-green text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-emerald-600 transition" data-name="KoraKick Coffee Mug" data-price="50" data-translate="addToCart">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Promo Banner -->
+    <section class="py-16 px-6 lg:px-8 bg-gradient-to-br from-soccer-green to-emerald-600 text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl lg:text-4xl font-bold mb-4" data-translate="promoTitle">Get 15% Off Your First Order</h2>
+            <p class="text-lg opacity-90 mb-8" data-translate="promoCode">Use code <span class="font-bold bg-white/20 px-3 py-1 rounded">KORAKICK15</span> at checkout</p>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span data-translate="freeShipping">Free Shipping 300+ DH</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span data-translate="returns">30-Day Returns</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span data-translate="codPayment">Cash on Delivery</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full sm:w-96 bg-white dark:bg-dark-green shadow-2xl transform translate-x-full transition-transform duration-300 z-50">
+        <div class="flex flex-col h-full">
+            <div class="flex items-center justify-between p-6 border-b border-gray-100 dark:border-dark-green-light">
+                <h2 class="text-xl font-bold" data-translate="yourCart">Your Cart</h2>
+                <button id="close-cart" class="p-2 hover:bg-gray-100 dark:hover:bg-dark-green-light rounded-lg transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="cart-items" class="flex-1 overflow-y-auto p-6">
+                <p class="text-gray-500 dark:text-gray-400 text-center py-8" data-translate="cartEmpty">Your cart is empty</p>
+            </div>
+            <div class="p-6 border-t border-gray-100 dark:border-dark-green-light">
+                <div class="flex justify-between mb-4">
+                    <span class="font-semibold" data-translate="total">Total:</span>
+                    <span id="cart-total" class="text-xl font-bold text-soccer-green">0 DH</span>
+                </div>
+                <button id="checkout-btn" class="w-full bg-soccer-green text-white py-3 rounded-xl font-bold hover:bg-emerald-600 transition flex items-center justify-center gap-2" data-translate="checkout">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Order via WhatsApp
+                </button>
+                <p class="text-xs text-gray-500 text-center mt-3" data-translate="shippingNote">Shipping calculated at checkout</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div id="cart-overlay" class="fixed inset-0 bg-black/50 z-40 hidden"></div>
+
+    <!-- Product Modal -->
+    <div id="product-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="modal-overlay"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4 overflow-y-auto">
+            <div class="bg-white dark:bg-dark-green rounded-2xl max-w-5xl w-full max-h-[95vh] overflow-hidden shadow-2xl transform scale-95 opacity-0 transition-all duration-300 my-auto" id="modal-content">
+                <!-- Close Button -->
+                <button id="close-modal" class="absolute top-4 right-4 z-10 w-10 h-10 bg-gray-100 dark:bg-dark-green-light rounded-full flex items-center justify-center hover:bg-gray-200 dark:hover:bg-dark-green-light transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+
+                <div class="grid md:grid-cols-2">
+                    <!-- Product Images -->
+                    <div class="relative bg-white dark:bg-dark-green-light flex items-center justify-center min-h-[300px] md:min-h-[500px]">
+                        <div id="modal-slider" class="relative w-full h-full flex items-center justify-center p-8">
+                            <img id="modal-img-1" src="" alt="" class="modal-img active max-w-full max-h-[400px] object-contain transition-opacity duration-300">
+                            <img id="modal-img-2" src="" alt="" class="modal-img max-w-full max-h-[400px] object-contain absolute inset-0 m-auto opacity-0 transition-opacity duration-300">
+
+                            <!-- Navigation Arrows -->
+                            <button id="modal-prev" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white dark:bg-dark-green-light rounded-full flex items-center justify-center shadow-lg hover:bg-gray-100 dark:hover:bg-soccer-green/20 transition hidden">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                                </svg>
+                            </button>
+                            <button id="modal-next" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white dark:bg-dark-green-light rounded-full flex items-center justify-center shadow-lg hover:bg-gray-100 dark:hover:bg-soccer-green/20 transition hidden">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+
+                            <!-- Dots Indicator -->
+                            <div id="modal-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 hidden">
+                                <span class="modal-dot active w-2.5 h-2.5 rounded-full bg-soccer-green cursor-pointer"></span>
+                                <span class="modal-dot w-2.5 h-2.5 rounded-full bg-gray-300 cursor-pointer"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Info -->
+                    <div class="p-8 md:p-10 flex flex-col">
+                        <!-- Title -->
+                        <h2 id="modal-title" class="text-2xl md:text-3xl font-bold mb-3 text-gray-900 dark:text-white"></h2>
+
+                        <!-- Price -->
+                        <div class="mb-1">
+                            <span id="modal-old-price" class="text-base text-gray-400 line-through mr-2 hidden"></span>
+                            <span id="modal-price" class="text-xl font-semibold text-gray-900 dark:text-white"></span>
+                        </div>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-6" data-translate="taxIncluded">Taxes included.</p>
+
+                        <!-- Product Name & Description -->
+                        <div class="mb-4">
+                            <h3 id="modal-product-name" class="font-semibold text-gray-900 dark:text-white mb-2"></h3>
+                            <p id="modal-description" class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed"></p>
+                        </div>
+
+                        <!-- Feature highlight -->
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-8 flex items-start gap-2">
+                            <span class="text-soccer-green">&#9917;</span>
+                            <span>Show your support for KoraKick everywhere you go!</span>
+                        </p>
+
+                        <!-- Quantity and Add to Cart -->
+                        <div class="flex gap-3 mb-4">
+                            <!-- Quantity Selector -->
+                            <div class="flex items-center bg-gray-900 dark:bg-dark-green-light rounded-lg overflow-hidden">
+                                <button id="modal-qty-minus" class="w-12 h-12 flex items-center justify-center text-white hover:bg-gray-800 dark:hover:bg-soccer-green/20 transition text-xl font-medium">
+                                    −
+                                </button>
+                                <span id="modal-quantity" class="w-10 text-center text-white font-medium">1</span>
+                                <button id="modal-qty-plus" class="w-12 h-12 flex items-center justify-center text-white hover:bg-gray-800 dark:hover:bg-soccer-green/20 transition text-xl font-medium">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Add to Cart Button -->
+                            <button id="modal-add-to-cart" class="flex-1 border-2 border-soccer-green text-soccer-green py-3 px-6 rounded-lg font-semibold hover:bg-soccer-green hover:text-white transition flex items-center justify-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                                </svg>
+                                <span data-translate="modalAddToCart">ADD TO CART</span>
+                            </button>
+                        </div>
+
+                        <!-- Buy Now Button -->
+                        <button id="modal-buy-now" class="w-full bg-soccer-green text-white py-3.5 rounded-lg font-semibold hover:bg-emerald-600 transition mb-3" data-translate="modalBuyNow">
+                            Buy Now
+                        </button>
+
+                        <!-- COD Info -->
+                        <p class="text-sm text-soccer-green font-medium mb-6" data-translate="codInfo">
+                            Pay when you receive your order
+                        </p>
+
+                        <!-- Trust Badges -->
+                        <div class="border-t border-gray-200 dark:border-gray-700 pt-6 mt-auto">
+                            <div class="flex flex-wrap gap-4 text-xs text-gray-500 dark:text-gray-400">
+                                <div class="flex items-center gap-1.5">
+                                    <svg class="w-4 h-4 text-soccer-green" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span data-translate="premiumQuality">Premium Quality</span>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <svg class="w-4 h-4 text-soccer-green" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
+                                        <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7h4.05a1 1 0 01.95 1.316l-1.548 4.644A1 1 0 0116.502 14H14a1 1 0 01-1-1V8a1 1 0 011-1z"/>
+                                    </svg>
+                                    <span data-translate="fastDelivery">Fast Delivery</span>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <svg class="w-4 h-4 text-soccer-green" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span data-translate="returns">30-Day Returns</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 lg:px-8 bg-white dark:bg-dark-green border-t border-gray-100 dark:border-dark-green-light">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="md:col-span-2">
+                    <a href="index.html" class="flex items-center gap-2 mb-4">
+                        <img src="images/logo.png" alt="KoraKick" class="w-8 h-8">
+                        <span class="text-lg font-bold">Kora<span style="color: #65FF13;">Kick</span></span>
+                    </a>
+                    <p class="text-gray-600 dark:text-gray-400 max-w-sm mb-4">Official KoraKick merchandise. Premium quality gear for soccer players who demand the best.</p>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4">Shop</h3>
+                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                        <li><a href="#" class="hover:text-soccer-green transition">Jerseys</a></li>
+                        <li><a href="#" class="hover:text-soccer-green transition">Socks</a></li>
+                        <li><a href="#" class="hover:text-soccer-green transition">Mini Bags</a></li>
+                        <li><a href="#" class="hover:text-soccer-green transition">Accessories</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4">Support</h3>
+                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                        <li><a href="#" class="hover:text-soccer-green transition">Size Guide</a></li>
+                        <li><a href="#" class="hover:text-soccer-green transition">Shipping Info</a></li>
+                        <li><a href="#" class="hover:text-soccer-green transition">Returns</a></li>
+                        <li><a href="#" class="hover:text-soccer-green transition">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-gray-200 dark:border-dark-green-light flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+                <p>&copy; 2026 KoraKick. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <span data-translate="weAccept">Payment:</span>
+                    <span class="font-semibold" data-translate="codOnly">Cash on Delivery Only</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Cart functionality
+        let cart = JSON.parse(localStorage.getItem('korakick-cart')) || [];
+
+        const cartBtn = document.getElementById('cart-btn');
+        const cartSidebar = document.getElementById('cart-sidebar');
+        const cartOverlay = document.getElementById('cart-overlay');
+        const closeCartBtn = document.getElementById('close-cart');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartCount = document.getElementById('cart-count');
+        const cartTotal = document.getElementById('cart-total');
+
+        function updateCartUI() {
+            // Update count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            if (totalItems > 0) {
+                cartCount.textContent = totalItems;
+                cartCount.classList.remove('hidden');
+            } else {
+                cartCount.classList.add('hidden');
+            }
+
+            // Update cart items
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="text-gray-500 dark:text-gray-400 text-center py-8">Your cart is empty</p>';
+            } else {
+                cartItemsContainer.innerHTML = cart.map((item, index) => `
+                    <div class="flex gap-4 mb-4 pb-4 border-b border-gray-100 dark:border-dark-green-light">
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-sm">${item.name}</h4>
+                            <p class="text-soccer-green font-bold">${item.price} DH</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <button class="quantity-btn w-8 h-8 rounded-lg bg-gray-100 dark:bg-dark-green-light hover:bg-gray-200 dark:hover:bg-dark-green-light transition" data-index="${index}" data-action="decrease">-</button>
+                                <span class="w-8 text-center">${item.quantity}</span>
+                                <button class="quantity-btn w-8 h-8 rounded-lg bg-gray-100 dark:bg-dark-green-light hover:bg-gray-200 dark:hover:bg-dark-green-light transition" data-index="${index}" data-action="increase">+</button>
+                            </div>
+                        </div>
+                        <button class="remove-item text-gray-400 hover:text-red-500 transition" data-index="${index}">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                            </svg>
+                        </button>
+                    </div>
+                `).join('');
+
+                // Add event listeners for quantity buttons
+                document.querySelectorAll('.quantity-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const index = parseInt(this.dataset.index);
+                        const action = this.dataset.action;
+                        if (action === 'increase') {
+                            cart[index].quantity++;
+                        } else if (action === 'decrease') {
+                            if (cart[index].quantity > 1) {
+                                cart[index].quantity--;
+                            } else {
+                                cart.splice(index, 1);
+                            }
+                        }
+                        saveCart();
+                        updateCartUI();
+                    });
+                });
+
+                // Add event listeners for remove buttons
+                document.querySelectorAll('.remove-item').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const index = parseInt(this.dataset.index);
+                        cart.splice(index, 1);
+                        saveCart();
+                        updateCartUI();
+                    });
+                });
+            }
+
+            // Update total
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = total + ' DH';
+        }
+
+        function saveCart() {
+            localStorage.setItem('korakick-cart', JSON.stringify(cart));
+        }
+
+        function openCart() {
+            cartSidebar.classList.remove('translate-x-full');
+            cartOverlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCart() {
+            cartSidebar.classList.add('translate-x-full');
+            cartOverlay.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        cartBtn.addEventListener('click', openCart);
+        closeCartBtn.addEventListener('click', closeCart);
+        cartOverlay.addEventListener('click', closeCart);
+
+        // Add to cart
+        document.querySelectorAll('.add-to-cart').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const name = this.dataset.name;
+                const price = parseInt(this.dataset.price);
+
+                const existingItem = cart.find(item => item.name === name);
+                if (existingItem) {
+                    existingItem.quantity++;
+                } else {
+                    cart.push({ name, price, quantity: 1 });
+                }
+
+                saveCart();
+                updateCartUI();
+
+                // Animation feedback
+                this.textContent = 'Added!';
+                this.classList.add('bg-emerald-600');
+                setTimeout(() => {
+                    this.textContent = 'Add to Cart';
+                    this.classList.remove('bg-emerald-600');
+                }, 1000);
+
+                openCart();
+            });
+        });
+
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active state
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const filter = this.dataset.filter;
+
+                productCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Checkout button
+        document.getElementById('checkout-btn').addEventListener('click', function() {
+            if (cart.length === 0) {
+                alert(currentLang === 'fr' ? 'Votre panier est vide!' : 'Your cart is empty!');
+                return;
+            }
+            // Prepare order message for WhatsApp
+            let orderMsg = currentLang === 'fr' ? 'Bonjour! Je souhaite commander:%0A%0A' : 'Hello! I would like to order:%0A%0A';
+            cart.forEach(item => {
+                orderMsg += `- ${item.name} x${item.quantity} = ${item.price * item.quantity} DH%0A`;
+            });
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            orderMsg += `%0A${currentLang === 'fr' ? 'Total' : 'Total'}: ${total} DH%0A`;
+            orderMsg += currentLang === 'fr' ? '%0APaiement a la livraison (COD)' : '%0ACash on Delivery (COD)';
+
+            // Open WhatsApp with pre-filled message
+            window.open(`https://wa.me/212XXXXXXXXX?text=${orderMsg}`, '_blank');
+        });
+
+        // Initialize cart UI
+        updateCartUI();
+
+        // Jersey Image Slider
+        document.querySelectorAll('.jersey-slider').forEach(slider => {
+            const images = slider.querySelectorAll('.jersey-img');
+            const dots = slider.querySelectorAll('.slider-dot');
+            const prevBtn = slider.querySelector('.slider-prev');
+            const nextBtn = slider.querySelector('.slider-next');
+            let currentIndex = 0;
+
+            function showImage(index) {
+                images.forEach((img, i) => {
+                    if (i === index) {
+                        img.classList.add('active');
+                        img.style.opacity = '1';
+                    } else {
+                        img.classList.remove('active');
+                        img.style.opacity = '0';
+                    }
+                });
+                dots.forEach((dot, i) => {
+                    if (i === index) {
+                        dot.classList.add('active');
+                        dot.classList.remove('bg-gray-400');
+                        dot.classList.add('bg-soccer-green');
+                    } else {
+                        dot.classList.remove('active');
+                        dot.classList.remove('bg-soccer-green');
+                        dot.classList.add('bg-gray-400');
+                    }
+                });
+            }
+
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                showImage(currentIndex);
+            });
+
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                currentIndex = (currentIndex + 1) % images.length;
+                showImage(currentIndex);
+            });
+
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    currentIndex = i;
+                    showImage(currentIndex);
+                });
+            });
+        });
+
+        // Product Modal
+        const productModal = document.getElementById('product-modal');
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalContent = document.getElementById('modal-content');
+        const closeModalBtn = document.getElementById('close-modal');
+        const modalImg1 = document.getElementById('modal-img-1');
+        const modalImg2 = document.getElementById('modal-img-2');
+        const modalPrev = document.getElementById('modal-prev');
+        const modalNext = document.getElementById('modal-next');
+        const modalDots = document.getElementById('modal-dots');
+        const modalTitle = document.getElementById('modal-title');
+        const modalProductName = document.getElementById('modal-product-name');
+        const modalDescription = document.getElementById('modal-description');
+        const modalPrice = document.getElementById('modal-price');
+        const modalOldPrice = document.getElementById('modal-old-price');
+        const modalAddToCart = document.getElementById('modal-add-to-cart');
+        const modalBuyNow = document.getElementById('modal-buy-now');
+        const modalQtyMinus = document.getElementById('modal-qty-minus');
+        const modalQtyPlus = document.getElementById('modal-qty-plus');
+        const modalQuantity = document.getElementById('modal-quantity');
+
+        let modalCurrentIndex = 0;
+        let modalImages = [];
+        let currentProductData = {};
+        let currentQuantity = 1;
+
+        function openProductModal(card) {
+            // Reset quantity
+            currentQuantity = 1;
+            modalQuantity.textContent = '1';
+
+            // Get product data from card
+            const slider = card.querySelector('.jersey-slider');
+            const singleImage = card.querySelector('.product-image');
+            const titleEl = card.querySelector('h3');
+            const descriptionEl = card.querySelector('p.text-gray-600');
+            const priceEl = card.querySelector('.text-2xl.font-bold.text-soccer-green');
+            const oldPriceEl = card.querySelector('.line-through');
+            const addToCartBtn = card.querySelector('.add-to-cart');
+
+            // Set modal content
+            const productName = titleEl ? titleEl.textContent : '';
+            modalTitle.textContent = productName;
+            modalProductName.textContent = productName;
+            modalDescription.textContent = descriptionEl ? descriptionEl.textContent : '';
+            modalPrice.textContent = priceEl ? priceEl.textContent : '';
+
+            // Handle old price
+            if (oldPriceEl) {
+                modalOldPrice.textContent = oldPriceEl.textContent;
+                modalOldPrice.classList.remove('hidden');
+            } else {
+                modalOldPrice.classList.add('hidden');
+            }
+
+            // Handle images
+            if (slider) {
+                const images = slider.querySelectorAll('.jersey-img');
+                modalImages = Array.from(images).map(img => img.src);
+                modalImg1.src = modalImages[0] || '';
+                modalImg2.src = modalImages[1] || '';
+
+                if (modalImages.length > 1) {
+                    modalPrev.classList.remove('hidden');
+                    modalNext.classList.remove('hidden');
+                    modalDots.classList.remove('hidden');
+                } else {
+                    modalPrev.classList.add('hidden');
+                    modalNext.classList.add('hidden');
+                    modalDots.classList.add('hidden');
+                }
+            } else if (singleImage) {
+                modalImages = [singleImage.src];
+                modalImg1.src = singleImage.src;
+                modalImg2.src = '';
+                modalPrev.classList.add('hidden');
+                modalNext.classList.add('hidden');
+                modalDots.classList.add('hidden');
+            }
+
+            // Store product data for add to cart
+            currentProductData = {
+                name: addToCartBtn ? addToCartBtn.dataset.name : '',
+                price: addToCartBtn ? parseInt(addToCartBtn.dataset.price) : 0
+            };
+
+            // Reset slider index
+            modalCurrentIndex = 0;
+            updateModalSlider();
+
+            // Show modal
+            productModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+
+            // Animate in
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeProductModal() {
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+
+            setTimeout(() => {
+                productModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        function updateModalSlider() {
+            const modalImgs = document.querySelectorAll('.modal-img');
+            const dots = document.querySelectorAll('.modal-dot');
+
+            modalImgs.forEach((img, i) => {
+                if (i === modalCurrentIndex) {
+                    img.classList.add('active');
+                    img.style.opacity = '1';
+                } else {
+                    img.classList.remove('active');
+                    img.style.opacity = '0';
+                }
+            });
+
+            dots.forEach((dot, i) => {
+                if (i === modalCurrentIndex) {
+                    dot.classList.add('bg-soccer-green');
+                    dot.classList.remove('bg-gray-300');
+                } else {
+                    dot.classList.remove('bg-soccer-green');
+                    dot.classList.add('bg-gray-300');
+                }
+            });
+        }
+
+        // Modal navigation
+        modalPrev.addEventListener('click', () => {
+            modalCurrentIndex = (modalCurrentIndex - 1 + modalImages.length) % modalImages.length;
+            updateModalSlider();
+        });
+
+        modalNext.addEventListener('click', () => {
+            modalCurrentIndex = (modalCurrentIndex + 1) % modalImages.length;
+            updateModalSlider();
+        });
+
+        document.querySelectorAll('.modal-dot').forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                modalCurrentIndex = i;
+                updateModalSlider();
+            });
+        });
+
+        // Quantity controls
+        modalQtyMinus.addEventListener('click', () => {
+            if (currentQuantity > 1) {
+                currentQuantity--;
+                modalQuantity.textContent = currentQuantity;
+            }
+        });
+
+        modalQtyPlus.addEventListener('click', () => {
+            currentQuantity++;
+            modalQuantity.textContent = currentQuantity;
+        });
+
+        // Close modal events
+        closeModalBtn.addEventListener('click', closeProductModal);
+        modalOverlay.addEventListener('click', closeProductModal);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !productModal.classList.contains('hidden')) {
+                closeProductModal();
+            }
+        });
+
+        // Add to cart function
+        function addProductToCart() {
+            if (currentProductData.name) {
+                const existingItem = cart.find(item => item.name === currentProductData.name);
+                if (existingItem) {
+                    existingItem.quantity += currentQuantity;
+                } else {
+                    cart.push({ name: currentProductData.name, price: currentProductData.price, quantity: currentQuantity });
+                }
+                saveCart();
+                updateCartUI();
+                return true;
+            }
+            return false;
+        }
+
+        // Modal add to cart
+        modalAddToCart.addEventListener('click', function() {
+            if (addProductToCart()) {
+                // Animation feedback
+                const originalHTML = this.innerHTML;
+                this.innerHTML = `
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    ADDED!
+                `;
+                this.classList.add('bg-soccer-green', 'text-white');
+
+                setTimeout(() => {
+                    this.innerHTML = originalHTML;
+                    this.classList.remove('bg-soccer-green', 'text-white');
+                    closeProductModal();
+                    openCart();
+                }, 1000);
+            }
+        });
+
+        // Buy Now button
+        modalBuyNow.addEventListener('click', function() {
+            if (addProductToCart()) {
+                closeProductModal();
+                openCart();
+            }
+        });
+
+        // Make product cards clickable
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', function(e) {
+                // Don't open modal if clicking on add to cart button or slider controls
+                if (e.target.closest('.add-to-cart') ||
+                    e.target.closest('.slider-prev') ||
+                    e.target.closest('.slider-next') ||
+                    e.target.closest('.slider-dot')) {
+                    return;
+                }
+                openProductModal(this);
+            });
+        });
+
+        // Language Translation
+        const translations = {
+            en: {
+                navHome: 'Home',
+                navAbout: 'About',
+                navFeatures: 'Features',
+                navShop: 'Shop',
+                shopTitle: 'Official Shop',
+                shopDesc: 'Gear up with premium quality jerseys, socks, and accessories. Look good, play better.',
+                allProducts: 'All Products',
+                jerseys: 'Jerseys',
+                accessories: 'Accessories',
+                yourCart: 'Your Cart',
+                cartEmpty: 'Your cart is empty',
+                total: 'Total:',
+                checkout: 'Order via WhatsApp',
+                addToCart: 'Add to Cart',
+                buyNow: 'Buy Now',
+                promoTitle: 'Get 15% Off Your First Order',
+                promoCode: 'Use code KORAKICK15 at checkout',
+                freeShipping: 'Free Shipping 300+ DH',
+                returns: '30-Day Returns',
+                codPayment: 'Cash on Delivery',
+                weAccept: 'Payment:',
+                codOnly: 'Cash on Delivery Only',
+                shippingNote: 'Shipping calculated at checkout',
+                footerDesc: 'Connecting soccer teams and players for matches. Get on the field faster with the #1 platform for soccer enthusiasts.',
+                codInfo: 'Pay when you receive your order',
+                taxIncluded: 'Taxes included.',
+                modalAddToCart: 'ADD TO CART',
+                modalBuyNow: 'Buy Now',
+                premiumQuality: 'Premium Quality',
+                fastDelivery: 'Fast Delivery',
+                categoryJerseys: 'JERSEYS',
+                categoryAccessories: 'ACCESSORIES',
+                redKitName: 'KoraKick Red Kit',
+                greenKitName: 'KoraKick Green Kit',
+                whiteKitName: 'KoraKick White Kit',
+                blackKitName: 'KoraKick Black Kit',
+                kitDesc: 'Official kit with jersey + shorts',
+                badgeHot: 'HOT',
+                badgeBestseller: 'BESTSELLER',
+                badgeNew: 'NEW',
+                greenSocksName: 'Pro Socks - Green',
+                blackSocksName: 'Pro Socks - Black',
+                redSocksName: 'Pro Socks - Red',
+                whiteSocksName: 'Pro Socks - White',
+                socksDesc: 'High-performance socks with cushioned sole',
+                backpackName: 'KoraKick Backpack',
+                backpackDesc: 'Spacious backpack for all your gear',
+                bottleName: 'KoraKick Water Bottle',
+                bottleDesc: '750ml sports bottle - stays cold for 24h',
+                keychainName: 'KoraKick Keychain',
+                keychainDesc: 'Show your KoraKick pride with this sleek keychain',
+                mugName: 'KoraKick Coffee Mug',
+                mugDesc: 'Start your day right with our premium ceramic mug'
+            },
+            fr: {
+                navHome: 'Accueil',
+                navAbout: 'A Propos',
+                navFeatures: 'Fonctionnalites',
+                navShop: 'Boutique',
+                shopTitle: 'Boutique Officielle',
+                shopDesc: 'Equipez-vous avec des maillots, chaussettes et accessoires de qualite premium.',
+                allProducts: 'Tous les Produits',
+                jerseys: 'Maillots',
+                accessories: 'Accessoires',
+                yourCart: 'Votre Panier',
+                cartEmpty: 'Votre panier est vide',
+                total: 'Total:',
+                checkout: 'Commander via WhatsApp',
+                addToCart: 'Ajouter',
+                buyNow: 'Acheter',
+                promoTitle: 'Obtenez 15% de Reduction',
+                promoCode: 'Utilisez le code KORAKICK15',
+                freeShipping: 'Livraison Gratuite 300+ DH',
+                returns: 'Retours sous 30 Jours',
+                codPayment: 'Paiement a la Livraison',
+                weAccept: 'Paiement:',
+                codOnly: 'Paiement a la Livraison Uniquement',
+                shippingNote: 'Frais de livraison calcules a la caisse',
+                footerDesc: 'Connecter les equipes et les joueurs de football pour des matchs. La plateforme #1 pour les passionnes de football.',
+                codInfo: 'Payez a la reception de votre commande',
+                taxIncluded: 'Taxes incluses.',
+                modalAddToCart: 'AJOUTER AU PANIER',
+                modalBuyNow: 'Acheter Maintenant',
+                premiumQuality: 'Qualite Premium',
+                fastDelivery: 'Livraison Rapide',
+                categoryJerseys: 'MAILLOTS',
+                categoryAccessories: 'ACCESSOIRES',
+                redKitName: 'Kit Rouge KoraKick',
+                greenKitName: 'Kit Vert KoraKick',
+                whiteKitName: 'Kit Blanc KoraKick',
+                blackKitName: 'Kit Noir KoraKick',
+                kitDesc: 'Kit officiel avec maillot + short',
+                badgeHot: 'POPULAIRE',
+                badgeBestseller: 'BEST-SELLER',
+                badgeNew: 'NOUVEAU',
+                greenSocksName: 'Chaussettes Pro - Vertes',
+                blackSocksName: 'Chaussettes Pro - Noires',
+                redSocksName: 'Chaussettes Pro - Rouges',
+                whiteSocksName: 'Chaussettes Pro - Blanches',
+                socksDesc: 'Chaussettes haute performance avec semelle rembourrée',
+                backpackName: 'Sac a Dos KoraKick',
+                backpackDesc: 'Sac spacieux pour tout votre equipement',
+                bottleName: 'Gourde KoraKick',
+                bottleDesc: 'Gourde sport 750ml - reste froide 24h',
+                keychainName: 'Porte-cles KoraKick',
+                keychainDesc: 'Montrez votre fierte KoraKick avec ce porte-cles elegant',
+                mugName: 'Mug KoraKick',
+                mugDesc: 'Commencez votre journee avec notre mug en ceramique premium'
+            }
+        };
+
+        let currentLang = localStorage.getItem('korakick-lang') || 'en';
+        const langToggle = document.getElementById('lang-toggle');
+
+        function updateLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('korakick-lang', lang);
+            langToggle.textContent = lang === 'en' ? 'FR' : 'EN';
+
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.dataset.translate;
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+        }
+
+        // Initialize language on page load
+        updateLanguage(currentLang);
+
+        langToggle.addEventListener('click', () => {
+            updateLanguage(currentLang === 'en' ? 'fr' : 'en');
+        });
+    </script>
+</body>
+</html>

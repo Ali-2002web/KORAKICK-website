@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KoraKick - Privacy Policy</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png">
+
+    <!-- Google Fonts - Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'soccer-green': '#10b981',
+                        'dark-green': '#052e16',
+                        'dark-green-light': '#14532d',
+                    },
+                    fontFamily: {
+                        'sans': ['Poppins', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { overflow-x: hidden; }
+
+        /* Smooth theme transition - only for main elements */
+        body, nav, section, footer, main, header {
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        h1, h2, h3, h4, h5, h6, p, span, a, li {
+            transition: color 0.3s ease;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f8fafc; }
+        .dark ::-webkit-scrollbar-track { background: #052e16; }
+        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #059669; }
+
+        .toc-link {
+            transition: all 0.3s ease;
+        }
+        .toc-link.active {
+            color: #10b981;
+            border-left-color: #10b981;
+        }
+        .toc-link:hover {
+            color: #10b981;
+        }
+    </style>
+
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+</head>
+<body class="bg-white dark:bg-dark-green text-gray-900 dark:text-gray-100 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 bg-white/90 dark:bg-dark-green/90 backdrop-blur-lg border-b border-gray-100 dark:border-dark-green-light">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex items-center gap-2">
+                    <img src="images/logo.png" alt="KoraKick" class="w-8 h-8">
+                    <span class="text-lg font-bold">Kora<span style="color: #65FF13;">Kick</span></span>
+                </a>
+                <div class="hidden md:flex gap-8">
+                    <a href="index.html#about" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition" data-translate="navAbout">About</a>
+                    <a href="index.html#features" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition" data-translate="navFeatures">Features</a>
+                    <a href="index.html#how-it-works" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition" data-translate="navHowItWorks">How It Works</a>
+                    <a href="shop.html" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition" data-translate="navShop">Shop</a>
+                </div>
+                <div class="flex items-center gap-3">
+                    <!-- Language Toggle -->
+                    <button id="lang-toggle" class="px-3 py-1.5 text-sm font-semibold border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                        FR
+                    </button>
+                    <button id="theme-toggle" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <a href="index.html" class="bg-soccer-green text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-emerald-600 transition" data-translate="getStarted">GET THE APP</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Privacy Content -->
+    <main class="pt-32 pb-20 px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row gap-12">
+
+                <!-- Sticky Sidebar - Table of Contents -->
+                <aside class="lg:w-72 flex-shrink-0">
+                    <div class="lg:sticky lg:top-28 rounded-2xl p-6" style="background-color: #0a2518;">
+                        <h3 class="text-lg font-bold text-white mb-6" data-translate="tocTitle">Content</h3>
+                        <nav class="space-y-1">
+                            <a href="#section1" class="toc-link block py-3 px-4 text-sm text-gray-400 border-l-2 border-gray-700 uppercase tracking-wide" data-translate="privacyToc1">1. INFORMATION WE COLLECT</a>
+                            <a href="#section2" class="toc-link block py-3 px-4 text-sm text-gray-400 border-l-2 border-gray-700 uppercase tracking-wide" data-translate="privacyToc2">2. HOW WE USE YOUR INFORMATION</a>
+                            <a href="#section3" class="toc-link block py-3 px-4 text-sm text-gray-400 border-l-2 border-gray-700 uppercase tracking-wide" data-translate="privacyToc3">3. INFORMATION SHARING</a>
+                            <a href="#section4" class="toc-link block py-3 px-4 text-sm text-gray-400 border-l-2 border-gray-700 uppercase tracking-wide" data-translate="privacyToc4">4. DATA SECURITY</a>
+                            <a href="#section5" class="toc-link block py-3 px-4 text-sm text-gray-400 border-l-2 border-gray-700 uppercase tracking-wide" data-translate="privacyToc5">5. YOUR RIGHTS</a>
+                            <a href="#section6" class="toc-link block py-3 px-4 text-sm text-gray-400 border-l-2 border-gray-700 uppercase tracking-wide" data-translate="privacyToc6">6. COOKIES AND TRACKING</a>
+                            <a href="#section7" class="toc-link block py-3 px-4 text-sm text-gray-400 border-l-2 border-gray-700 uppercase tracking-wide" data-translate="privacyToc7">7. THIRD-PARTY SERVICES</a>
+                            <a href="#section8" class="toc-link block py-3 px-4 text-sm text-gray-400 border-l-2 border-gray-700 uppercase tracking-wide" data-translate="privacyToc8">8. CHILDREN'S PRIVACY</a>
+                            <a href="#section9" class="toc-link block py-3 px-4 text-sm text-gray-400 border-l-2 border-gray-700 uppercase tracking-wide" data-translate="privacyToc9">9. POLICY UPDATES</a>
+                        </nav>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <div class="flex-1 max-w-3xl">
+                    <h1 class="text-4xl lg:text-5xl font-bold mb-4" data-translate="privacyTitle">Privacy Policy</h1>
+                    <p class="text-gray-500 dark:text-gray-400 mb-12" data-translate="privacyLastUpdated">Last updated: January 2026</p>
+
+                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-12" data-translate="privacyIntro">
+                        At KoraKick, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application and website. Please read this policy carefully to understand our practices regarding your personal data.
+                    </p>
+
+                    <!-- Section 1 -->
+                    <section id="section1" class="mb-12 scroll-mt-32">
+                        <h2 class="text-2xl font-bold mb-4 text-soccer-green" data-translate="privacy1Title">1. Information We Collect</h2>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4" data-translate="privacy1Content">
+                            We collect information that you provide directly to us, including:
+                        </p>
+                        <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2 ml-4">
+                            <li data-translate="privacy1Item1">Account information (name, email, phone number, profile photo)</li>
+                            <li data-translate="privacy1Item2">Location data to find nearby matches and fields</li>
+                            <li data-translate="privacy1Item3">Payment information for bookings and purchases</li>
+                            <li data-translate="privacy1Item4">Communications and messages with other users</li>
+                            <li data-translate="privacy1Item5">Match history and player statistics</li>
+                            <li data-translate="privacy1Item6">Device information and usage data</li>
+                        </ul>
+                    </section>
+
+                    <!-- Section 2 -->
+                    <section id="section2" class="mb-12 scroll-mt-32">
+                        <h2 class="text-2xl font-bold mb-4 text-soccer-green" data-translate="privacy2Title">2. How We Use Your Information</h2>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4" data-translate="privacy2Content">
+                            We use the information we collect to:
+                        </p>
+                        <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2 ml-4">
+                            <li data-translate="privacy2Item1">Provide, maintain, and improve our services</li>
+                            <li data-translate="privacy2Item2">Match you with other players and teams in your area</li>
+                            <li data-translate="privacy2Item3">Process payments and send transaction confirmations</li>
+                            <li data-translate="privacy2Item4">Send you notifications about matches, bookings, and updates</li>
+                            <li data-translate="privacy2Item5">Respond to your comments, questions, and support requests</li>
+                            <li data-translate="privacy2Item6">Detect, prevent, and address technical issues and fraud</li>
+                        </ul>
+                    </section>
+
+                    <!-- Section 3 -->
+                    <section id="section3" class="mb-12 scroll-mt-32">
+                        <h2 class="text-2xl font-bold mb-4 text-soccer-green" data-translate="privacy3Title">3. Information Sharing</h2>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed" data-translate="privacy3Content">
+                            We do not sell your personal information. We may share your information with: other users (profile information, match participation), facility partners (for bookings), payment processors (for transactions), and service providers who assist in our operations. We may also share information when required by law or to protect rights and safety.
+                        </p>
+                    </section>
+
+                    <!-- Section 4 -->
+                    <section id="section4" class="mb-12 scroll-mt-32">
+                        <h2 class="text-2xl font-bold mb-4 text-soccer-green" data-translate="privacy4Title">4. Data Security</h2>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed" data-translate="privacy4Content">
+                            We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. This includes encryption of data in transit and at rest, secure servers, and regular security audits. However, no method of transmission over the Internet is 100% secure.
+                        </p>
+                    </section>
+
+                    <!-- Section 5 -->
+                    <section id="section5" class="mb-12 scroll-mt-32">
+                        <h2 class="text-2xl font-bold mb-4 text-soccer-green" data-translate="privacy5Title">5. Your Rights</h2>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4" data-translate="privacy5Content">
+                            You have the right to:
+                        </p>
+                        <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2 ml-4">
+                            <li data-translate="privacy5Item1">Access and receive a copy of your personal data</li>
+                            <li data-translate="privacy5Item2">Correct inaccurate or incomplete information</li>
+                            <li data-translate="privacy5Item3">Request deletion of your account and data</li>
+                            <li data-translate="privacy5Item4">Opt-out of marketing communications</li>
+                            <li data-translate="privacy5Item5">Withdraw consent for data processing</li>
+                            <li data-translate="privacy5Item6">Lodge a complaint with a supervisory authority</li>
+                        </ul>
+                    </section>
+
+                    <!-- Section 6 -->
+                    <section id="section6" class="mb-12 scroll-mt-32">
+                        <h2 class="text-2xl font-bold mb-4 text-soccer-green" data-translate="privacy6Title">6. Cookies and Tracking</h2>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed" data-translate="privacy6Content">
+                            We use cookies and similar tracking technologies to track activity on our platform and hold certain information. Cookies are files with small amounts of data that may include an anonymous unique identifier. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, some features of our service may not function properly without cookies.
+                        </p>
+                    </section>
+
+                    <!-- Section 7 -->
+                    <section id="section7" class="mb-12 scroll-mt-32">
+                        <h2 class="text-2xl font-bold mb-4 text-soccer-green" data-translate="privacy7Title">7. Third-Party Services</h2>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed" data-translate="privacy7Content">
+                            Our platform may contain links to third-party websites or services that are not owned or controlled by KoraKick. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services. We strongly advise you to review the privacy policy of every site you visit.
+                        </p>
+                    </section>
+
+                    <!-- Section 8 -->
+                    <section id="section8" class="mb-12 scroll-mt-32">
+                        <h2 class="text-2xl font-bold mb-4 text-soccer-green" data-translate="privacy8Title">8. Children's Privacy</h2>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed" data-translate="privacy8Content">
+                            Our service is not intended for users under 13 years of age. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us immediately. If we discover that a child under 13 has provided us with personal information, we will delete such information from our servers.
+                        </p>
+                    </section>
+
+                    <!-- Section 9 -->
+                    <section id="section9" class="mb-12 scroll-mt-32">
+                        <h2 class="text-2xl font-bold mb-4 text-soccer-green" data-translate="privacy9Title">9. Policy Updates</h2>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed" data-translate="privacy9Content">
+                            We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date. You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.
+                        </p>
+                    </section>
+
+                    <!-- Contact Section -->
+                    <section class="mb-12 p-6 rounded-2xl bg-white dark:bg-dark-green-light">
+                        <h2 class="text-2xl font-bold mb-4 text-soccer-green" data-translate="privacyContactTitle">Contact Us</h2>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed" data-translate="privacyContactContent">
+                            If you have any questions about this Privacy Policy or our data practices, please contact us:
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-400 mt-4">
+                            <strong>Email:</strong> privacy@korakick.com<br>
+                            <strong>Support:</strong> support@korakick.com
+                        </p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 lg:px-8 bg-white dark:bg-dark-green border-t border-gray-100 dark:border-dark-green-light">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="md:col-span-2">
+                    <a href="index.html" class="flex items-center gap-2 mb-4">
+                        <img src="images/logo.png" alt="KoraKick" class="w-8 h-8">
+                        <span class="text-lg font-bold">Kora<span style="color: #65FF13;">Kick</span></span>
+                    </a>
+                    <p class="text-gray-600 dark:text-gray-400 max-w-sm mb-4" data-translate="footerDesc">Connecting soccer teams and players for matches. Get on the field faster with the #1 platform for soccer enthusiasts.</p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-10 h-10 bg-gray-200 dark:bg-dark-green-light rounded-lg flex items-center justify-center hover:bg-soccer-green hover:text-white transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/korakickapp/" target="_blank" class="w-10 h-10 bg-gray-200 dark:bg-dark-green-light rounded-lg flex items-center justify-center hover:bg-soccer-green hover:text-white transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4" data-translate="footerQuickLinks">Quick Links</h3>
+                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                        <li><a href="index.html#about" class="hover:text-soccer-green transition" data-translate="footerAbout">About Us</a></li>
+                        <li><a href="index.html#features" class="hover:text-soccer-green transition" data-translate="footerFeatures">Features</a></li>
+                        <li><a href="index.html#how-it-works" class="hover:text-soccer-green transition" data-translate="footerHowItWorks">How It Works</a></li>
+                        <li><a href="shop.html" class="hover:text-soccer-green transition" data-translate="footerShop">Shop</a></li>
+                        <li><a href="terms.html" class="hover:text-soccer-green transition" data-translate="footerTerms">Terms</a></li>
+                        <li><a href="privacy.html" class="hover:text-soccer-green transition text-soccer-green font-medium" data-translate="footerPrivacy">Privacy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4" data-translate="footerContact">Get in Touch</h3>
+                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                        <li>Email: info@korakick.com</li>
+                        <li>Support: support@korakick.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-gray-200 dark:border-dark-green-light flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+                <p data-translate="footerCopyright">Copyright © 2026 KoraKick. All rights reserved.</p>
+                <p data-translate="footerMadeWith">Organize. Play. Compete. (Morocco's #1 Football App)</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Highlight active section in TOC
+        const sections = document.querySelectorAll('section[id]');
+        const tocLinks = document.querySelectorAll('.toc-link');
+
+        function highlightTOC() {
+            let currentSection = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                if (window.scrollY >= sectionTop - 150) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', highlightTOC);
+        highlightTOC();
+
+        // Translations
+        const translations = {
+            en: {
+                navAbout: 'About',
+                navFeatures: 'Features',
+                navHowItWorks: 'How It Works',
+                navShop: 'Shop',
+                getStarted: 'GET THE APP',
+                footerDesc: 'Connecting soccer teams and players for matches. Get on the field faster with the #1 platform for soccer enthusiasts.',
+                footerQuickLinks: 'Quick Links',
+                footerAbout: 'About Us',
+                footerFeatures: 'Features',
+                footerHowItWorks: 'How It Works',
+                footerShop: 'Shop',
+                footerTerms: 'Terms',
+                footerPrivacy: 'Privacy',
+                footerContact: 'Get in Touch',
+                footerCopyright: 'Copyright © 2026 KoraKick. All rights reserved.',
+                footerMadeWith: 'Organize. Play. Compete. (Morocco\'s #1 Football App)',
+                tocTitle: 'Content',
+                privacyToc1: '1. INFORMATION WE COLLECT',
+                privacyToc2: '2. HOW WE USE YOUR INFORMATION',
+                privacyToc3: '3. INFORMATION SHARING',
+                privacyToc4: '4. DATA SECURITY',
+                privacyToc5: '5. YOUR RIGHTS',
+                privacyToc6: '6. COOKIES AND TRACKING',
+                privacyToc7: '7. THIRD-PARTY SERVICES',
+                privacyToc8: '8. CHILDREN\'S PRIVACY',
+                privacyToc9: '9. POLICY UPDATES',
+                privacyTitle: 'Privacy Policy',
+                privacyLastUpdated: 'Last updated: January 2026',
+                privacyIntro: 'At KoraKick, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application and website. Please read this policy carefully to understand our practices regarding your personal data.',
+                privacy1Title: '1. Information We Collect',
+                privacy1Content: 'We collect information that you provide directly to us, including:',
+                privacy1Item1: 'Account information (name, email, phone number, profile photo)',
+                privacy1Item2: 'Location data to find nearby matches and fields',
+                privacy1Item3: 'Payment information for bookings and purchases',
+                privacy1Item4: 'Communications and messages with other users',
+                privacy1Item5: 'Match history and player statistics',
+                privacy1Item6: 'Device information and usage data',
+                privacy2Title: '2. How We Use Your Information',
+                privacy2Content: 'We use the information we collect to:',
+                privacy2Item1: 'Provide, maintain, and improve our services',
+                privacy2Item2: 'Match you with other players and teams in your area',
+                privacy2Item3: 'Process payments and send transaction confirmations',
+                privacy2Item4: 'Send you notifications about matches, bookings, and updates',
+                privacy2Item5: 'Respond to your comments, questions, and support requests',
+                privacy2Item6: 'Detect, prevent, and address technical issues and fraud',
+                privacy3Title: '3. Information Sharing',
+                privacy3Content: 'We do not sell your personal information. We may share your information with: other users (profile information, match participation), facility partners (for bookings), payment processors (for transactions), and service providers who assist in our operations. We may also share information when required by law or to protect rights and safety.',
+                privacy4Title: '4. Data Security',
+                privacy4Content: 'We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. This includes encryption of data in transit and at rest, secure servers, and regular security audits. However, no method of transmission over the Internet is 100% secure.',
+                privacy5Title: '5. Your Rights',
+                privacy5Content: 'You have the right to:',
+                privacy5Item1: 'Access and receive a copy of your personal data',
+                privacy5Item2: 'Correct inaccurate or incomplete information',
+                privacy5Item3: 'Request deletion of your account and data',
+                privacy5Item4: 'Opt-out of marketing communications',
+                privacy5Item5: 'Withdraw consent for data processing',
+                privacy5Item6: 'Lodge a complaint with a supervisory authority',
+                privacy6Title: '6. Cookies and Tracking',
+                privacy6Content: 'We use cookies and similar tracking technologies to track activity on our platform and hold certain information. Cookies are files with small amounts of data that may include an anonymous unique identifier. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, some features of our service may not function properly without cookies.',
+                privacy7Title: '7. Third-Party Services',
+                privacy7Content: 'Our platform may contain links to third-party websites or services that are not owned or controlled by KoraKick. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services. We strongly advise you to review the privacy policy of every site you visit.',
+                privacy8Title: '8. Children\'s Privacy',
+                privacy8Content: 'Our service is not intended for users under 13 years of age. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us immediately. If we discover that a child under 13 has provided us with personal information, we will delete such information from our servers.',
+                privacy9Title: '9. Policy Updates',
+                privacy9Content: 'We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date. You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.',
+                privacyContactTitle: 'Contact Us',
+                privacyContactContent: 'If you have any questions about this Privacy Policy or our data practices, please contact us:'
+            },
+            fr: {
+                navAbout: 'A Propos',
+                navFeatures: 'Fonctionnalites',
+                navHowItWorks: 'Comment Ca Marche',
+                navShop: 'Boutique',
+                getStarted: 'OBTENIR L\'APPLICATION',
+                footerDesc: 'Connecter les equipes et les joueurs de football pour des matchs. La plateforme #1 pour les passionnes de football.',
+                footerQuickLinks: 'Liens Rapides',
+                footerAbout: 'A Propos',
+                footerFeatures: 'Fonctionnalites',
+                footerHowItWorks: 'Comment Ca Marche',
+                footerShop: 'Boutique',
+                footerTerms: 'Conditions',
+                footerPrivacy: 'Confidentialite',
+                footerContact: 'Contactez-nous',
+                footerCopyright: 'Copyright © 2026 KoraKick. Tous droits reserves.',
+                footerMadeWith: 'Organise. Joue. Gagne. (L\'Application #1 du Football au Maroc)',
+                tocTitle: 'Contenu',
+                privacyToc1: '1. INFORMATIONS COLLECTEES',
+                privacyToc2: '2. UTILISATION DES INFORMATIONS',
+                privacyToc3: '3. PARTAGE DES INFORMATIONS',
+                privacyToc4: '4. SECURITE DES DONNEES',
+                privacyToc5: '5. VOS DROITS',
+                privacyToc6: '6. COOKIES ET SUIVI',
+                privacyToc7: '7. SERVICES TIERS',
+                privacyToc8: '8. CONFIDENTIALITE DES ENFANTS',
+                privacyToc9: '9. MISES A JOUR',
+                privacyTitle: 'Politique de Confidentialite',
+                privacyLastUpdated: 'Derniere mise a jour: Janvier 2026',
+                privacyIntro: 'Chez KoraKick, nous prenons votre vie privee au serieux. Cette Politique de Confidentialite explique comment nous collectons, utilisons, divulguons et protegeons vos informations lorsque vous utilisez notre application mobile et notre site web. Veuillez lire attentivement cette politique pour comprendre nos pratiques concernant vos donnees personnelles.',
+                privacy1Title: '1. Informations Collectees',
+                privacy1Content: 'Nous collectons les informations que vous nous fournissez directement, notamment:',
+                privacy1Item1: 'Informations de compte (nom, email, numero de telephone, photo de profil)',
+                privacy1Item2: 'Donnees de localisation pour trouver des matchs et terrains a proximite',
+                privacy1Item3: 'Informations de paiement pour les reservations et achats',
+                privacy1Item4: 'Communications et messages avec d\'autres utilisateurs',
+                privacy1Item5: 'Historique des matchs et statistiques des joueurs',
+                privacy1Item6: 'Informations sur l\'appareil et donnees d\'utilisation',
+                privacy2Title: '2. Utilisation des Informations',
+                privacy2Content: 'Nous utilisons les informations collectees pour:',
+                privacy2Item1: 'Fournir, maintenir et ameliorer nos services',
+                privacy2Item2: 'Vous mettre en relation avec d\'autres joueurs et equipes de votre region',
+                privacy2Item3: 'Traiter les paiements et envoyer des confirmations de transaction',
+                privacy2Item4: 'Vous envoyer des notifications sur les matchs, reservations et mises a jour',
+                privacy2Item5: 'Repondre a vos commentaires, questions et demandes de support',
+                privacy2Item6: 'Detecter, prevenir et resoudre les problemes techniques et la fraude',
+                privacy3Title: '3. Partage des Informations',
+                privacy3Content: 'Nous ne vendons pas vos informations personnelles. Nous pouvons partager vos informations avec: d\'autres utilisateurs (informations de profil, participation aux matchs), partenaires d\'installations (pour les reservations), processeurs de paiement (pour les transactions), et prestataires de services qui nous assistent dans nos operations. Nous pouvons egalement partager des informations lorsque la loi l\'exige ou pour proteger les droits et la securite.',
+                privacy4Title: '4. Securite des Donnees',
+                privacy4Content: 'Nous mettons en oeuvre des mesures de securite techniques et organisationnelles appropriees pour proteger vos informations personnelles contre l\'acces non autorise, la modification, la divulgation ou la destruction. Cela inclut le chiffrement des donnees en transit et au repos, des serveurs securises et des audits de securite reguliers. Cependant, aucune methode de transmission sur Internet n\'est 100% securisee.',
+                privacy5Title: '5. Vos Droits',
+                privacy5Content: 'Vous avez le droit de:',
+                privacy5Item1: 'Acceder et recevoir une copie de vos donnees personnelles',
+                privacy5Item2: 'Corriger les informations inexactes ou incompletes',
+                privacy5Item3: 'Demander la suppression de votre compte et de vos donnees',
+                privacy5Item4: 'Vous desabonner des communications marketing',
+                privacy5Item5: 'Retirer votre consentement au traitement des donnees',
+                privacy5Item6: 'Deposer une plainte aupres d\'une autorite de controle',
+                privacy6Title: '6. Cookies et Suivi',
+                privacy6Content: 'Nous utilisons des cookies et des technologies de suivi similaires pour suivre l\'activite sur notre plateforme et conserver certaines informations. Les cookies sont des fichiers contenant de petites quantites de donnees pouvant inclure un identifiant unique anonyme. Vous pouvez configurer votre navigateur pour refuser tous les cookies ou pour vous avertir lorsqu\'un cookie est envoye. Cependant, certaines fonctionnalites de notre service peuvent ne pas fonctionner correctement sans cookies.',
+                privacy7Title: '7. Services Tiers',
+                privacy7Content: 'Notre plateforme peut contenir des liens vers des sites web ou services tiers qui ne sont pas detenus ou controles par KoraKick. Nous n\'avons aucun controle et n\'assumons aucune responsabilite quant au contenu, aux politiques de confidentialite ou aux pratiques de tout site ou service tiers. Nous vous conseillons vivement de consulter la politique de confidentialite de chaque site que vous visitez.',
+                privacy8Title: '8. Confidentialite des Enfants',
+                privacy8Content: 'Notre service n\'est pas destine aux utilisateurs de moins de 13 ans. Nous ne collectons pas sciemment d\'informations personnelles aupres d\'enfants de moins de 13 ans. Si vous etes un parent ou un tuteur et pensez que votre enfant nous a fourni des informations personnelles, veuillez nous contacter immediatement. Si nous decouvrons qu\'un enfant de moins de 13 ans nous a fourni des informations personnelles, nous supprimerons ces informations de nos serveurs.',
+                privacy9Title: '9. Mises a Jour de la Politique',
+                privacy9Content: 'Nous pouvons mettre a jour cette Politique de Confidentialite de temps a autre. Nous vous informerons de tout changement en publiant la nouvelle Politique de Confidentialite sur cette page et en mettant a jour la date de "Derniere mise a jour". Nous vous conseillons de consulter periodiquement cette Politique de Confidentialite pour tout changement. Les modifications de cette Politique de Confidentialite sont effectives lorsqu\'elles sont publiees sur cette page.',
+                privacyContactTitle: 'Nous Contacter',
+                privacyContactContent: 'Si vous avez des questions concernant cette Politique de Confidentialite ou nos pratiques en matiere de donnees, veuillez nous contacter:'
+            }
+        };
+
+        let currentLang = localStorage.getItem('korakick-lang') || 'en';
+        const langToggle = document.getElementById('lang-toggle');
+
+        function updateLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('korakick-lang', lang);
+            langToggle.textContent = lang === 'en' ? 'FR' : 'EN';
+
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.dataset.translate;
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+        }
+
+        // Initialize language on page load
+        updateLanguage(currentLang);
+
+        langToggle.addEventListener('click', () => {
+            updateLanguage(currentLang === 'en' ? 'fr' : 'en');
+        });
+    </script>
+</body>
+</html>

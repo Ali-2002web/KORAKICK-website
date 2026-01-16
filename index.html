@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KoraKick - Find Soccer Opponents. Join Teams. Play More.</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png">
+
+    <!-- Google Fonts - Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'soccer-green': '#10b981',
+                        'dark-green': '#052e16',
+                        'dark-green-light': '#14532d',
+                    },
+                    fontFamily: {
+                        'sans': ['Poppins', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { overflow-x: hidden; }
+
+        /* Smooth theme transition - only for main elements */
+        body, nav, section, footer, main, header, .card, .glow-card, .parallax-card {
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        h1, h2, h3, h4, h5, h6, p, span, a, li {
+            transition: color 0.3s ease;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f8fafc; }
+        .dark ::-webkit-scrollbar-track { background: #052e16; }
+        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #059669; }
+
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hover-lift:hover {
+            transform: translateY(-8px);
+        }
+
+        /* Card styles for light mode */
+        .glow-card {
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        .glow-card:hover {
+            border-color: #10b981;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15), 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Glowing card borders in dark mode */
+        .dark .glow-card {
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.15), 0 0 40px rgba(16, 185, 129, 0.05);
+        }
+        .dark .glow-card:hover {
+            border-color: rgba(16, 185, 129, 0.5);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.25), 0 0 60px rgba(16, 185, 129, 0.1);
+        }
+
+        /* Parallax cards light mode */
+        .parallax-card {
+            border: 1px solid #e5e7eb !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
+        }
+        .parallax-card:hover {
+            border-color: #10b981 !important;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15) !important;
+        }
+
+        /* Glowing parallax cards in dark mode */
+        .dark .parallax-card {
+            border: 1px solid rgba(16, 185, 129, 0.4) !important;
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.2), 0 0 50px rgba(16, 185, 129, 0.1) !important;
+        }
+        .dark .parallax-card:hover {
+            border-color: rgba(16, 185, 129, 0.6) !important;
+            box-shadow: 0 0 35px rgba(16, 185, 129, 0.3), 0 0 70px rgba(16, 185, 129, 0.15) !important;
+        }
+
+        /* About Image - Transform effect on all screens */
+        .about-image-container {
+            perspective: 800px;
+        }
+        .about-image {
+            transform: scale(1.2) rotateX(8deg) rotateY(-8deg) rotateZ(2deg);
+            mask-image: radial-gradient(ellipse 70% 60% at center, black 35%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse 70% 60% at center, black 35%, transparent 80%);
+        }
+        @media (min-width: 1024px) {
+            .about-image-container {
+                perspective: 1000px;
+            }
+            .about-image {
+                transform: scale(1.3) rotateX(10deg) rotateY(-10deg) rotateZ(2deg);
+                mask-image: radial-gradient(ellipse 65% 55% at center, black 30%, transparent 75%);
+                -webkit-mask-image: radial-gradient(ellipse 65% 55% at center, black 30%, transparent 75%);
+            }
+        }
+
+        /* Parallax Scroll Animation */
+        .parallax-card {
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .parallax-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .parallax-card:nth-child(1) { transition-delay: 0s; }
+        .parallax-card:nth-child(2) { transition-delay: 0.2s; }
+        .parallax-card:nth-child(3) { transition-delay: 0.4s; }
+
+        /* Feature Cards Parallax Animation */
+        .feature-card {
+            opacity: 0;
+            transform: translateY(60px) scale(0.95);
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .feature-card:nth-child(1) { transition-delay: 0s; }
+        .feature-card:nth-child(2) { transition-delay: 0.1s; }
+        .feature-card:nth-child(3) { transition-delay: 0.2s; }
+        .feature-card:nth-child(4) { transition-delay: 0.3s; }
+        .feature-card:nth-child(5) { transition-delay: 0.4s; }
+        .feature-card:nth-child(6) { transition-delay: 0.5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(3deg); }
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(16, 185, 129, 0.6); }
+        }
+
+        .sponsor-logo {
+            transition: all 0.4s ease;
+        }
+
+        .sponsor-logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Nav link hover effect */
+        .nav-link {
+            position: relative;
+            padding-bottom: 4px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #10b981;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hero-bg {
+            background: linear-gradient(-45deg, #f0fdf4, #ffffff, #ecfdf5, #f0fdfa);
+            background-size: 400% 400%;
+            animation: gradient-shift 15s ease infinite;
+        }
+
+        .dark .hero-bg {
+            background: linear-gradient(-45deg, #1e293b, #0f172a, #1e293b, #0f172a);
+            background-size: 400% 400%;
+        }
+
+        .fade-in-up {
+            animation: fade-in-up 0.8s ease-out;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: #10b981;
+            top: -100px;
+            right: -100px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .blob-2 {
+            width: 300px;
+            height: 300px;
+            background: #3b82f6;
+            bottom: -50px;
+            left: -50px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glow-button {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .section-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .section-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+</head>
+<body class="bg-white dark:bg-dark-green text-gray-900 dark:text-gray-100 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 bg-white/90 dark:bg-dark-green/90 backdrop-blur-lg border-b border-gray-100 dark:border-dark-green-light">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="#" class="flex items-center gap-2 cursor-pointer">
+                    <img src="images/logo.png" alt="KoraKick" class="w-8 h-8">
+                    <span class="text-lg font-bold">Kora<span style="color: #65FF13;">Kick</span></span>
+                </a>
+                <div class="hidden md:flex gap-8">
+                    <a href="#about" class="nav-link text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition" data-translate="navAbout">About</a>
+                    <a href="#features" class="nav-link text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition" data-translate="navFeatures">Features</a>
+                    <a href="#how-it-works" class="nav-link text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition" data-translate="navHowItWorks">How It Works</a>
+                    <a href="shop.html" class="nav-link text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition" data-translate="navShop">Shop</a>
+                </div>
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <!-- Language Toggle -->
+                    <button id="lang-toggle" class="px-2 sm:px-3 py-1.5 text-sm font-semibold border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                        FR
+                    </button>
+                    <button id="theme-toggle" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <button class="hidden sm:block bg-soccer-green text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-emerald-600 transition" data-translate="getStarted">Get Started</button>
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition">
+                        <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                        <svg id="close-icon" class="hidden w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col gap-2">
+                    <a href="#about" class="mobile-nav-link text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" data-translate="navAbout">About</a>
+                    <a href="#features" class="mobile-nav-link text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" data-translate="navFeatures">Features</a>
+                    <a href="#how-it-works" class="mobile-nav-link text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" data-translate="navHowItWorks">How It Works</a>
+                    <a href="shop.html" class="mobile-nav-link text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" data-translate="navShop">Shop</a>
+                    <a href="#" class="bg-soccer-green text-white px-4 py-2.5 rounded-lg text-sm font-semibold hover:bg-emerald-600 transition text-center mt-2" data-translate="getStarted">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="pt-24 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style="background: url('images/tiranBG.jpg') center center / cover no-repeat;">
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid lg:grid-cols-2 gap-10 sm:gap-16 lg:gap-24 items-center">
+                <div class="fade-in-up text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 bg-soccer-green/20 text-soccer-green rounded-full text-xs sm:text-sm font-medium mb-6 sm:mb-8 backdrop-blur-sm border border-soccer-green/30">
+                        <span class="w-2 h-2 bg-soccer-green rounded-full animate-pulse"></span>
+                        <span data-translate="heroTagline">10,000+ Active Players</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl lg:text-7xl font-bold leading-tight mb-4 sm:mb-6 text-white" data-translate="heroTitle">
+                        Find Soccer<br/>Opponents.<br/>
+                        <span class="text-soccer-green">Play More.</span>
+                    </h1>
+                    <p class="text-base sm:text-xl text-gray-300 mb-8 sm:mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed" data-translate="heroDesc">
+                        Connect with local teams and players instantly. Get on the field faster with smart matching.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
+                        <a href="#" class="inline-flex items-center justify-center gap-2 bg-soccer-green text-white px-5 sm:px-6 py-3 sm:py-4 rounded-xl hover:bg-emerald-600 transition shadow-lg hover:shadow-xl transform hover:scale-105">
+                            <svg class="w-5 sm:w-6 h-5 sm:h-6" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            </svg>
+                            <div class="text-left text-sm">
+                                <div class="text-xs opacity-80">Download on</div>
+                                <div class="font-semibold -mt-0.5">App Store</div>
+                            </div>
+                        </a>
+                        <a href="#" class="inline-flex items-center justify-center gap-2 bg-soccer-green text-white px-5 sm:px-6 py-3 sm:py-4 rounded-xl hover:bg-emerald-600 transition shadow-lg hover:shadow-xl transform hover:scale-105">
+                            <svg class="w-5 sm:w-6 h-5 sm:h-6" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                            </svg>
+                            <div class="text-left text-sm">
+                                <div class="text-xs opacity-80">Get it on</div>
+                                <div class="font-semibold -mt-0.5">Google Play</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="relative flex justify-center lg:justify-end items-end gap-2 sm:gap-4">
+                    <img src="images/iMockup - iPhone 15 Pro Max (5).png" alt="App Screenshot 1" class="phone-mockup w-40 sm:w-64 lg:w-[26rem] drop-shadow-2xl relative z-10 -mb-2 sm:-mb-4">
+                    <img src="images/iMockup - iPhone 15 Pro Max (6).png" alt="App Screenshot 2" class="phone-mockup w-36 sm:w-56 lg:w-96 drop-shadow-2xl relative z-10">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-100 dark:bg-[#0a1f14]">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+                <!-- Left Content -->
+                <div class="text-center lg:text-left order-2 lg:order-1">
+                    <h2 class="text-2xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white leading-tight mb-4 sm:mb-6" data-translate="aboutTitle">
+                        Where Every Player Finds Their Game
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-400 text-base sm:text-lg leading-relaxed mb-4 sm:mb-6" data-translate="aboutDesc">
+                        We believe that no one should play alone. KoraKick connects passionate players across Morocco, turning empty fields into vibrant matches and strangers into teammates. Whether you're a weekend warrior or a daily player, your next game is just a tap away.
+                    </p>
+                    <p class="text-gray-700 dark:text-gray-300 mb-6 sm:mb-8" data-translate="aboutJoinText">Be part of the movement.</p>
+                    <a href="#" class="inline-flex items-center gap-2 text-soccer-green font-semibold hover:text-emerald-400 transition border-b-2 border-soccer-green pb-1">
+                        <span data-translate="aboutJoinBtn">Join KoraKick</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/>
+                        </svg>
+                    </a>
+                </div>
+                <!-- Right Image -->
+                <div class="relative order-1 lg:order-2 about-image-container">
+                    <img src="images/tirandrone2.jpg" alt="Soccer fields aerial view" class="w-full about-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 bg-white dark:bg-[#0d3320]">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4" id="parallax-cards">
+                <!-- Card 1 - Find Your Game -->
+                <div class="parallax-card rounded-xl p-5 relative overflow-hidden bg-gray-100 dark:bg-[#0f3d28] border border-gray-200 dark:border-[#1a5c3a]">
+                    <!-- Icon -->
+                    <div class="w-9 h-9 rounded-full border-2 border-soccer-green flex items-center justify-center mb-3">
+                        <svg class="w-4 h-4 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+                    <!-- Content -->
+                    <h3 class="text-lg lg:text-xl font-bold text-gray-900 dark:text-white mb-2" data-translate="step1Title">Find Your Game</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed mb-4" data-translate="step1Desc">Explore hundreds of games at top facilities, with convenient times and skill levels that fit your preference.</p>
+                    <!-- Phone Mockup -->
+                    <div class="flex justify-center">
+                        <img src="images/iMockup - iPhone 15 Pro Max (1).png" alt="Find Game Screen" class="w-40 lg:w-48 drop-shadow-2xl">
+                    </div>
+                </div>
+
+                <!-- Card 2 - Reserve Your Spot -->
+                <div class="parallax-card rounded-xl p-5 relative overflow-hidden bg-gray-100 dark:bg-[#0f3d28] border border-gray-200 dark:border-[#1a5c3a]">
+                    <!-- Icon -->
+                    <div class="w-9 h-9 rounded-full border-2 border-soccer-green flex items-center justify-center mb-3">
+                        <svg class="w-4 h-4 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <!-- Content -->
+                    <h3 class="text-lg lg:text-xl font-bold text-gray-900 dark:text-white mb-2" data-translate="step2Title">Reserve Your Spot</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed mb-4" data-translate="step2Desc">View game details, invite friends and interact with other players on the roster.</p>
+                    <!-- Phone Mockup -->
+                    <div class="flex justify-center">
+                        <img src="images/login-portrait.png" alt="Reserve Spot Screen" class="w-40 lg:w-48 drop-shadow-2xl">
+                    </div>
+                </div>
+
+                <!-- Card 3 - Waiting Room -->
+                <div class="parallax-card rounded-xl p-5 relative overflow-hidden bg-gray-100 dark:bg-[#0f3d28] border border-gray-200 dark:border-[#1a5c3a]">
+                    <!-- Icon -->
+                    <div class="w-9 h-9 rounded-full border-2 border-soccer-green flex items-center justify-center mb-3">
+                        <svg class="w-4 h-4 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </div>
+                    <!-- Content -->
+                    <h3 class="text-lg lg:text-xl font-bold text-gray-900 dark:text-white mb-2" data-translate="step3Title">Waiting Room</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed mb-4" data-translate="step3Desc">Join the waiting room to meet other players, chat before the game starts and coordinate with your teammates.</p>
+                    <!-- Phone Mockup -->
+                    <div class="flex justify-center">
+                        <img src="images/iMockup - iPhone 15 Pro Max (7).png" alt="Waiting Room Screen" class="w-40 lg:w-48 drop-shadow-2xl">
+                    </div>
+                </div>
+
+                <!-- Card 4 - Show Up & Play -->
+                <div class="parallax-card rounded-xl p-5 relative overflow-hidden flex flex-col bg-gray-100 dark:bg-[#0f3d28] border border-gray-200 dark:border-[#1a5c3a]">
+                    <!-- Icon -->
+                    <div class="w-9 h-9 rounded-full border-2 border-soccer-green flex items-center justify-center mb-3">
+                        <svg class="w-4 h-4 text-soccer-green" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 3.3l1.35-.95c1.82.56 3.37 1.76 4.38 3.34l-.39 1.34-1.35.46L13 6.7V5.3zm-3.35-.95L11 5.3v1.4L7.01 9.49l-1.35-.46-.39-1.34c1.01-1.58 2.56-2.78 4.38-3.34zM7.08 17.11l-1.14.1C4.73 15.81 4 13.99 4 12c0-.12.01-.23.02-.35l1-.73 1.38.48 1.46 4.34-.78 1.37zm7.42 2.48c-.79.26-1.63.41-2.5.41s-1.71-.15-2.5-.41l-.69-1.49.64-1.1h5.11l.64 1.11-.7 1.48zM14.27 15H9.73l-1.35-4.02L12 8.44l3.63 2.54L14.27 15zm3.79 2.21l-1.14-.1-.79-1.37 1.46-4.34 1.39-.47 1 .73c.01.11.02.22.02.34 0 1.99-.73 3.81-1.94 5.21z"/>
+                        </svg>
+                    </div>
+                    <!-- Content -->
+                    <h3 class="text-lg lg:text-xl font-bold text-gray-900 dark:text-white mb-2" data-translate="step4Title">Show Up & Play</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed mb-4" data-translate="step4Desc">Check-in at the facility, play the beautiful game and make new connections with people who share the same love for the sport.</p>
+                    <!-- Soccer Image -->
+                    <div class="flex-1 rounded-lg overflow-hidden -mx-5 -mb-5 mt-auto">
+                        <img src="images/imgsitekorakick.jpg" alt="Players on field" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-dark-green-light/50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-10 sm:mb-16">
+                <span class="text-soccer-green font-semibold text-xs sm:text-sm tracking-wider" data-translate="featuresLabel">FEATURES</span>
+                <h2 class="text-2xl sm:text-4xl lg:text-5xl font-bold mt-2 sm:mt-3" data-translate="featuresTitle">Everything You Need</h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6" id="features-cards">
+                <div class="feature-card bg-white dark:bg-dark-green p-5 sm:p-8 rounded-2xl hover-lift shadow-sm glow-card">
+                    <svg class="w-10 h-10 text-soccer-green mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    <h3 class="font-bold text-lg mb-2"><span data-translate="feature1Title">Location-Based Matching</span> <span class="text-soccer-green" data-translate="clubsMap">& Clubs Map</span></h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4" data-translate="feature1Desc">Find matches and players nearby with GPS-powered search</p>
+                    <!-- Mini Map with Club Markers -->
+                    <div class="relative w-full h-32 rounded-xl overflow-hidden" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+                        <!-- Map Grid Lines -->
+                        <div class="absolute inset-0 opacity-20">
+                            <div class="absolute top-1/4 left-0 right-0 h-px bg-gray-500"></div>
+                            <div class="absolute top-2/4 left-0 right-0 h-px bg-gray-500"></div>
+                            <div class="absolute top-3/4 left-0 right-0 h-px bg-gray-500"></div>
+                            <div class="absolute left-1/4 top-0 bottom-0 w-px bg-gray-500"></div>
+                            <div class="absolute left-2/4 top-0 bottom-0 w-px bg-gray-500"></div>
+                            <div class="absolute left-3/4 top-0 bottom-0 w-px bg-gray-500"></div>
+                        </div>
+                        <!-- Club Markers -->
+                        <div class="absolute top-4 left-6 flex flex-col items-center">
+                            <div class="w-3 h-3 bg-soccer-green rounded-full animate-pulse"></div>
+                            <div class="w-1 h-2 bg-soccer-green"></div>
+                        </div>
+                        <div class="absolute top-8 left-1/4 flex flex-col items-center">
+                            <div class="w-3 h-3 bg-soccer-green rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
+                            <div class="w-1 h-2 bg-soccer-green"></div>
+                        </div>
+                        <div class="absolute top-6 right-1/4 flex flex-col items-center">
+                            <div class="w-3 h-3 bg-soccer-green rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
+                            <div class="w-1 h-2 bg-soccer-green"></div>
+                        </div>
+                        <div class="absolute bottom-8 left-1/3 flex flex-col items-center">
+                            <div class="w-3 h-3 bg-soccer-green rounded-full animate-pulse" style="animation-delay: 0.6s;"></div>
+                            <div class="w-1 h-2 bg-soccer-green"></div>
+                        </div>
+                        <div class="absolute bottom-6 right-8 flex flex-col items-center">
+                            <div class="w-3 h-3 bg-soccer-green rounded-full animate-pulse" style="animation-delay: 0.8s;"></div>
+                            <div class="w-1 h-2 bg-soccer-green"></div>
+                        </div>
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                            <div class="w-4 h-4 bg-red-500 rounded-full border-2 border-white shadow-lg"></div>
+                            <span class="text-xs text-white mt-1 font-medium">You</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card bg-white dark:bg-dark-green p-5 sm:p-8 rounded-2xl hover-lift shadow-sm glow-card">
+                    <svg class="w-10 h-10 text-soccer-green mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <h3 class="font-bold text-lg mb-2" data-translate="feature2Title">Quick Scheduling</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4" data-translate="feature2Desc">Book fields and schedule matches instantly</p>
+                    <!-- Mini Calendar -->
+                    <div class="relative w-full h-32 rounded-xl overflow-hidden" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+                        <div class="p-3">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-xs text-gray-400">January 2026</span>
+                                <div class="flex gap-1">
+                                    <div class="w-4 h-4 rounded bg-gray-700 flex items-center justify-center text-gray-400 text-xs">&lt;</div>
+                                    <div class="w-4 h-4 rounded bg-gray-700 flex items-center justify-center text-gray-400 text-xs">&gt;</div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-7 gap-1 text-center text-xs">
+                                <span class="text-gray-500">M</span><span class="text-gray-500">T</span><span class="text-gray-500">W</span><span class="text-gray-500">T</span><span class="text-gray-500">F</span><span class="text-gray-500">S</span><span class="text-gray-500">S</span>
+                                <span class="text-gray-400">1</span><span class="text-gray-400">2</span><span class="text-gray-400">3</span><span class="text-gray-400">4</span><span class="text-gray-400">5</span><span class="text-gray-400">6</span><span class="text-gray-400">7</span>
+                                <span class="text-gray-400">8</span><span class="text-gray-400">9</span><span class="text-gray-400">10</span><span class="text-gray-400">11</span><span class="bg-soccer-green text-white rounded-full">12</span><span class="text-gray-400">13</span><span class="text-gray-400">14</span>
+                                <span class="text-gray-400">15</span><span class="bg-soccer-green/30 text-soccer-green rounded-full">16</span><span class="text-gray-400">17</span><span class="text-gray-400">18</span><span class="bg-soccer-green/30 text-soccer-green rounded-full">19</span><span class="text-gray-400">20</span><span class="text-gray-400">21</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card bg-white dark:bg-dark-green p-5 sm:p-8 rounded-2xl hover-lift shadow-sm glow-card">
+                    <svg class="w-10 h-10 text-soccer-green mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                    </svg>
+                    <h3 class="font-bold text-lg mb-2" data-translate="feature3Title">Ratings & Reviews</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4" data-translate="feature3Desc">Build trust through player feedback and ratings</p>
+                    <!-- Rating Bars -->
+                    <div class="relative w-full h-32 rounded-xl overflow-hidden p-3" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-2xl font-bold text-white">4.8</span>
+                            <div class="flex gap-0.5">
+                                <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                            </div>
+                        </div>
+                        <div class="space-y-1.5">
+                            <div class="flex items-center gap-2"><span class="text-xs text-gray-400 w-3">5</span><div class="flex-1 h-2 bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-soccer-green rounded-full" style="width: 75%"></div></div></div>
+                            <div class="flex items-center gap-2"><span class="text-xs text-gray-400 w-3">4</span><div class="flex-1 h-2 bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-soccer-green rounded-full" style="width: 20%"></div></div></div>
+                            <div class="flex items-center gap-2"><span class="text-xs text-gray-400 w-3">3</span><div class="flex-1 h-2 bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-soccer-green rounded-full" style="width: 5%"></div></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card bg-white dark:bg-dark-green p-5 sm:p-8 rounded-2xl hover-lift shadow-sm glow-card">
+                    <svg class="w-10 h-10 text-soccer-green mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                    </svg>
+                    <h3 class="font-bold text-lg mb-2" data-translate="feature4Title">In-App Chat</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4" data-translate="feature4Desc">Coordinate match details and communicate seamlessly</p>
+                    <!-- Chat Interface -->
+                    <div class="relative w-full h-32 rounded-xl overflow-hidden p-3" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+                        <div class="space-y-2">
+                            <div class="flex items-start gap-2">
+                                <div class="w-6 h-6 rounded-full bg-blue-500 flex-shrink-0"></div>
+                                <div class="bg-gray-700 rounded-lg rounded-tl-none px-3 py-1.5 max-w-[70%]">
+                                    <p class="text-xs text-gray-200">Match at 6pm?</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-2 justify-end">
+                                <div class="bg-soccer-green rounded-lg rounded-tr-none px-3 py-1.5 max-w-[70%]">
+                                    <p class="text-xs text-white">Perfect! See you there</p>
+                                </div>
+                                <div class="w-6 h-6 rounded-full bg-orange-500 flex-shrink-0"></div>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <div class="w-6 h-6 rounded-full bg-blue-500 flex-shrink-0"></div>
+                                <div class="bg-gray-700 rounded-lg rounded-tl-none px-3 py-1.5">
+                                    <div class="flex gap-1"><span class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce"></span><span class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></span><span class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card bg-white dark:bg-dark-green p-5 sm:p-8 rounded-2xl hover-lift shadow-sm glow-card">
+                    <svg class="w-10 h-10 text-soccer-green mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                    </svg>
+                    <h3 class="font-bold text-lg mb-2" data-translate="feature5Title">Smart Matchmaking</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4" data-translate="feature5Desc">AI-powered algorithm matches you with players of similar skill level</p>
+                    <!-- Matchmaking Visual -->
+                    <div class="relative w-full h-32 rounded-xl overflow-hidden p-3" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+                        <div class="flex items-center justify-between h-full">
+                            <div class="flex flex-col items-center">
+                                <div class="w-10 h-10 rounded-full bg-blue-500 border-2 border-blue-400 flex items-center justify-center text-white text-xs font-bold">You</div>
+                                <span class="text-xs text-gray-400 mt-1">Lvl 7</span>
+                            </div>
+                            <div class="flex-1 flex items-center justify-center px-2">
+                                <div class="flex items-center gap-1">
+                                    <div class="w-2 h-2 bg-soccer-green rounded-full animate-ping"></div>
+                                    <div class="h-0.5 w-6 bg-gradient-to-r from-soccer-green to-transparent"></div>
+                                    <svg class="w-6 h-6 text-soccer-green" fill="currentColor" viewBox="0 0 20 20"><path d="M8 5a1 1 0 100 2h5.586l-1.293 1.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L13.586 5H8zM12 15a1 1 0 100-2H6.414l1.293-1.293a1 1 0 10-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L6.414 15H12z"/></svg>
+                                    <div class="h-0.5 w-6 bg-gradient-to-l from-soccer-green to-transparent"></div>
+                                    <div class="w-2 h-2 bg-soccer-green rounded-full animate-ping" style="animation-delay: 0.5s"></div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-10 h-10 rounded-full bg-orange-500 border-2 border-orange-400 flex items-center justify-center text-white text-xs font-bold">?</div>
+                                <span class="text-xs text-gray-400 mt-1">Lvl 6-8</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card bg-white dark:bg-dark-green p-5 sm:p-8 rounded-2xl hover-lift shadow-sm glow-card">
+                    <svg class="w-10 h-10 text-soccer-green mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                    </svg>
+                    <h3 class="font-bold text-lg mb-2" data-translate="feature6Title">Team Management</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4" data-translate="feature6Desc">Manage your team roster and track player availability</p>
+                    <!-- Team Roster Visual -->
+                    <div class="relative w-full h-32 rounded-xl overflow-hidden p-3" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs text-gray-400">Team Roster</span>
+                            <span class="text-xs text-soccer-green">8/11</span>
+                        </div>
+                        <div class="grid grid-cols-6 gap-1.5">
+                            <div class="w-7 h-7 rounded-full bg-soccer-green flex items-center justify-center"><svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/></svg></div>
+                            <div class="w-7 h-7 rounded-full bg-soccer-green flex items-center justify-center"><svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/></svg></div>
+                            <div class="w-7 h-7 rounded-full bg-soccer-green flex items-center justify-center"><svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/></svg></div>
+                            <div class="w-7 h-7 rounded-full bg-soccer-green flex items-center justify-center"><svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/></svg></div>
+                            <div class="w-7 h-7 rounded-full bg-soccer-green flex items-center justify-center"><svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/></svg></div>
+                            <div class="w-7 h-7 rounded-full bg-soccer-green flex items-center justify-center"><svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/></svg></div>
+                            <div class="w-7 h-7 rounded-full bg-soccer-green flex items-center justify-center"><svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/></svg></div>
+                            <div class="w-7 h-7 rounded-full bg-soccer-green flex items-center justify-center"><svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/></svg></div>
+                            <div class="w-7 h-7 rounded-full bg-gray-600 border-2 border-dashed border-gray-500 flex items-center justify-center"><span class="text-gray-400 text-xs">+</span></div>
+                            <div class="w-7 h-7 rounded-full bg-gray-600 border-2 border-dashed border-gray-500 flex items-center justify-center"><span class="text-gray-400 text-xs">+</span></div>
+                            <div class="w-7 h-7 rounded-full bg-gray-600 border-2 border-dashed border-gray-500 flex items-center justify-center"><span class="text-gray-400 text-xs">+</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teams & Players -->
+    <section class="py-20 px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-16 items-center mb-16">
+                <div>
+                    <span class="text-soccer-green font-semibold text-sm tracking-wider" data-translate="teamsLabel">FOR TEAMS & PLAYERS</span>
+                    <h2 class="text-4xl lg:text-5xl font-bold mt-3 mb-6" data-translate="teamsTitle">Whether You're a Team or Solo Player</h2>
+                    <p class="text-xl text-gray-600 dark:text-gray-400 mb-8 leading-relaxed" data-translate="teamsDesc">
+                        KoraKick works for everyone. Find opponents as a full team, or join as an individual player looking for pickup games. Our flexible platform adapts to your needs.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex gap-4">
+                            <div class="w-6 h-6 bg-soccer-green/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <svg class="w-4 h-4 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-1" data-translate="teamsItem1Title">Team vs Team Matches</h4>
+                                <p class="text-gray-600 dark:text-gray-400" data-translate="teamsItem1Desc">Find opponent teams for scheduled matches, friendly games, and competitive tournaments</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-6 h-6 bg-soccer-green/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <svg class="w-4 h-4 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-1" data-translate="teamsItem2Title">Join as Individual Player</h4>
+                                <p class="text-gray-600 dark:text-gray-400" data-translate="teamsItem2Desc">Find pickup games, drop-in sessions, and connect with other solo players in your area</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-6 h-6 bg-soccer-green/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <svg class="w-4 h-4 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-1" data-translate="teamsItem3Title">Skill Level Matching</h4>
+                                <p class="text-gray-600 dark:text-gray-400" data-translate="teamsItem3Desc">Get matched with players and teams of similar skill levels for balanced, competitive games</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-6 h-6 bg-soccer-green/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <svg class="w-4 h-4 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-1" data-translate="teamsItem4Title">Flexible Scheduling</h4>
+                                <p class="text-gray-600 dark:text-gray-400" data-translate="teamsItem4Desc">Set your availability and preferences to find matches that fit your schedule</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative flex justify-center lg:justify-end">
+                    <div class="absolute inset-0 bg-gradient-to-l from-soccer-green/10 to-transparent rounded-full blur-3xl"></div>
+                    <img src="images/iMockup - iPhone 15 Pro Max (2).png" alt="Team Features" class="phone-mockup w-60 lg:w-80 mx-auto drop-shadow-2xl relative z-10">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Account Team & Tournaments -->
+    <section class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-dark-green-light/50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-10 sm:mb-16">
+                <span class="text-soccer-green font-semibold text-xs sm:text-sm tracking-wider" data-translate="accountTeamLabel">ACCOUNT TEAM MODE</span>
+                <h2 class="text-2xl sm:text-4xl lg:text-5xl font-bold mt-2 sm:mt-3 mb-3 sm:mb-4" data-translate="accountTeamTitle">Create Your Own Team</h2>
+                <p class="text-sm sm:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto px-2" data-translate="accountTeamDesc">
+                    Build your dream team from scratch. Choose your team size, design your logo, and compete in seasonal tournaments organized by KoraKick.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-6 sm:gap-12 items-center">
+                <!-- Team Creation Card -->
+                <div class="bg-white dark:bg-dark-green p-4 sm:p-8 rounded-2xl shadow-lg glow-card">
+                    <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-soccer-green/10 rounded-xl flex items-center justify-center">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg sm:text-2xl font-bold" data-translate="createTeamTitle">Create Your Team</h3>
+                    </div>
+
+                    <!-- Team Creation Visual -->
+                    <div class="relative w-full rounded-xl overflow-hidden p-4 sm:p-6" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+                        <!-- Team Logo & Name -->
+                        <div class="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-gradient-to-br from-soccer-green to-green-600 flex items-center justify-center border-2 border-white/20">
+                                <svg class="w-7 h-7 sm:w-9 sm:h-9 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M22 2L19 5.5C17.5 4 15.5 3 13 3C10 3 7 5 5 8L2 6L3.5 9C2.5 10.5 2 12.5 2 15C2 17 3 19 4 20L6 22L7.5 19C9 20.5 11 21.5 13 21.5C16.5 21.5 19.5 19 21 15.5L22 18L21.5 14C22 12.5 22 11 22 9.5C22 7 21.5 4.5 22 2ZM13 19C10.5 19 8.5 17.5 7.5 15.5L10 14L8 12L11 11L9 9L12 8.5C12.5 8.5 13 8.5 13.5 8.5C16 8.5 18 10.5 18.5 13C18.5 15.5 16 19 13 19ZM14 12C13.5 12 13 12.5 13 13C13 13.5 13.5 14 14 14C14.5 14 15 13.5 15 13C15 12.5 14.5 12 14 12Z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-white font-bold text-sm sm:text-lg">FC Warriors</div>
+                                <div class="text-gray-400 text-xs sm:text-sm">FCW</div>
+                            </div>
+                            <div class="ml-auto">
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Team Size Selection -->
+                        <div class="mb-3 sm:mb-4">
+                            <div class="text-gray-400 text-xs mb-2" data-translate="teamSizeLabel">Team Size</div>
+                            <div class="flex flex-wrap gap-1.5 sm:gap-2">
+                                <div class="px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-gray-700/50 text-gray-400 text-xs sm:text-sm">5v5</div>
+                                <div class="px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-gray-700/50 text-gray-400 text-xs sm:text-sm">6v6</div>
+                                <div class="px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-soccer-green text-white text-xs sm:text-sm font-semibold">7v7</div>
+                                <div class="px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-gray-700/50 text-gray-400 text-xs sm:text-sm">11v11</div>
+                            </div>
+                        </div>
+
+                        <!-- Team Members Preview -->
+                        <div class="flex items-center gap-2">
+                            <div class="flex -space-x-2">
+                                <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-blue-500 border-2 border-gray-800 flex items-center justify-center text-white text-xs font-bold">A</div>
+                                <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-orange-500 border-2 border-gray-800 flex items-center justify-center text-white text-xs font-bold">M</div>
+                                <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-purple-500 border-2 border-gray-800 flex items-center justify-center text-white text-xs font-bold">K</div>
+                                <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-red-500 border-2 border-gray-800 flex items-center justify-center text-white text-xs font-bold">S</div>
+                                <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-600 border-2 border-dashed border-gray-500 flex items-center justify-center text-gray-400 text-xs">+3</div>
+                            </div>
+                            <span class="text-gray-400 text-xs sm:text-sm ml-2">4/7 <span data-translate="membersText">members</span></span>
+                        </div>
+                    </div>
+
+                    <ul class="mt-4 sm:mt-6 space-y-2 sm:space-y-3">
+                        <li class="flex items-center gap-2 sm:gap-3 text-gray-600 dark:text-gray-400 text-sm sm:text-base">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-soccer-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span data-translate="teamFeature1">Custom team logo & colors</span>
+                        </li>
+                        <li class="flex items-center gap-2 sm:gap-3 text-gray-600 dark:text-gray-400 text-sm sm:text-base">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-soccer-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span data-translate="teamFeature2">Team name & abbreviation</span>
+                        </li>
+                        <li class="flex items-center gap-2 sm:gap-3 text-gray-600 dark:text-gray-400 text-sm sm:text-base">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-soccer-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span data-translate="teamFeature3">Flexible team sizes: 5v5, 6v6, 7v7, 11v11</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Tournament Card -->
+                <div class="bg-white dark:bg-dark-green p-4 sm:p-8 rounded-2xl shadow-lg glow-card">
+                    <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-yellow-500/10 rounded-xl flex items-center justify-center">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg sm:text-2xl font-bold" data-translate="tournamentTitle">Seasonal Tournaments</h3>
+                    </div>
+
+                    <!-- Tournament Bracket Visual -->
+                    <div class="relative w-full rounded-xl overflow-hidden p-3 sm:p-6" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+                        <!-- Tournament Header -->
+                        <div class="flex items-center justify-between mb-3 sm:mb-4">
+                            <div class="flex items-center gap-1.5 sm:gap-2">
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                                </svg>
+                                <span class="text-white font-semibold text-xs sm:text-sm" data-translate="tournamentName">KoraKick Cup 2026</span>
+                            </div>
+                            <span class="text-xs text-soccer-green bg-soccer-green/20 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full" data-translate="tournamentStatus">Quarter Finals</span>
+                        </div>
+
+                        <!-- Mini Bracket -->
+                        <div class="flex items-center justify-center gap-1 sm:gap-2 overflow-x-auto">
+                            <!-- Left Side -->
+                            <div class="space-y-1 sm:space-y-2 flex-shrink-0">
+                                <div class="flex items-center gap-1 sm:gap-2 bg-gray-700/50 rounded px-1.5 sm:px-2 py-1">
+                                    <div class="w-4 h-4 sm:w-5 sm:h-5 rounded bg-blue-500 flex items-center justify-center text-white text-xs font-bold">A</div>
+                                    <span class="text-white text-xs hidden sm:inline">Team Alpha</span>
+                                    <span class="text-soccer-green text-xs font-bold ml-auto">3</span>
+                                </div>
+                                <div class="flex items-center gap-1 sm:gap-2 bg-gray-700/50 rounded px-1.5 sm:px-2 py-1">
+                                    <div class="w-4 h-4 sm:w-5 sm:h-5 rounded bg-red-500 flex items-center justify-center text-white text-xs font-bold">B</div>
+                                    <span class="text-gray-400 text-xs hidden sm:inline">Team Beta</span>
+                                    <span class="text-gray-400 text-xs font-bold ml-auto">1</span>
+                                </div>
+                            </div>
+
+                            <!-- Connector -->
+                            <div class="flex flex-col items-center flex-shrink-0">
+                                <div class="w-2 sm:w-4 h-0.5 bg-gray-600"></div>
+                                <div class="w-0.5 h-6 sm:h-8 bg-gray-600"></div>
+                                <div class="w-2 sm:w-4 h-0.5 bg-gray-600"></div>
+                            </div>
+
+                            <!-- Final -->
+                            <div class="bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 border border-yellow-500/30 rounded px-2 sm:px-3 py-1.5 sm:py-2 flex-shrink-0">
+                                <div class="text-yellow-500 text-xs font-bold mb-1" data-translate="finalMatch">FINAL</div>
+                                <div class="flex items-center gap-1 sm:gap-2">
+                                    <div class="w-4 h-4 sm:w-5 sm:h-5 rounded bg-blue-500 flex items-center justify-center text-white text-xs font-bold">A</div>
+                                    <span class="text-gray-400 text-xs">vs</span>
+                                    <div class="w-4 h-4 sm:w-5 sm:h-5 rounded bg-purple-500 flex items-center justify-center text-white text-xs font-bold">G</div>
+                                </div>
+                            </div>
+
+                            <!-- Connector -->
+                            <div class="flex flex-col items-center flex-shrink-0">
+                                <div class="w-2 sm:w-4 h-0.5 bg-gray-600"></div>
+                                <div class="w-0.5 h-6 sm:h-8 bg-gray-600"></div>
+                                <div class="w-2 sm:w-4 h-0.5 bg-gray-600"></div>
+                            </div>
+
+                            <!-- Right Side -->
+                            <div class="space-y-1 sm:space-y-2 flex-shrink-0">
+                                <div class="flex items-center gap-1 sm:gap-2 bg-gray-700/50 rounded px-1.5 sm:px-2 py-1">
+                                    <span class="text-soccer-green text-xs font-bold">2</span>
+                                    <span class="text-white text-xs hidden sm:inline">Team Gamma</span>
+                                    <div class="w-4 h-4 sm:w-5 sm:h-5 rounded bg-purple-500 flex items-center justify-center text-white text-xs font-bold ml-auto">G</div>
+                                </div>
+                                <div class="flex items-center gap-1 sm:gap-2 bg-gray-700/50 rounded px-1.5 sm:px-2 py-1">
+                                    <span class="text-gray-400 text-xs font-bold">0</span>
+                                    <span class="text-gray-400 text-xs hidden sm:inline">Team Delta</span>
+                                    <div class="w-4 h-4 sm:w-5 sm:h-5 rounded bg-green-500 flex items-center justify-center text-white text-xs font-bold ml-auto">D</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Prize -->
+                        <div class="mt-3 sm:mt-4 flex items-center justify-center gap-2">
+                            <svg class="w-3 h-3 sm:w-4 sm:h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <span class="text-gray-400 text-xs sm:text-sm" data-translate="prizeText">Exclusive rewards for winners</span>
+                        </div>
+                    </div>
+
+                    <ul class="mt-4 sm:mt-6 space-y-2 sm:space-y-3">
+                        <li class="flex items-center gap-2 sm:gap-3 text-gray-600 dark:text-gray-400 text-sm sm:text-base">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span data-translate="tournamentFeature1">Seasonal competitions organized by KoraKick</span>
+                        </li>
+                        <li class="flex items-center gap-2 sm:gap-3 text-gray-600 dark:text-gray-400 text-sm sm:text-base">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span data-translate="tournamentFeature2">Compete against teams created in the app</span>
+                        </li>
+                        <li class="flex items-center gap-2 sm:gap-3 text-gray-600 dark:text-gray-400 text-sm sm:text-base">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span data-translate="tournamentFeature3">Win prizes and climb the leaderboard</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fields Showcase -->
+    <section class="py-20 px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto text-center">
+            <span class="text-soccer-green font-semibold text-sm tracking-wider" data-translate="fieldsLabel">FIELD DISCOVERY</span>
+            <h2 class="text-4xl lg:text-5xl font-bold mt-3 mb-4" data-translate="fieldsTitle">Find the Perfect Field</h2>
+            <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12" data-translate="fieldsDesc">
+                Browse and book from hundreds of soccer fields in your area. Indoor or outdoor, grass or turf. We partner with the best facilities to ensure quality playing surfaces.
+            </p>
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div class="bg-white dark:bg-dark-green p-6 rounded-xl text-center hover-lift shadow-sm glow-card">
+                    <div class="text-4xl font-bold text-soccer-green mb-2">500+</div>
+                    <p class="text-gray-600 dark:text-gray-400 font-medium" data-translate="stat1">Available Fields</p>
+                </div>
+                <div class="bg-white dark:bg-dark-green p-6 rounded-xl text-center hover-lift shadow-sm glow-card">
+                    <div class="text-4xl font-bold text-soccer-green mb-2">50+</div>
+                    <p class="text-gray-600 dark:text-gray-400 font-medium" data-translate="stat2">Cities Covered</p>
+                </div>
+                <div class="bg-white dark:bg-dark-green p-6 rounded-xl text-center hover-lift shadow-sm glow-card">
+                    <div class="text-4xl font-bold text-soccer-green mb-2">24/7</div>
+                    <p class="text-gray-600 dark:text-gray-400 font-medium" data-translate="stat3">Booking Available</p>
+                </div>
+                <div class="bg-white dark:bg-dark-green p-6 rounded-xl text-center hover-lift shadow-sm glow-card">
+                    <div class="text-4xl font-bold text-soccer-green mb-2">98%</div>
+                    <p class="text-gray-600 dark:text-gray-400 font-medium" data-translate="stat4">Satisfaction Rate</p>
+                </div>
+            </div>
+
+            <!-- Featured Fields -->
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-white dark:bg-dark-green rounded-2xl overflow-hidden shadow-sm hover-lift glow-card">
+                    <img src="images/fields/arena_ville_verte_cover.jpeg" alt="Arena Ville Verte" class="w-full h-48 object-cover">
+                    <div class="p-6 text-left">
+                        <h3 class="text-xl font-bold mb-2">Arena Ville Verte</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">Premium indoor facility with professional-grade turf and lighting</p>
+                        <div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-4">
+                            <div class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                                <span>Indoor</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                </svg>
+                                <span>4.8/5</span>
+                            </div>
+                        </div>
+                        <button onclick="showFieldPhone(this, '+212 5 22 34 56 78')" class="w-full bg-soccer-green text-white py-2 rounded-lg font-semibold hover:bg-emerald-600 transition">
+                            Book Now
+                        </button>
+                        <div class="field-phone hidden mt-3 p-3 bg-soccer-green/10 rounded-lg text-center">
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-1">Call to book:</p>
+                            <a href="tel:+212522345678" class="text-lg font-bold text-soccer-green hover:text-emerald-600 transition">+212 5 22 34 56 78</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-dark-green rounded-2xl overflow-hidden shadow-sm hover-lift glow-card">
+                    <img src="images/fields/city-foot.jpg" alt="City Foot Academy" class="w-full h-48 object-cover">
+                    <div class="p-6 text-left">
+                        <h3 class="text-xl font-bold mb-2">City Foot Academy</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">Top-tier training facility with multiple fields and amenities</p>
+                        <div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-4">
+                            <div class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                                <span>Outdoor</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                </svg>
+                                <span>4.9/5</span>
+                            </div>
+                        </div>
+                        <button onclick="showFieldPhone(this, '+212 6 61 23 45 67')" class="w-full bg-soccer-green text-white py-2 rounded-lg font-semibold hover:bg-emerald-600 transition">
+                            Book Now
+                        </button>
+                        <div class="field-phone hidden mt-3 p-3 bg-soccer-green/10 rounded-lg text-center">
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-1">Call to book:</p>
+                            <a href="tel:+212661234567" class="text-lg font-bold text-soccer-green hover:text-emerald-600 transition">+212 6 61 23 45 67</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-dark-green rounded-2xl overflow-hidden shadow-sm hover-lift glow-card">
+                    <img src="images/fields/city.jpg" alt="City Stadium" class="w-full h-48 object-cover">
+                    <div class="p-6 text-left">
+                        <h3 class="text-xl font-bold mb-2">City Stadium</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">Modern outdoor stadium perfect for competitive matches</p>
+                        <div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-4">
+                            <div class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                                <span>Outdoor</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                </svg>
+                                <span>4.7/5</span>
+                            </div>
+                        </div>
+                        <button onclick="showFieldPhone(this, '+212 5 24 87 65 43')" class="w-full bg-soccer-green text-white py-2 rounded-lg font-semibold hover:bg-emerald-600 transition">
+                            Book Now
+                        </button>
+                        <div class="field-phone hidden mt-3 p-3 bg-soccer-green/10 rounded-lg text-center">
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-1">Call to book:</p>
+                            <a href="tel:+212524876543" class="text-lg font-bold text-soccer-green hover:text-emerald-600 transition">+212 5 24 87 65 43</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 text-left">
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 bg-soccer-green/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg class="w-6 h-6 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-1" data-translate="verifiedFacilities">Verified Facilities</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400" data-translate="verifiedFacilitiesDesc">All fields are inspected and approved</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 bg-soccer-green/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg class="w-6 h-6 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-1" data-translate="bestPrices">Best Prices</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400" data-translate="bestPricesDesc">Competitive rates with no hidden fees</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 bg-soccer-green/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg class="w-6 h-6 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-1" data-translate="instantBooking">Instant Booking</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400" data-translate="instantBookingDesc">Reserve your spot in seconds</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="bg-gradient-to-br from-soccer-green to-emerald-600 rounded-3xl p-12 lg:p-16 text-white text-center relative overflow-hidden shadow-2xl">
+                <div class="absolute inset-0 opacity-10">
+                    <div class="absolute -top-24 -right-24 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+                    <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+                </div>
+                <div class="relative z-10">
+                    <h2 class="text-3xl lg:text-4xl font-bold mb-4" data-translate="statsTitle">The Numbers Speak for Themselves</h2>
+                    <p class="text-lg opacity-90 mb-12 max-w-2xl mx-auto" data-translate="statsDesc">Join thousands of players who have found their perfect match through KoraKick</p>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="transform hover:scale-110 transition">
+                            <div class="text-5xl lg:text-6xl font-bold mb-2">10K+</div>
+                            <p class="text-lg opacity-90" data-translate="statsPlayers">Active Players</p>
+                        </div>
+                        <div class="transform hover:scale-110 transition">
+                            <div class="text-5xl lg:text-6xl font-bold mb-2">25K+</div>
+                            <p class="text-lg opacity-90" data-translate="statsMatches">Matches Organized</p>
+                        </div>
+                        <div class="transform hover:scale-110 transition">
+                            <div class="text-5xl lg:text-6xl font-bold mb-2">4.9★</div>
+                            <p class="text-lg opacity-90" data-translate="statsRating">Average Rating</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 px-6 lg:px-8 bg-white dark:bg-dark-green-light/50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-soccer-green font-semibold text-sm tracking-wider" data-translate="testimonialsLabel">TESTIMONIALS</span>
+                <h2 class="text-4xl lg:text-5xl font-bold mt-3" data-translate="testimonialsTitle">What Players Are Saying</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-dark-green p-8 rounded-2xl shadow-sm glow-card">
+                    <div class="flex gap-1 mb-4">
+                        <svg class="w-5 h-5 text-soccer-green" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-soccer-green" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-soccer-green" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-soccer-green" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-soccer-green" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">"KoraKick made it so easy to find opponents for our weekend matches. We've played 10+ games in the last month!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-soccer-green/10 rounded-full flex items-center justify-center font-bold text-soccer-green">
+                            AM
+                        </div>
+                        <div>
+                            <div class="font-semibold">Ahmed Mohamed</div>
+                            <div class="text-sm text-gray-500">Team Captain</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-dark-green p-8 rounded-2xl shadow-sm glow-card">
+                    <div class="flex gap-1 mb-4">
+                        <svg class="w-5 h-5 text-soccer-green" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-soccer-green" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-soccer-green" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-soccer-green" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-soccer-green" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">"As a solo player, I struggled to find teams. KoraKick connected me with an amazing group. Now I play every week!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-soccer-green/10 rounded-full flex items-center justify-center font-bold text-soccer-green">
+                            KH
+                        </div>
+                        <div>
+                            <div class="font-semibold">Khaled Hassan</div>
+                            <div class="text-sm text-gray-500">Solo Player</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-dark-green p-8 rounded-2xl shadow-sm glow-card">
+                    <div class="flex gap-1 mb-4">
+                        <svg class="w-5 h-5 text-soccer-green" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-soccer-green" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-soccer-green" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-soccer-green" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-soccer-green" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">"The field booking feature is a game changer. No more phone calls or uncertainty. Everything is in one place!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-soccer-green/10 rounded-full flex items-center justify-center font-bold text-soccer-green">
+                            SF
+                        </div>
+                        <div>
+                            <div class="font-semibold">Sara Farouk</div>
+                            <div class="text-sm text-gray-500">League Organizer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners -->
+    <section class="py-20 px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-soccer-green font-semibold text-sm tracking-wider" data-translate="partnersLabel">TRUSTED BY</span>
+                <h2 class="text-3xl lg:text-4xl font-bold mt-3 mb-4" data-translate="partnersTitle">Our Partners & Sponsors</h2>
+                <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-translate="partnersDesc">
+                    Partnering with the best in sports and technology to bring you the ultimate soccer experience
+                </p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+                <div class="bg-white dark:bg-dark-green p-8 rounded-2xl shadow-sm hover-lift flex items-center justify-center h-32 glow-card">
+                    <img src="images/sponsors/decathlon.png" alt="Decathlon" class="max-w-full max-h-20 object-contain sponsor-logo">
+                </div>
+                <div class="bg-white dark:bg-dark-green p-8 rounded-2xl shadow-sm hover-lift flex items-center justify-center h-32 glow-card">
+                    <img src="images/sponsors/arena.png" alt="Arena" class="max-w-full max-h-20 object-contain sponsor-logo">
+                </div>
+                <div class="bg-white dark:bg-dark-green p-8 rounded-2xl shadow-sm hover-lift flex items-center justify-center h-32 glow-card">
+                    <img src="images/sponsors/Kooora.svg.png" alt="Kooora" class="max-w-full max-h-20 object-contain sponsor-logo">
+                </div>
+                <div class="bg-white dark:bg-dark-green p-8 rounded-2xl shadow-sm hover-lift flex items-center justify-center h-32 glow-card">
+                    <img src="images/sponsors/City-Foot-Academy.png" alt="City Foot Academy" class="max-w-full max-h-20 object-contain sponsor-logo">
+                </div>
+            </div>
+            <div class="mt-16 bg-white dark:bg-dark-green-light/50 rounded-2xl p-8 text-center glow-card">
+                <h3 class="text-2xl font-bold mb-4">Want to Partner With Us?</h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-6 max-w-xl mx-auto">
+                    Join our growing network of partners and sponsors. Reach thousands of active soccer players and teams.
+                </p>
+                <button class="bg-soccer-green text-white px-8 py-3 rounded-lg font-semibold hover:bg-emerald-600 transition">
+                    Become a Partner
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-12 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-soccer-green via-emerald-600 to-emerald-700 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-48 sm:w-96 h-48 sm:h-96 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-48 sm:w-96 h-48 sm:h-96 bg-white rounded-full blur-3xl"></div>
+        </div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h2 class="text-2xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" data-translate="ctaTitle">Ready to Play?</h2>
+            <p class="text-base sm:text-xl opacity-95 mb-6 sm:mb-10 px-4" data-translate="ctaDesc">Join thousands of players already using KoraKick to find matches</p>
+            <button class="bg-white text-soccer-green px-6 sm:px-10 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg hover:bg-gray-100 transition shadow-2xl glow-button transform hover:scale-105" data-translate="ctaButton">
+                Get Started Free
+            </button>
+            <p class="text-xs sm:text-sm opacity-90 mt-4 sm:mt-6" data-translate="ctaNote">No credit card required • Free forever</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 bg-white dark:bg-dark-green border-t border-gray-100 dark:border-dark-green-light">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-8">
+                <div class="col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <img src="images/logo.png" alt="KoraKick" class="w-8 h-8">
+                        <span class="text-lg font-bold">Kora<span style="color: #65FF13;">Kick</span></span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 max-w-sm mb-4 text-sm sm:text-base" data-translate="footerDesc">Connecting soccer teams and players for matches. Get on the field faster with the #1 platform for soccer enthusiasts.</p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-10 h-10 bg-gray-200 dark:bg-dark-green-light rounded-lg flex items-center justify-center hover:bg-soccer-green hover:text-white transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/korakickapp/" target="_blank" class="w-10 h-10 bg-gray-200 dark:bg-dark-green-light rounded-lg flex items-center justify-center hover:bg-soccer-green hover:text-white transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4" data-translate="footerQuickLinks">Quick Links</h3>
+                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                        <li><a href="#about" class="hover:text-soccer-green transition" data-translate="footerAbout">About Us</a></li>
+                        <li><a href="#features" class="hover:text-soccer-green transition" data-translate="footerFeatures">Features</a></li>
+                        <li><a href="#how-it-works" class="hover:text-soccer-green transition" data-translate="footerHowItWorks">How It Works</a></li>
+                        <li><a href="shop.html" class="hover:text-soccer-green transition" data-translate="footerShop">Shop</a></li>
+                        <li><a href="terms.html" class="hover:text-soccer-green transition" data-translate="footerTerms">Terms</a></li>
+                        <li><a href="privacy.html" class="hover:text-soccer-green transition" data-translate="footerPrivacy">Privacy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4" data-translate="footerContact">Get in Touch</h3>
+                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                        <li>Email: info@korakick.com</li>
+                        <li>Support: support@korakick.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-6 sm:pt-8 border-t border-gray-200 dark:border-dark-green-light flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-600 dark:text-gray-400 text-center md:text-left">
+                <p data-translate="footerCopyright">Copyright © 2026 KoraKick. All rights reserved.</p>
+                <p data-translate="footerMadeWith">Organize. Play. Compete. (Morocco's #1 Football App)</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            });
+        });
+
+        // Scroll Reveal Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section:not(.hero-bg)');
+            sections.forEach(section => {
+                section.classList.add('section-animate');
+                observer.observe(section);
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Show field phone number
+        function showFieldPhone(button, phoneNumber) {
+            const phoneContainer = button.nextElementSibling;
+            if (phoneContainer && phoneContainer.classList.contains('field-phone')) {
+                phoneContainer.classList.remove('hidden');
+                button.textContent = 'Call to Book';
+                button.classList.add('opacity-50', 'cursor-default');
+                button.onclick = null;
+            }
+        }
+
+        // Language Translation
+        const translations = {
+            en: {
+                navAbout: 'About',
+                navFeatures: 'Features',
+                navHowItWorks: 'How It Works',
+                navShop: 'Shop',
+                getStarted: 'GET THE APP',
+                heroTagline: '10,000+ Active Players',
+                heroTitle: 'Find Soccer Opponents. Play More.',
+                heroDesc: 'Connect with local teams and players instantly. Get on the field faster with smart matching.',
+                aboutLabel: 'ABOUT US',
+                aboutTitle: 'Where Every Player Finds Their Game',
+                aboutDesc: 'We believe that no one should play alone. KoraKick connects passionate players across Morocco, turning empty fields into vibrant matches and strangers into teammates. Whether you are a weekend warrior or a daily player, your next game is just a tap away.',
+                fastMatchingTitle: 'Fast Matching',
+                fastMatchingDesc: 'Find opponents in minutes with our smart matching algorithm that considers skill level, location, and availability.',
+                trustedCommunityTitle: 'Trusted Community',
+                trustedCommunityDesc: 'All players are verified for a safe and reliable experience. Build your reputation through ratings and reviews.',
+                simpleToUseTitle: 'Simple to Use',
+                simpleToUseDesc: 'Get on the field in just a few taps with our intuitive interface designed for players, not tech experts.',
+                howItWorksLabel: 'HOW IT WORKS',
+                howItWorksTitle: 'Get Playing in 4 Steps',
+                step1Title: 'Find Your Game',
+                step1Desc: 'Explore hundreds of games at top facilities, with convenient times and skill levels that fit your preference.',
+                step2Title: 'Reserve Your Spot',
+                step2Desc: 'View game details, invite friends and interact with other players on the roster.',
+                step3Title: 'Waiting Room',
+                step3Desc: 'Join the waiting room to meet other players, chat before the game starts and coordinate with your teammates.',
+                step4Title: 'Show Up & Play',
+                step4Desc: 'Check-in at the facility, play the beautiful game and make new connections with people who share the same love for the sport.',
+                featuresLabel: 'FEATURES',
+                featuresTitle: 'Everything You Need',
+                ctaTitle: 'Ready to Play?',
+                ctaDesc: 'Join thousands of players already using KoraKick to find matches',
+                ctaButton: 'Get Started Free',
+                ctaNote: 'No credit card required • Free forever',
+                footerDesc: 'Connecting soccer teams and players for matches. Get on the field faster with the #1 platform for soccer enthusiasts.',
+                aboutJoinText: 'Be part of the movement.',
+                aboutJoinBtn: 'Join KoraKick',
+                footerQuickLinks: 'Quick Links',
+                footerAbout: 'About Us',
+                footerFeatures: 'Features',
+                footerHowItWorks: 'How It Works',
+                footerShop: 'Shop',
+                footerTerms: 'Terms',
+                footerPrivacy: 'Privacy',
+                footerContact: 'Get in Touch',
+                footerCopyright: 'Copyright © 2026 KoraKick. All rights reserved.',
+                footerMadeWith: 'Organize. Play. Compete. (Morocco\'s #1 Football App)',
+                feature1Title: 'Location-Based Matching',
+                feature1Desc: 'Find matches and players nearby with GPS-powered search',
+                clubsMap: '& Clubs Map',
+                feature2Title: 'Quick Scheduling',
+                feature2Desc: 'Book fields and schedule matches instantly',
+                feature3Title: 'Ratings & Reviews',
+                feature3Desc: 'Build trust through player feedback and ratings',
+                feature4Title: 'In-App Chat',
+                feature4Desc: 'Coordinate match details and communicate seamlessly',
+                feature5Title: 'Smart Matchmaking',
+                feature5Desc: 'AI-powered algorithm matches you with players of similar skill level',
+                feature6Title: 'Team Management',
+                feature6Desc: 'Manage your team roster and track player availability',
+                teamsLabel: 'FOR TEAMS & PLAYERS',
+                teamsTitle: 'Whether You are a Team or Solo Player',
+                teamsDesc: 'KoraKick works for everyone. Find opponents as a full team, or join as an individual player looking for pickup games. Our flexible platform adapts to your needs.',
+                teamsItem1Title: 'Team vs Team Matches',
+                teamsItem1Desc: 'Find opponent teams for scheduled matches, friendly games, and competitive tournaments',
+                teamsItem2Title: 'Join as Individual Player',
+                teamsItem2Desc: 'Find pickup games, drop-in sessions, and connect with other solo players in your area',
+                teamsItem3Title: 'Skill Level Matching',
+                teamsItem3Desc: 'Get matched with players and teams of similar skill levels for balanced, competitive games',
+                teamsItem4Title: 'Flexible Scheduling',
+                teamsItem4Desc: 'Set your availability and preferences to find matches that fit your schedule',
+                fieldsLabel: 'FIELD DISCOVERY',
+                fieldsTitle: 'Find the Perfect Field',
+                fieldsDesc: 'Browse and book from hundreds of soccer fields in your area. Indoor or outdoor, grass or turf. We partner with the best facilities to ensure quality playing surfaces.',
+                stat1: 'Available Fields',
+                stat2: 'Cities Covered',
+                stat3: 'Booking Available',
+                stat4: 'Satisfaction Rate',
+                verifiedFacilities: 'Verified Facilities',
+                verifiedFacilitiesDesc: 'All fields are inspected and approved',
+                bestPrices: 'Best Prices',
+                bestPricesDesc: 'Competitive rates with no hidden fees',
+                instantBooking: 'Instant Booking',
+                instantBookingDesc: 'Reserve your spot in seconds',
+                statsTitle: 'The Numbers Speak for Themselves',
+                statsDesc: 'Join thousands of players who have found their perfect match through KoraKick',
+                statsPlayers: 'Active Players',
+                statsMatches: 'Matches Organized',
+                statsRating: 'Average Rating',
+                testimonialsLabel: 'TESTIMONIALS',
+                testimonialsTitle: 'What Players Are Saying',
+                partnersLabel: 'TRUSTED BY',
+                partnersTitle: 'Our Partners & Sponsors',
+                partnersDesc: 'Partnering with the best in sports and technology to bring you the ultimate soccer experience',
+                accountTeamLabel: 'ACCOUNT TEAM MODE',
+                accountTeamTitle: 'Create Your Own Team',
+                accountTeamDesc: 'Build your dream team from scratch. Choose your team size, design your logo, and compete in seasonal tournaments organized by KoraKick.',
+                createTeamTitle: 'Create Your Team',
+                teamSizeLabel: 'Team Size',
+                membersText: 'members',
+                teamFeature1: 'Custom team logo & colors',
+                teamFeature2: 'Team name & abbreviation',
+                teamFeature3: 'Flexible team sizes: 5v5, 6v6, 7v7, 11v11',
+                tournamentTitle: 'Seasonal Tournaments',
+                tournamentName: 'KoraKick Cup 2026',
+                tournamentStatus: 'Quarter Finals',
+                finalMatch: 'FINAL',
+                prizeText: 'Exclusive rewards for winners',
+                tournamentFeature1: 'Seasonal competitions organized by KoraKick',
+                tournamentFeature2: 'Compete against teams created in the app',
+                tournamentFeature3: 'Win prizes and climb the leaderboard'
+            },
+            fr: {
+                navAbout: 'A Propos',
+                navFeatures: 'Fonctionnalites',
+                navHowItWorks: 'Comment Ca Marche',
+                navShop: 'Boutique',
+                getStarted: 'OBTENIR L\'APPLICATION',
+                heroTagline: '10,000+ Joueurs Actifs',
+                heroTitle: 'Trouvez des Adversaires. Jouez Plus.',
+                heroDesc: 'Connectez-vous avec des equipes et des joueurs locaux instantanement. Accedez au terrain plus rapidement.',
+                aboutLabel: 'A PROPOS',
+                aboutTitle: 'Ou Chaque Joueur Trouve Son Match',
+                aboutDesc: 'Nous croyons que personne ne devrait jouer seul. KoraKick connecte les joueurs passionnes a travers le Maroc, transformant les terrains vides en matchs vibrants et les inconnus en coequipiers. Que vous soyez joueur du week-end ou quotidien, votre prochain match est a portee de main.',
+                fastMatchingTitle: 'Matchmaking Rapide',
+                fastMatchingDesc: 'Trouvez des adversaires en quelques minutes grace a notre algorithme intelligent qui prend en compte le niveau, la localisation et la disponibilite.',
+                trustedCommunityTitle: 'Communaute de Confiance',
+                trustedCommunityDesc: 'Tous les joueurs sont verifies pour une experience sure et fiable. Construisez votre reputation grace aux notes et avis.',
+                simpleToUseTitle: 'Simple a Utiliser',
+                simpleToUseDesc: 'Accedez au terrain en quelques clics avec notre interface intuitive concue pour les joueurs.',
+                howItWorksLabel: 'COMMENT CA MARCHE',
+                howItWorksTitle: 'Jouez en 4 Etapes',
+                step1Title: 'Trouvez Votre Match',
+                step1Desc: 'Explorez des centaines de matchs dans les meilleures installations, avec des horaires et niveaux adaptes a vos preferences.',
+                step2Title: 'Reservez Votre Place',
+                step2Desc: 'Consultez les details du match, invitez vos amis et interagissez avec les autres joueurs.',
+                step3Title: 'Salle d\'Attente',
+                step3Desc: 'Rejoignez la salle d\'attente pour rencontrer les autres joueurs, discuter avant le match et vous coordonner avec vos coequipiers.',
+                step4Title: 'Venez Jouer',
+                step4Desc: 'Presentez-vous sur le terrain, profitez du beau jeu et faites de nouvelles rencontres avec des passionnes de football.',
+                featuresLabel: 'FONCTIONNALITES',
+                featuresTitle: 'Tout Ce Dont Vous Avez Besoin',
+                ctaTitle: 'Pret a Jouer ?',
+                ctaDesc: 'Rejoignez des milliers de joueurs qui utilisent deja KoraKick',
+                ctaButton: 'Commencer Gratuitement',
+                ctaNote: 'Sans carte bancaire • Gratuit pour toujours',
+                footerDesc: 'Connecter les equipes et les joueurs de football pour des matchs. La plateforme #1 pour les passionnes de football.',
+                aboutJoinText: 'Rejoignez le mouvement.',
+                aboutJoinBtn: 'Rejoindre KoraKick',
+                footerQuickLinks: 'Liens Rapides',
+                footerAbout: 'A Propos',
+                footerFeatures: 'Fonctionnalites',
+                footerHowItWorks: 'Comment Ca Marche',
+                footerShop: 'Boutique',
+                footerTerms: 'Conditions',
+                footerPrivacy: 'Confidentialite',
+                footerContact: 'Contactez-nous',
+                footerCopyright: 'Copyright © 2026 KoraKick. Tous droits reserves.',
+                footerMadeWith: 'Organise. Joue. Gagne. (L\'Application #1 du Football au Maroc)',
+                feature1Title: 'Matching par Localisation',
+                feature1Desc: 'Trouvez des matchs et des joueurs a proximite grace au GPS',
+                clubsMap: '& Carte des Clubs',
+                feature2Title: 'Reservation Rapide',
+                feature2Desc: 'Reservez des terrains et planifiez des matchs instantanement',
+                feature3Title: 'Notes et Avis',
+                feature3Desc: 'Construisez la confiance grace aux retours et evaluations des joueurs',
+                feature4Title: 'Chat Integre',
+                feature4Desc: 'Coordonnez les details du match et communiquez facilement',
+                feature5Title: 'Matchmaking Intelligent',
+                feature5Desc: 'Trouvez des adversaires adaptes a votre niveau et a votre disponibilite',
+                feature6Title: 'Gestion d Equipe',
+                feature6Desc: 'Gerez votre effectif et suivez la disponibilite des joueurs',
+                teamsLabel: 'POUR EQUIPES ET JOUEURS',
+                teamsTitle: 'Que Vous Soyez une Equipe ou un Joueur Solo',
+                teamsDesc: 'KoraKick fonctionne pour tous. Trouvez des adversaires en equipe complete ou rejoignez en tant que joueur individuel. Notre plateforme flexible s adapte a vos besoins.',
+                teamsItem1Title: 'Matchs Equipe contre Equipe',
+                teamsItem1Desc: 'Trouvez des equipes adverses pour des matchs programmes, des matchs amicaux et des tournois',
+                teamsItem2Title: 'Rejoindre en Solo',
+                teamsItem2Desc: 'Trouvez des matchs pickup et connectez-vous avec d autres joueurs solo dans votre region',
+                teamsItem3Title: 'Matching par Niveau',
+                teamsItem3Desc: 'Soyez associe a des joueurs et equipes de niveau similaire pour des matchs equilibres',
+                teamsItem4Title: 'Horaires Flexibles',
+                teamsItem4Desc: 'Definissez votre disponibilite et preferences pour trouver des matchs qui correspondent a votre emploi du temps',
+                fieldsLabel: 'DECOUVERTE DE TERRAINS',
+                fieldsTitle: 'Trouvez le Terrain Parfait',
+                fieldsDesc: 'Parcourez et reservez parmi des centaines de terrains de football. Interieur ou exterieur, gazon naturel ou synthetique. Nous collaborons avec les meilleures installations.',
+                stat1: 'Terrains Disponibles',
+                stat2: 'Villes Couvertes',
+                stat3: 'Reservation 24/7',
+                stat4: 'Taux de Satisfaction',
+                verifiedFacilities: 'Installations Verifiees',
+                verifiedFacilitiesDesc: 'Tous les terrains sont inspectes et approuves',
+                bestPrices: 'Meilleurs Prix',
+                bestPricesDesc: 'Tarifs competitifs sans frais caches',
+                instantBooking: 'Reservation Instantanee',
+                instantBookingDesc: 'Reservez votre place en quelques secondes',
+                statsTitle: 'KoraKick en Chiffres',
+                statsDesc: 'Rejoignez des milliers de joueurs qui ont trouve leur match parfait grace a KoraKick',
+                statsPlayers: 'Joueurs Actifs',
+                statsMatches: 'Matchs Organises',
+                statsRating: 'Note Moyenne',
+                testimonialsLabel: 'TEMOIGNAGES',
+                testimonialsTitle: 'Ce Que Disent les Joueurs',
+                partnersLabel: 'ILS NOUS FONT CONFIANCE',
+                partnersTitle: 'Nos Partenaires et Sponsors',
+                partnersDesc: 'En partenariat avec les meilleurs du sport et de la technologie pour vous offrir l experience football ultime',
+                accountTeamLabel: 'MODE ACCOUNT TEAM',
+                accountTeamTitle: 'Creez Votre Propre Equipe',
+                accountTeamDesc: 'Construisez votre equipe de reve. Choisissez la taille, creez votre logo et participez aux tournois saisonniers organises par KoraKick.',
+                createTeamTitle: 'Creez Votre Equipe',
+                teamSizeLabel: 'Taille de l Equipe',
+                membersText: 'membres',
+                teamFeature1: 'Logo et couleurs personnalises',
+                teamFeature2: 'Nom et abreviation de l equipe',
+                teamFeature3: 'Tailles flexibles: 5v5, 6v6, 7v7, 11v11',
+                tournamentTitle: 'Tournois Saisonniers',
+                tournamentName: 'KoraKick Cup 2026',
+                tournamentStatus: 'Quarts de Finale',
+                finalMatch: 'FINALE',
+                prizeText: 'Recompenses exclusives pour les gagnants',
+                tournamentFeature1: 'Competitions saisonnieres organisees par KoraKick',
+                tournamentFeature2: 'Affrontez les equipes creees dans l appli',
+                tournamentFeature3: 'Gagnez des prix et montez dans le classement'
+            }
+        };
+
+        let currentLang = localStorage.getItem('korakick-lang') || 'en';
+        const langToggle = document.getElementById('lang-toggle');
+
+        function updateLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('korakick-lang', lang);
+            langToggle.textContent = lang === 'en' ? 'FR' : 'EN';
+
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.dataset.translate;
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+        }
+
+        // Initialize language on page load
+        updateLanguage(currentLang);
+
+        langToggle.addEventListener('click', () => {
+            updateLanguage(currentLang === 'en' ? 'fr' : 'en');
+        });
+
+        // Parallax scroll animation for How It Works cards
+        const parallaxCards = document.querySelectorAll('.parallax-card');
+        const parallaxObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        parallaxCards.forEach(card => parallaxObserver.observe(card));
+
+        // Parallax scroll animation for Features cards
+        const featureCards = document.querySelectorAll('.feature-card');
+        const featureObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        featureCards.forEach(card => featureObserver.observe(card));
+    </script>
+</body>
+</html>
