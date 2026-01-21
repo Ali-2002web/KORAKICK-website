@@ -1,29 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <!-- Homepage -->
   <url>
     <loc>https://korakick.app/</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://korakick.app/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://korakick.app/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://korakick.app/"/>
+    <image:image>
+      <image:loc>https://korakick.app/images/logo.png</image:loc>
+      <image:title>KoraKick Logo - Application Football Maroc</image:title>
+    </image:image>
   </url>
 
   <!-- Privacy Policy -->
   <url>
     <loc>https://korakick.app/privacy.html</loc>
-    <lastmod>2025-01-20</lastmod>
+    <lastmod>2026-01-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://korakick.app/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://korakick.app/privacy.html"/>
   </url>
 
   <!-- Terms & Conditions -->
   <url>
     <loc>https://korakick.app/terms.html</loc>
-    <lastmod>2025-01-20</lastmod>
+    <lastmod>2026-01-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://korakick.app/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://korakick.app/terms.html"/>
   </url>
 
 </urlset>
