@@ -1651,21 +1651,6 @@
                         <li><a href="mailto:contact@korakick.app" class="hover:text-soccer-green transition">Email: contact@korakick.app</a></li>
                         <li><a href="mailto:support@korakick.app" class="hover:text-soccer-green transition">Support: support@korakick.app</a></li>
                     </ul>
-                    <!-- Newsletter Signup -->
-                    <div class="mt-6">
-                        <h4 class="font-semibold text-sm mb-2" data-translate="newsletterTitle">Stay Updated</h4>
-                        <form id="newsletter-form" class="flex gap-2">
-                            <input type="email" id="newsletter-email" name="email" required
-                                class="flex-1 px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-green-light text-gray-900 dark:text-white focus:ring-2 focus:ring-soccer-green focus:border-transparent transition"
-                                placeholder="Your email">
-                            <button type="submit" class="px-4 py-2 bg-soccer-green text-white rounded-lg text-sm font-semibold hover:bg-emerald-600 transition">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                                </svg>
-                            </button>
-                        </form>
-                        <p id="newsletter-status" class="text-xs mt-2 hidden"></p>
-                    </div>
                 </div>
             </div>
             <div class="pt-6 sm:pt-8 border-t border-gray-200 dark:border-dark-green-light flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-600 dark:text-gray-400 text-center md:text-left">
@@ -1902,8 +1887,7 @@
                 contactLocationTitle: 'Location',
                 contactLocationDesc: 'Based in Morocco, serving players nationwide',
                 contactSocialTitle: 'Follow Us',
-                contactSocialDesc: 'Stay updated with the latest news',
-                newsletterTitle: 'Stay Updated'
+                contactSocialDesc: 'Stay updated with the latest news'
             },
             fr: {
                 navAbout: 'À Propos',
@@ -2145,51 +2129,6 @@
             });
         }
 
-        // Newsletter Form Handler
-        const newsletterForm = document.getElementById('newsletter-form');
-        const newsletterStatus = document.getElementById('newsletter-status');
-
-        if (newsletterForm) {
-            newsletterForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-
-                const email = document.getElementById('newsletter-email').value;
-                const submitBtn = newsletterForm.querySelector('button[type="submit"]');
-
-                // Disable button
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = '<svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>';
-
-                // Prepare template parameters for newsletter
-                const templateParams = {
-                    subscriber_email: email,
-                    subscription_type: 'Newsletter'
-                };
-
-                // Send newsletter signup using EmailJS
-                emailjs.send('service_dtde65y', 'template_id4rkom', templateParams)
-                    .then(function(response) {
-                        newsletterStatus.textContent = currentLang === 'fr'
-                            ? 'Inscription réussie!'
-                            : 'Successfully subscribed!';
-                        newsletterStatus.className = 'text-xs mt-2 text-green-500';
-                        newsletterStatus.classList.remove('hidden');
-                        newsletterForm.reset();
-                    }, function(error) {
-                        newsletterStatus.textContent = currentLang === 'fr'
-                            ? 'Erreur. Réessayez.'
-                            : 'Error. Try again.';
-                        newsletterStatus.className = 'text-xs mt-2 text-red-500';
-                        newsletterStatus.classList.remove('hidden');
-                        console.error('Newsletter Error:', error);
-                    })
-                    .finally(function() {
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>';
-                        setTimeout(() => newsletterStatus.classList.add('hidden'), 5000);
-                    });
-            });
-        }
     </script>
 </body>
 </html>
