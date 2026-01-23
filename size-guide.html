@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Size Guide - KoraKick Shop</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'soccer-green': '#10b981',
+                        'dark-green': '#052e16',
+                        'dark-green-light': '#14532d',
+                    },
+                    fontFamily: {
+                        'sans': ['Poppins', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body { overflow-x: hidden; max-width: 100vw; }
+    </style>
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+</head>
+<body class="bg-white dark:bg-dark-green text-gray-900 dark:text-gray-100 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 bg-white/90 dark:bg-dark-green/90 backdrop-blur-lg border-b border-gray-100 dark:border-dark-green-light">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex items-center gap-2">
+                    <img src="images/logo.png" alt="KoraKick" class="w-8 h-8">
+                    <span class="text-lg font-bold">Kora<span style="color: #65FF13;">Kick</span></span>
+                </a>
+                <div class="hidden md:flex gap-8">
+                    <a href="index.html" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition">Home</a>
+                    <a href="shop.html" class="text-sm font-medium text-soccer-green transition">Shop</a>
+                </div>
+                <div class="flex items-center gap-3">
+                    <a href="shop.html" class="px-4 py-2 bg-soccer-green text-white rounded-lg text-sm font-semibold hover:bg-emerald-600 transition">
+                        Back to Shop
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="pt-32 pb-12 px-6 lg:px-8 bg-gradient-to-br from-soccer-green/10 to-emerald-500/5 dark:from-dark-green dark:to-dark-green-light">
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="text-soccer-green font-semibold text-sm tracking-wider">KORAKICK SHOP</span>
+            <h1 class="text-4xl lg:text-5xl font-bold mt-3 mb-4">Size Guide</h1>
+            <p class="text-xl text-gray-600 dark:text-gray-400">Find your perfect fit with our comprehensive size charts</p>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="py-16 px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+
+            <!-- Jersey Size Guide -->
+            <div class="mb-16">
+                <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-soccer-green/10 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+                        </svg>
+                    </span>
+                    Jersey & Kit Sizes
+                </h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse bg-white dark:bg-dark-green-light rounded-xl overflow-hidden shadow-sm">
+                        <thead>
+                            <tr class="bg-soccer-green text-white">
+                                <th class="px-6 py-4 text-left font-semibold">Size</th>
+                                <th class="px-6 py-4 text-center font-semibold">Chest (cm)</th>
+                                <th class="px-6 py-4 text-center font-semibold">Length (cm)</th>
+                                <th class="px-6 py-4 text-center font-semibold">Waist (cm)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100 dark:divide-dark-green">
+                            <tr class="hover:bg-gray-50 dark:hover:bg-dark-green/50 transition">
+                                <td class="px-6 py-4 font-semibold">S</td>
+                                <td class="px-6 py-4 text-center">88-92</td>
+                                <td class="px-6 py-4 text-center">68</td>
+                                <td class="px-6 py-4 text-center">72-76</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-dark-green/50 transition">
+                                <td class="px-6 py-4 font-semibold">M</td>
+                                <td class="px-6 py-4 text-center">96-100</td>
+                                <td class="px-6 py-4 text-center">71</td>
+                                <td class="px-6 py-4 text-center">80-84</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-dark-green/50 transition">
+                                <td class="px-6 py-4 font-semibold">L</td>
+                                <td class="px-6 py-4 text-center">104-108</td>
+                                <td class="px-6 py-4 text-center">74</td>
+                                <td class="px-6 py-4 text-center">88-92</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-dark-green/50 transition">
+                                <td class="px-6 py-4 font-semibold">XL</td>
+                                <td class="px-6 py-4 text-center">112-116</td>
+                                <td class="px-6 py-4 text-center">77</td>
+                                <td class="px-6 py-4 text-center">96-100</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-dark-green/50 transition">
+                                <td class="px-6 py-4 font-semibold">XXL</td>
+                                <td class="px-6 py-4 text-center">120-124</td>
+                                <td class="px-6 py-4 text-center">80</td>
+                                <td class="px-6 py-4 text-center">104-108</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Socks Size Guide -->
+            <div class="mb-16">
+                <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-soccer-green/10 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                        </svg>
+                    </span>
+                    Socks Sizes
+                </h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse bg-white dark:bg-dark-green-light rounded-xl overflow-hidden shadow-sm">
+                        <thead>
+                            <tr class="bg-soccer-green text-white">
+                                <th class="px-6 py-4 text-left font-semibold">Size</th>
+                                <th class="px-6 py-4 text-center font-semibold">EU Shoe Size</th>
+                                <th class="px-6 py-4 text-center font-semibold">US Shoe Size</th>
+                                <th class="px-6 py-4 text-center font-semibold">Foot Length (cm)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100 dark:divide-dark-green">
+                            <tr class="hover:bg-gray-50 dark:hover:bg-dark-green/50 transition">
+                                <td class="px-6 py-4 font-semibold">S (36-39)</td>
+                                <td class="px-6 py-4 text-center">36-39</td>
+                                <td class="px-6 py-4 text-center">4-7</td>
+                                <td class="px-6 py-4 text-center">22-24</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-dark-green/50 transition">
+                                <td class="px-6 py-4 font-semibold">M (40-43)</td>
+                                <td class="px-6 py-4 text-center">40-43</td>
+                                <td class="px-6 py-4 text-center">7-10</td>
+                                <td class="px-6 py-4 text-center">25-27</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-dark-green/50 transition">
+                                <td class="px-6 py-4 font-semibold">L (44-47)</td>
+                                <td class="px-6 py-4 text-center">44-47</td>
+                                <td class="px-6 py-4 text-center">10-13</td>
+                                <td class="px-6 py-4 text-center">28-30</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- How to Measure -->
+            <div class="bg-gray-50 dark:bg-dark-green-light rounded-2xl p-8">
+                <h2 class="text-2xl font-bold mb-6">How to Measure</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="font-semibold text-soccer-green mb-2">Chest</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Measure around the fullest part of your chest, keeping the tape horizontal.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-soccer-green mb-2">Length</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Measure from the highest point of the shoulder down to the hem.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-soccer-green mb-2">Waist</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Measure around your natural waistline, keeping the tape comfortably loose.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-soccer-green mb-2">Foot Length</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Stand on a piece of paper and mark the heel and longest toe, then measure the distance.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tips -->
+            <div class="mt-12 p-6 border border-soccer-green/20 rounded-xl">
+                <h3 class="font-bold text-lg mb-3 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-soccer-green" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                    </svg>
+                    Tips
+                </h3>
+                <ul class="text-gray-600 dark:text-gray-400 space-y-2 text-sm">
+                    <li>- If you're between sizes, we recommend ordering the larger size for a more comfortable fit during play.</li>
+                    <li>- Our jerseys have a regular athletic fit - not too tight, not too loose.</li>
+                    <li>- For socks, choose based on your EU shoe size for the best fit.</li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="mt-12 text-center">
+                <p class="text-gray-600 dark:text-gray-400 mb-4">Still not sure about your size?</p>
+                <a href="https://wa.me/212689519348" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-soccer-green text-white rounded-xl font-semibold hover:bg-emerald-600 transition">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Contact us on WhatsApp
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 lg:px-8 bg-white dark:bg-dark-green border-t border-gray-100 dark:border-dark-green-light">
+        <div class="max-w-4xl mx-auto text-center text-sm text-gray-600 dark:text-gray-400">
+            <p>&copy; 2026 KoraKick. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

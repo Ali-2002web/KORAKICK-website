@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Information - KoraKick Shop</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'soccer-green': '#10b981',
+                        'dark-green': '#052e16',
+                        'dark-green-light': '#14532d',
+                    },
+                    fontFamily: {
+                        'sans': ['Poppins', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body { overflow-x: hidden; max-width: 100vw; }
+    </style>
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+</head>
+<body class="bg-white dark:bg-dark-green text-gray-900 dark:text-gray-100 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 bg-white/90 dark:bg-dark-green/90 backdrop-blur-lg border-b border-gray-100 dark:border-dark-green-light">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex items-center gap-2">
+                    <img src="images/logo.png" alt="KoraKick" class="w-8 h-8">
+                    <span class="text-lg font-bold">Kora<span style="color: #65FF13;">Kick</span></span>
+                </a>
+                <div class="hidden md:flex gap-8">
+                    <a href="index.html" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition">Home</a>
+                    <a href="shop.html" class="text-sm font-medium text-soccer-green transition">Shop</a>
+                </div>
+                <div class="flex items-center gap-3">
+                    <a href="shop.html" class="px-4 py-2 bg-soccer-green text-white rounded-lg text-sm font-semibold hover:bg-emerald-600 transition">
+                        Back to Shop
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="pt-32 pb-12 px-6 lg:px-8 bg-gradient-to-br from-soccer-green/10 to-emerald-500/5 dark:from-dark-green dark:to-dark-green-light">
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="text-soccer-green font-semibold text-sm tracking-wider">KORAKICK SHOP</span>
+            <h1 class="text-4xl lg:text-5xl font-bold mt-3 mb-4">Shipping Information</h1>
+            <p class="text-xl text-gray-600 dark:text-gray-400">Fast and reliable delivery across Morocco</p>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="py-16 px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+
+            <!-- Delivery Zones -->
+            <div class="mb-12">
+                <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-soccer-green/10 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                    </span>
+                    Delivery Zones & Rates
+                </h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse bg-white dark:bg-dark-green-light rounded-xl overflow-hidden shadow-sm">
+                        <thead>
+                            <tr class="bg-soccer-green text-white">
+                                <th class="px-6 py-4 text-left font-semibold">Zone</th>
+                                <th class="px-6 py-4 text-left font-semibold">Cities</th>
+                                <th class="px-6 py-4 text-center font-semibold">Delivery Time</th>
+                                <th class="px-6 py-4 text-center font-semibold">Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100 dark:divide-dark-green">
+                            <tr class="hover:bg-gray-50 dark:hover:bg-dark-green/50 transition">
+                                <td class="px-6 py-4 font-semibold">Zone 1</td>
+                                <td class="px-6 py-4">Casablanca, Rabat, Mohammedia</td>
+                                <td class="px-6 py-4 text-center">1-2 days</td>
+                                <td class="px-6 py-4 text-center font-semibold text-soccer-green">25 DH</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-dark-green/50 transition">
+                                <td class="px-6 py-4 font-semibold">Zone 2</td>
+                                <td class="px-6 py-4">Marrakech, Fes, Tanger, Agadir, Meknes</td>
+                                <td class="px-6 py-4 text-center">2-3 days</td>
+                                <td class="px-6 py-4 text-center font-semibold text-soccer-green">35 DH</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-dark-green/50 transition">
+                                <td class="px-6 py-4 font-semibold">Zone 3</td>
+                                <td class="px-6 py-4">Oujda, Kenitra, Tetouan, Safi, El Jadida</td>
+                                <td class="px-6 py-4 text-center">3-4 days</td>
+                                <td class="px-6 py-4 text-center font-semibold text-soccer-green">40 DH</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-dark-green/50 transition">
+                                <td class="px-6 py-4 font-semibold">Zone 4</td>
+                                <td class="px-6 py-4">Other cities in Morocco</td>
+                                <td class="px-6 py-4 text-center">4-6 days</td>
+                                <td class="px-6 py-4 text-center font-semibold text-soccer-green">50 DH</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Free Shipping Banner -->
+            <div class="mb-12 bg-gradient-to-r from-soccer-green to-emerald-600 rounded-2xl p-8 text-white text-center">
+                <h3 class="text-2xl font-bold mb-2">Free Shipping on Orders 300+ DH</h3>
+                <p class="opacity-90">Order 300 DH or more and enjoy free delivery anywhere in Morocco!</p>
+            </div>
+
+            <!-- Payment Method -->
+            <div class="mb-12 bg-gray-50 dark:bg-dark-green-light rounded-2xl p-8">
+                <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-soccer-green/10 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </span>
+                    Payment Method
+                </h2>
+                <div class="flex items-center gap-4 p-4 bg-white dark:bg-dark-green rounded-xl">
+                    <div class="w-12 h-12 bg-soccer-green/10 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg">Cash on Delivery (COD)</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Pay when you receive your order. No prepayment required.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- How It Works -->
+            <div class="mb-12">
+                <h2 class="text-2xl font-bold mb-6">How Ordering Works</h2>
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="w-12 h-12 bg-soccer-green text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">1</div>
+                        <h3 class="font-semibold mb-2">Order via WhatsApp</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Add items to cart and send your order</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-12 h-12 bg-soccer-green text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">2</div>
+                        <h3 class="font-semibold mb-2">Confirmation</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">We confirm your order and delivery details</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-12 h-12 bg-soccer-green text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">3</div>
+                        <h3 class="font-semibold mb-2">Shipping</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Your order is shipped with tracking</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-12 h-12 bg-soccer-green text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">4</div>
+                        <h3 class="font-semibold mb-2">Delivery</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Pay cash when you receive your order</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Important Notes -->
+            <div class="p-6 border border-soccer-green/20 rounded-xl">
+                <h3 class="font-bold text-lg mb-3 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-soccer-green" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                    </svg>
+                    Important Notes
+                </h3>
+                <ul class="text-gray-600 dark:text-gray-400 space-y-2 text-sm">
+                    <li>- Delivery times are business days (excluding weekends and holidays)</li>
+                    <li>- You will receive a tracking number once your order is shipped</li>
+                    <li>- Please ensure someone is available to receive the package</li>
+                    <li>- Orders placed before 2 PM are usually shipped the same day</li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="mt-12 text-center">
+                <p class="text-gray-600 dark:text-gray-400 mb-4">Questions about your delivery?</p>
+                <a href="https://wa.me/212689519348" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-soccer-green text-white rounded-xl font-semibold hover:bg-emerald-600 transition">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Contact us on WhatsApp
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 lg:px-8 bg-white dark:bg-dark-green border-t border-gray-100 dark:border-dark-green-light">
+        <div class="max-w-4xl mx-auto text-center text-sm text-gray-600 dark:text-gray-400">
+            <p>&copy; 2026 KoraKick. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
