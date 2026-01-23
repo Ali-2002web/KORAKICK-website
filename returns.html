@@ -53,11 +53,15 @@
                     <span class="text-lg font-bold">Kora<span style="color: #65FF13;">Kick</span></span>
                 </a>
                 <div class="hidden md:flex gap-8">
-                    <a href="index.html" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition">Home</a>
-                    <a href="shop.html" class="text-sm font-medium text-soccer-green transition">Shop</a>
+                    <a href="index.html" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition" data-translate="navHome">Home</a>
+                    <a href="shop.html" class="text-sm font-medium text-soccer-green transition" data-translate="navShop">Shop</a>
                 </div>
                 <div class="flex items-center gap-3">
-                    <a href="shop.html" class="px-4 py-2 bg-soccer-green text-white rounded-lg text-sm font-semibold hover:bg-emerald-600 transition">
+                    <!-- Language Toggle -->
+                    <button id="langToggle" class="px-3 py-1.5 rounded-lg text-sm font-medium border border-gray-200 dark:border-dark-green-light hover:bg-gray-50 dark:hover:bg-dark-green-light transition">
+                        FR
+                    </button>
+                    <a href="shop.html" class="px-4 py-2 bg-soccer-green text-white rounded-lg text-sm font-semibold hover:bg-emerald-600 transition" data-translate="backToShop">
                         Back to Shop
                     </a>
                 </div>
@@ -68,9 +72,9 @@
     <!-- Header -->
     <section class="pt-32 pb-12 px-6 lg:px-8 bg-gradient-to-br from-soccer-green/10 to-emerald-500/5 dark:from-dark-green dark:to-dark-green-light">
         <div class="max-w-4xl mx-auto text-center">
-            <span class="text-soccer-green font-semibold text-sm tracking-wider">KORAKICK SHOP</span>
-            <h1 class="text-4xl lg:text-5xl font-bold mt-3 mb-4">Returns & Exchanges</h1>
-            <p class="text-xl text-gray-600 dark:text-gray-400">Your satisfaction is our priority</p>
+            <span class="text-soccer-green font-semibold text-sm tracking-wider" data-translate="shopBadge">KORAKICK SHOP</span>
+            <h1 class="text-4xl lg:text-5xl font-bold mt-3 mb-4" data-translate="pageTitle">Returns & Exchanges</h1>
+            <p class="text-xl text-gray-600 dark:text-gray-400" data-translate="pageSubtitle">Your satisfaction is our priority</p>
         </div>
     </section>
 
@@ -85,8 +89,8 @@
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                     </svg>
                 </div>
-                <h3 class="text-2xl font-bold mb-2">30-Day Return Guarantee</h3>
-                <p class="opacity-90">Not satisfied? Return your order within 30 days for a full refund or exchange.</p>
+                <h3 class="text-2xl font-bold mb-2" data-translate="guaranteeTitle">30-Day Return Guarantee</h3>
+                <p class="opacity-90" data-translate="guaranteeDesc">Not satisfied? Return your order within 30 days for a full refund or exchange.</p>
             </div>
 
             <!-- Return Policy -->
@@ -97,7 +101,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
                         </svg>
                     </span>
-                    Return Policy
+                    <span data-translate="returnPolicyTitle">Return Policy</span>
                 </h2>
                 <div class="bg-white dark:bg-dark-green-light rounded-xl p-6 shadow-sm space-y-4">
                     <div class="flex items-start gap-4">
@@ -107,8 +111,8 @@
                             </svg>
                         </div>
                         <div>
-                            <h3 class="font-semibold">30 Days to Return</h3>
-                            <p class="text-gray-600 dark:text-gray-400 text-sm">You have 30 days from the delivery date to request a return or exchange.</p>
+                            <h3 class="font-semibold" data-translate="policy1Title">30 Days to Return</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm" data-translate="policy1Desc">You have 30 days from the delivery date to request a return or exchange.</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-4">
@@ -118,8 +122,8 @@
                             </svg>
                         </div>
                         <div>
-                            <h3 class="font-semibold">Original Condition</h3>
-                            <p class="text-gray-600 dark:text-gray-400 text-sm">Items must be unworn, unwashed, and in original condition with all tags attached.</p>
+                            <h3 class="font-semibold" data-translate="policy2Title">Original Condition</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm" data-translate="policy2Desc">Items must be unworn, unwashed, and in original condition with all tags attached.</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-4">
@@ -129,8 +133,8 @@
                             </svg>
                         </div>
                         <div>
-                            <h3 class="font-semibold">Full Refund</h3>
-                            <p class="text-gray-600 dark:text-gray-400 text-sm">Get a full refund of the product price. Shipping costs are non-refundable unless the item was defective.</p>
+                            <h3 class="font-semibold" data-translate="policy3Title">Full Refund</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm" data-translate="policy3Desc">Get a full refund of the product price. Shipping costs are non-refundable unless the item was defective.</p>
                         </div>
                     </div>
                 </div>
@@ -144,28 +148,28 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
                         </svg>
                     </span>
-                    Exchange Policy
+                    <span data-translate="exchangePolicyTitle">Exchange Policy</span>
                 </h2>
                 <div class="bg-gray-50 dark:bg-dark-green-light rounded-xl p-6">
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">Need a different size or color? We offer free exchanges!</p>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4" data-translate="exchangeDesc">Need a different size or color? We offer free exchanges!</p>
                     <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
                         <li class="flex items-center gap-2">
                             <svg class="w-4 h-4 text-soccer-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                             </svg>
-                            Exchange for a different size at no extra cost
+                            <span data-translate="exchange1">Exchange for a different size at no extra cost</span>
                         </li>
                         <li class="flex items-center gap-2">
                             <svg class="w-4 h-4 text-soccer-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                             </svg>
-                            Exchange for a different color (subject to availability)
+                            <span data-translate="exchange2">Exchange for a different color (subject to availability)</span>
                         </li>
                         <li class="flex items-center gap-2">
                             <svg class="w-4 h-4 text-soccer-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                             </svg>
-                            We cover return shipping for exchanges
+                            <span data-translate="exchange3">We cover return shipping for exchanges</span>
                         </li>
                     </ul>
                 </div>
@@ -173,22 +177,22 @@
 
             <!-- How to Return -->
             <div class="mb-12">
-                <h2 class="text-2xl font-bold mb-6">How to Return or Exchange</h2>
+                <h2 class="text-2xl font-bold mb-6" data-translate="howToReturnTitle">How to Return or Exchange</h2>
                 <div class="grid md:grid-cols-3 gap-6">
                     <div class="text-center p-6 bg-white dark:bg-dark-green-light rounded-xl shadow-sm">
                         <div class="w-12 h-12 bg-soccer-green text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">1</div>
-                        <h3 class="font-semibold mb-2">Contact Us</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm">Message us on WhatsApp with your order details and reason for return</p>
+                        <h3 class="font-semibold mb-2" data-translate="step1Title">Contact Us</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm" data-translate="step1Desc">Message us on WhatsApp with your order details and reason for return</p>
                     </div>
                     <div class="text-center p-6 bg-white dark:bg-dark-green-light rounded-xl shadow-sm">
                         <div class="w-12 h-12 bg-soccer-green text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">2</div>
-                        <h3 class="font-semibold mb-2">Ship the Item</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm">Pack the item securely and send it to our address (we'll provide details)</p>
+                        <h3 class="font-semibold mb-2" data-translate="step2Title">Ship the Item</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm" data-translate="step2Desc">Pack the item securely and send it to our address (we'll provide details)</p>
                     </div>
                     <div class="text-center p-6 bg-white dark:bg-dark-green-light rounded-xl shadow-sm">
                         <div class="w-12 h-12 bg-soccer-green text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">3</div>
-                        <h3 class="font-semibold mb-2">Get Refund/Exchange</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm">Once received, we'll process your refund or send your exchange</p>
+                        <h3 class="font-semibold mb-2" data-translate="step3Title">Get Refund/Exchange</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm" data-translate="step3Desc">Once received, we'll process your refund or send your exchange</p>
                     </div>
                 </div>
             </div>
@@ -199,13 +203,13 @@
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
                     </svg>
-                    Non-Returnable Items
+                    <span data-translate="nonReturnableTitle">Non-Returnable Items</span>
                 </h3>
                 <ul class="text-gray-600 dark:text-gray-400 space-y-1 text-sm">
-                    <li>- Items that have been worn, washed, or altered</li>
-                    <li>- Items without original tags</li>
-                    <li>- Items returned after 30 days</li>
-                    <li>- Items with visible signs of use or damage</li>
+                    <li data-translate="nonReturnable1">- Items that have been worn, washed, or altered</li>
+                    <li data-translate="nonReturnable2">- Items without original tags</li>
+                    <li data-translate="nonReturnable3">- Items returned after 30 days</li>
+                    <li data-translate="nonReturnable4">- Items with visible signs of use or damage</li>
                 </ul>
             </div>
 
@@ -215,19 +219,19 @@
                     <svg class="w-5 h-5 text-soccer-green" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
                     </svg>
-                    Defective or Damaged Items
+                    <span data-translate="defectiveTitle">Defective or Damaged Items</span>
                 </h3>
-                <p class="text-gray-600 dark:text-gray-400 text-sm">
+                <p class="text-gray-600 dark:text-gray-400 text-sm" data-translate="defectiveDesc">
                     Received a defective or damaged item? Contact us immediately with photos and we'll arrange a free replacement or full refund including shipping costs.
                 </p>
             </div>
 
             <!-- Contact -->
             <div class="mt-12 text-center">
-                <p class="text-gray-600 dark:text-gray-400 mb-4">Need to start a return or have questions?</p>
+                <p class="text-gray-600 dark:text-gray-400 mb-4" data-translate="questionsText">Need to start a return or have questions?</p>
                 <a href="https://wa.me/212689519348" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-soccer-green text-white rounded-xl font-semibold hover:bg-emerald-600 transition">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    Contact us on WhatsApp
+                    <span data-translate="contactWhatsApp">Contact us on WhatsApp</span>
                 </a>
             </div>
 
@@ -237,9 +241,126 @@
     <!-- Footer -->
     <footer class="py-8 px-6 lg:px-8 bg-white dark:bg-dark-green border-t border-gray-100 dark:border-dark-green-light">
         <div class="max-w-4xl mx-auto text-center text-sm text-gray-600 dark:text-gray-400">
-            <p>&copy; 2026 KoraKick. All rights reserved.</p>
+            <p><span data-translate="footerRights">&copy; 2026 KoraKick. All rights reserved.</span></p>
         </div>
     </footer>
+
+    <script>
+        // Translations
+        const translations = {
+            en: {
+                navHome: 'Home',
+                navShop: 'Shop',
+                backToShop: 'Back to Shop',
+                shopBadge: 'KORAKICK SHOP',
+                pageTitle: 'Returns & Exchanges',
+                pageSubtitle: 'Your satisfaction is our priority',
+                guaranteeTitle: '30-Day Return Guarantee',
+                guaranteeDesc: 'Not satisfied? Return your order within 30 days for a full refund or exchange.',
+                returnPolicyTitle: 'Return Policy',
+                policy1Title: '30 Days to Return',
+                policy1Desc: 'You have 30 days from the delivery date to request a return or exchange.',
+                policy2Title: 'Original Condition',
+                policy2Desc: 'Items must be unworn, unwashed, and in original condition with all tags attached.',
+                policy3Title: 'Full Refund',
+                policy3Desc: 'Get a full refund of the product price. Shipping costs are non-refundable unless the item was defective.',
+                exchangePolicyTitle: 'Exchange Policy',
+                exchangeDesc: 'Need a different size or color? We offer free exchanges!',
+                exchange1: 'Exchange for a different size at no extra cost',
+                exchange2: 'Exchange for a different color (subject to availability)',
+                exchange3: 'We cover return shipping for exchanges',
+                howToReturnTitle: 'How to Return or Exchange',
+                step1Title: 'Contact Us',
+                step1Desc: 'Message us on WhatsApp with your order details and reason for return',
+                step2Title: 'Ship the Item',
+                step2Desc: 'Pack the item securely and send it to our address (we\'ll provide details)',
+                step3Title: 'Get Refund/Exchange',
+                step3Desc: 'Once received, we\'ll process your refund or send your exchange',
+                nonReturnableTitle: 'Non-Returnable Items',
+                nonReturnable1: '- Items that have been worn, washed, or altered',
+                nonReturnable2: '- Items without original tags',
+                nonReturnable3: '- Items returned after 30 days',
+                nonReturnable4: '- Items with visible signs of use or damage',
+                defectiveTitle: 'Defective or Damaged Items',
+                defectiveDesc: 'Received a defective or damaged item? Contact us immediately with photos and we\'ll arrange a free replacement or full refund including shipping costs.',
+                questionsText: 'Need to start a return or have questions?',
+                contactWhatsApp: 'Contact us on WhatsApp',
+                footerRights: '© 2026 KoraKick. All rights reserved.'
+            },
+            fr: {
+                navHome: 'Accueil',
+                navShop: 'Boutique',
+                backToShop: 'Retour à la Boutique',
+                shopBadge: 'BOUTIQUE KORAKICK',
+                pageTitle: 'Retours & Échanges',
+                pageSubtitle: 'Votre satisfaction est notre priorité',
+                guaranteeTitle: 'Garantie de Retour 30 Jours',
+                guaranteeDesc: 'Pas satisfait ? Retournez votre commande sous 30 jours pour un remboursement complet ou un échange.',
+                returnPolicyTitle: 'Politique de Retour',
+                policy1Title: '30 Jours pour Retourner',
+                policy1Desc: 'Vous disposez de 30 jours à partir de la date de livraison pour demander un retour ou un échange.',
+                policy2Title: 'État d\'Origine',
+                policy2Desc: 'Les articles doivent être non portés, non lavés et dans leur état d\'origine avec toutes les étiquettes attachées.',
+                policy3Title: 'Remboursement Complet',
+                policy3Desc: 'Obtenez un remboursement complet du prix du produit. Les frais de livraison ne sont pas remboursables sauf si l\'article était défectueux.',
+                exchangePolicyTitle: 'Politique d\'Échange',
+                exchangeDesc: 'Besoin d\'une taille ou couleur différente ? Nous offrons des échanges gratuits !',
+                exchange1: 'Échangez pour une taille différente sans frais supplémentaires',
+                exchange2: 'Échangez pour une couleur différente (selon disponibilité)',
+                exchange3: 'Nous prenons en charge les frais de retour pour les échanges',
+                howToReturnTitle: 'Comment Retourner ou Échanger',
+                step1Title: 'Contactez-nous',
+                step1Desc: 'Envoyez-nous un message sur WhatsApp avec les détails de votre commande et la raison du retour',
+                step2Title: 'Expédiez l\'Article',
+                step2Desc: 'Emballez l\'article soigneusement et envoyez-le à notre adresse (nous vous fournirons les détails)',
+                step3Title: 'Remboursement/Échange',
+                step3Desc: 'Une fois reçu, nous traiterons votre remboursement ou enverrons votre échange',
+                nonReturnableTitle: 'Articles Non Retournables',
+                nonReturnable1: '- Articles portés, lavés ou modifiés',
+                nonReturnable2: '- Articles sans étiquettes d\'origine',
+                nonReturnable3: '- Articles retournés après 30 jours',
+                nonReturnable4: '- Articles avec des signes visibles d\'utilisation ou de dommage',
+                defectiveTitle: 'Articles Défectueux ou Endommagés',
+                defectiveDesc: 'Vous avez reçu un article défectueux ou endommagé ? Contactez-nous immédiatement avec des photos et nous organiserons un remplacement gratuit ou un remboursement complet incluant les frais de livraison.',
+                questionsText: 'Besoin de commencer un retour ou des questions ?',
+                contactWhatsApp: 'Contactez-nous sur WhatsApp',
+                footerRights: '© 2026 KoraKick. Tous droits réservés.'
+            }
+        };
+
+        // Language management
+        let currentLang = localStorage.getItem('korakick-lang') || 'fr';
+
+        function updateLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('korakick-lang', lang);
+
+            // Update toggle button text
+            document.getElementById('langToggle').textContent = lang === 'fr' ? 'EN' : 'FR';
+
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+
+            // Update all translated elements
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+        }
+
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateLanguage(currentLang);
+
+            // Language toggle handler
+            document.getElementById('langToggle').addEventListener('click', () => {
+                const newLang = currentLang === 'fr' ? 'en' : 'fr';
+                updateLanguage(newLang);
+            });
+        });
+    </script>
 
 </body>
 </html>

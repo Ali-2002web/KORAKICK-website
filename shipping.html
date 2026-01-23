@@ -53,11 +53,15 @@
                     <span class="text-lg font-bold">Kora<span style="color: #65FF13;">Kick</span></span>
                 </a>
                 <div class="hidden md:flex gap-8">
-                    <a href="index.html" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition">Home</a>
-                    <a href="shop.html" class="text-sm font-medium text-soccer-green transition">Shop</a>
+                    <a href="index.html" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition" data-translate="navHome">Home</a>
+                    <a href="shop.html" class="text-sm font-medium text-soccer-green transition" data-translate="navShop">Shop</a>
                 </div>
                 <div class="flex items-center gap-3">
-                    <a href="shop.html" class="px-4 py-2 bg-soccer-green text-white rounded-lg text-sm font-semibold hover:bg-emerald-600 transition">
+                    <!-- Language Toggle -->
+                    <button id="langToggle" class="px-3 py-1.5 rounded-lg text-sm font-medium border border-gray-200 dark:border-dark-green-light hover:bg-gray-50 dark:hover:bg-dark-green-light transition">
+                        FR
+                    </button>
+                    <a href="shop.html" class="px-4 py-2 bg-soccer-green text-white rounded-lg text-sm font-semibold hover:bg-emerald-600 transition" data-translate="backToShop">
                         Back to Shop
                     </a>
                 </div>
@@ -68,9 +72,9 @@
     <!-- Header -->
     <section class="pt-32 pb-12 px-6 lg:px-8 bg-gradient-to-br from-soccer-green/10 to-emerald-500/5 dark:from-dark-green dark:to-dark-green-light">
         <div class="max-w-4xl mx-auto text-center">
-            <span class="text-soccer-green font-semibold text-sm tracking-wider">KORAKICK SHOP</span>
-            <h1 class="text-4xl lg:text-5xl font-bold mt-3 mb-4">Shipping Information</h1>
-            <p class="text-xl text-gray-600 dark:text-gray-400">Fast and reliable delivery across Morocco</p>
+            <span class="text-soccer-green font-semibold text-sm tracking-wider" data-translate="shopBadge">KORAKICK SHOP</span>
+            <h1 class="text-4xl lg:text-5xl font-bold mt-3 mb-4" data-translate="pageTitle">Shipping Information</h1>
+            <p class="text-xl text-gray-600 dark:text-gray-400" data-translate="pageSubtitle">Fast and reliable delivery across Morocco</p>
         </div>
     </section>
 
@@ -87,41 +91,41 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                         </svg>
                     </span>
-                    Delivery Zones & Rates
+                    <span data-translate="deliveryZonesTitle">Delivery Zones & Rates</span>
                 </h2>
                 <div class="overflow-x-auto">
                     <table class="w-full border-collapse bg-white dark:bg-dark-green-light rounded-xl overflow-hidden shadow-sm">
                         <thead>
                             <tr class="bg-soccer-green text-white">
-                                <th class="px-6 py-4 text-left font-semibold">Zone</th>
-                                <th class="px-6 py-4 text-left font-semibold">Cities</th>
-                                <th class="px-6 py-4 text-center font-semibold">Delivery Time</th>
-                                <th class="px-6 py-4 text-center font-semibold">Cost</th>
+                                <th class="px-6 py-4 text-left font-semibold" data-translate="tableZone">Zone</th>
+                                <th class="px-6 py-4 text-left font-semibold" data-translate="tableCities">Cities</th>
+                                <th class="px-6 py-4 text-center font-semibold" data-translate="tableDeliveryTime">Delivery Time</th>
+                                <th class="px-6 py-4 text-center font-semibold" data-translate="tableCost">Cost</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100 dark:divide-dark-green">
                             <tr class="hover:bg-gray-50 dark:hover:bg-dark-green/50 transition">
                                 <td class="px-6 py-4 font-semibold">Zone 1</td>
                                 <td class="px-6 py-4">Casablanca, Rabat, Mohammedia</td>
-                                <td class="px-6 py-4 text-center">1-2 days</td>
+                                <td class="px-6 py-4 text-center" data-translate="time1to2">1-2 days</td>
                                 <td class="px-6 py-4 text-center font-semibold text-soccer-green">25 DH</td>
                             </tr>
                             <tr class="hover:bg-gray-50 dark:hover:bg-dark-green/50 transition">
                                 <td class="px-6 py-4 font-semibold">Zone 2</td>
                                 <td class="px-6 py-4">Marrakech, Fes, Tanger, Agadir, Meknes</td>
-                                <td class="px-6 py-4 text-center">2-3 days</td>
+                                <td class="px-6 py-4 text-center" data-translate="time2to3">2-3 days</td>
                                 <td class="px-6 py-4 text-center font-semibold text-soccer-green">35 DH</td>
                             </tr>
                             <tr class="hover:bg-gray-50 dark:hover:bg-dark-green/50 transition">
                                 <td class="px-6 py-4 font-semibold">Zone 3</td>
                                 <td class="px-6 py-4">Oujda, Kenitra, Tetouan, Safi, El Jadida</td>
-                                <td class="px-6 py-4 text-center">3-4 days</td>
+                                <td class="px-6 py-4 text-center" data-translate="time3to4">3-4 days</td>
                                 <td class="px-6 py-4 text-center font-semibold text-soccer-green">40 DH</td>
                             </tr>
                             <tr class="hover:bg-gray-50 dark:hover:bg-dark-green/50 transition">
                                 <td class="px-6 py-4 font-semibold">Zone 4</td>
-                                <td class="px-6 py-4">Other cities in Morocco</td>
-                                <td class="px-6 py-4 text-center">4-6 days</td>
+                                <td class="px-6 py-4" data-translate="otherCities">Other cities in Morocco</td>
+                                <td class="px-6 py-4 text-center" data-translate="time4to6">4-6 days</td>
                                 <td class="px-6 py-4 text-center font-semibold text-soccer-green">50 DH</td>
                             </tr>
                         </tbody>
@@ -131,8 +135,8 @@
 
             <!-- Free Shipping Banner -->
             <div class="mb-12 bg-gradient-to-r from-soccer-green to-emerald-600 rounded-2xl p-8 text-white text-center">
-                <h3 class="text-2xl font-bold mb-2">Free Shipping on Orders 300+ DH</h3>
-                <p class="opacity-90">Order 300 DH or more and enjoy free delivery anywhere in Morocco!</p>
+                <h3 class="text-2xl font-bold mb-2" data-translate="freeShippingTitle">Free Shipping on Orders 300+ DH</h3>
+                <p class="opacity-90" data-translate="freeShippingDesc">Order 300 DH or more and enjoy free delivery anywhere in Morocco!</p>
             </div>
 
             <!-- Payment Method -->
@@ -143,7 +147,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
                         </svg>
                     </span>
-                    Payment Method
+                    <span data-translate="paymentMethodTitle">Payment Method</span>
                 </h2>
                 <div class="flex items-center gap-4 p-4 bg-white dark:bg-dark-green rounded-xl">
                     <div class="w-12 h-12 bg-soccer-green/10 rounded-full flex items-center justify-center">
@@ -152,35 +156,35 @@
                         </svg>
                     </div>
                     <div>
-                        <h3 class="font-bold text-lg">Cash on Delivery (COD)</h3>
-                        <p class="text-gray-600 dark:text-gray-400">Pay when you receive your order. No prepayment required.</p>
+                        <h3 class="font-bold text-lg" data-translate="codTitle">Cash on Delivery (COD)</h3>
+                        <p class="text-gray-600 dark:text-gray-400" data-translate="codDesc">Pay when you receive your order. No prepayment required.</p>
                     </div>
                 </div>
             </div>
 
             <!-- How It Works -->
             <div class="mb-12">
-                <h2 class="text-2xl font-bold mb-6">How Ordering Works</h2>
+                <h2 class="text-2xl font-bold mb-6" data-translate="howItWorksTitle">How Ordering Works</h2>
                 <div class="grid md:grid-cols-4 gap-6">
                     <div class="text-center">
                         <div class="w-12 h-12 bg-soccer-green text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">1</div>
-                        <h3 class="font-semibold mb-2">Order via WhatsApp</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm">Add items to cart and send your order</p>
+                        <h3 class="font-semibold mb-2" data-translate="step1Title">Order via WhatsApp</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm" data-translate="step1Desc">Add items to cart and send your order</p>
                     </div>
                     <div class="text-center">
                         <div class="w-12 h-12 bg-soccer-green text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">2</div>
-                        <h3 class="font-semibold mb-2">Confirmation</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm">We confirm your order and delivery details</p>
+                        <h3 class="font-semibold mb-2" data-translate="step2Title">Confirmation</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm" data-translate="step2Desc">We confirm your order and delivery details</p>
                     </div>
                     <div class="text-center">
                         <div class="w-12 h-12 bg-soccer-green text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">3</div>
-                        <h3 class="font-semibold mb-2">Shipping</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm">Your order is shipped with tracking</p>
+                        <h3 class="font-semibold mb-2" data-translate="step3Title">Shipping</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm" data-translate="step3Desc">Your order is shipped with tracking</p>
                     </div>
                     <div class="text-center">
                         <div class="w-12 h-12 bg-soccer-green text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">4</div>
-                        <h3 class="font-semibold mb-2">Delivery</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm">Pay cash when you receive your order</p>
+                        <h3 class="font-semibold mb-2" data-translate="step4Title">Delivery</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm" data-translate="step4Desc">Pay cash when you receive your order</p>
                     </div>
                 </div>
             </div>
@@ -191,22 +195,22 @@
                     <svg class="w-5 h-5 text-soccer-green" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
                     </svg>
-                    Important Notes
+                    <span data-translate="importantNotesTitle">Important Notes</span>
                 </h3>
                 <ul class="text-gray-600 dark:text-gray-400 space-y-2 text-sm">
-                    <li>- Delivery times are business days (excluding weekends and holidays)</li>
-                    <li>- You will receive a tracking number once your order is shipped</li>
-                    <li>- Please ensure someone is available to receive the package</li>
-                    <li>- Orders placed before 2 PM are usually shipped the same day</li>
+                    <li data-translate="note1">- Delivery times are business days (excluding weekends and holidays)</li>
+                    <li data-translate="note2">- You will receive a tracking number once your order is shipped</li>
+                    <li data-translate="note3">- Please ensure someone is available to receive the package</li>
+                    <li data-translate="note4">- Orders placed before 2 PM are usually shipped the same day</li>
                 </ul>
             </div>
 
             <!-- Contact -->
             <div class="mt-12 text-center">
-                <p class="text-gray-600 dark:text-gray-400 mb-4">Questions about your delivery?</p>
+                <p class="text-gray-600 dark:text-gray-400 mb-4" data-translate="questionsText">Questions about your delivery?</p>
                 <a href="https://wa.me/212689519348" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-soccer-green text-white rounded-xl font-semibold hover:bg-emerald-600 transition">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    Contact us on WhatsApp
+                    <span data-translate="contactWhatsApp">Contact us on WhatsApp</span>
                 </a>
             </div>
 
@@ -216,9 +220,128 @@
     <!-- Footer -->
     <footer class="py-8 px-6 lg:px-8 bg-white dark:bg-dark-green border-t border-gray-100 dark:border-dark-green-light">
         <div class="max-w-4xl mx-auto text-center text-sm text-gray-600 dark:text-gray-400">
-            <p>&copy; 2026 KoraKick. All rights reserved.</p>
+            <p><span data-translate="footerRights">&copy; 2026 KoraKick. All rights reserved.</span></p>
         </div>
     </footer>
+
+    <script>
+        // Translations
+        const translations = {
+            en: {
+                navHome: 'Home',
+                navShop: 'Shop',
+                backToShop: 'Back to Shop',
+                shopBadge: 'KORAKICK SHOP',
+                pageTitle: 'Shipping Information',
+                pageSubtitle: 'Fast and reliable delivery across Morocco',
+                deliveryZonesTitle: 'Delivery Zones & Rates',
+                tableZone: 'Zone',
+                tableCities: 'Cities',
+                tableDeliveryTime: 'Delivery Time',
+                tableCost: 'Cost',
+                time1to2: '1-2 days',
+                time2to3: '2-3 days',
+                time3to4: '3-4 days',
+                time4to6: '4-6 days',
+                otherCities: 'Other cities in Morocco',
+                freeShippingTitle: 'Free Shipping on Orders 300+ DH',
+                freeShippingDesc: 'Order 300 DH or more and enjoy free delivery anywhere in Morocco!',
+                paymentMethodTitle: 'Payment Method',
+                codTitle: 'Cash on Delivery (COD)',
+                codDesc: 'Pay when you receive your order. No prepayment required.',
+                howItWorksTitle: 'How Ordering Works',
+                step1Title: 'Order via WhatsApp',
+                step1Desc: 'Add items to cart and send your order',
+                step2Title: 'Confirmation',
+                step2Desc: 'We confirm your order and delivery details',
+                step3Title: 'Shipping',
+                step3Desc: 'Your order is shipped with tracking',
+                step4Title: 'Delivery',
+                step4Desc: 'Pay cash when you receive your order',
+                importantNotesTitle: 'Important Notes',
+                note1: '- Delivery times are business days (excluding weekends and holidays)',
+                note2: '- You will receive a tracking number once your order is shipped',
+                note3: '- Please ensure someone is available to receive the package',
+                note4: '- Orders placed before 2 PM are usually shipped the same day',
+                questionsText: 'Questions about your delivery?',
+                contactWhatsApp: 'Contact us on WhatsApp',
+                footerRights: '© 2026 KoraKick. All rights reserved.'
+            },
+            fr: {
+                navHome: 'Accueil',
+                navShop: 'Boutique',
+                backToShop: 'Retour à la Boutique',
+                shopBadge: 'BOUTIQUE KORAKICK',
+                pageTitle: 'Informations de Livraison',
+                pageSubtitle: 'Livraison rapide et fiable partout au Maroc',
+                deliveryZonesTitle: 'Zones de Livraison & Tarifs',
+                tableZone: 'Zone',
+                tableCities: 'Villes',
+                tableDeliveryTime: 'Délai de Livraison',
+                tableCost: 'Coût',
+                time1to2: '1-2 jours',
+                time2to3: '2-3 jours',
+                time3to4: '3-4 jours',
+                time4to6: '4-6 jours',
+                otherCities: 'Autres villes au Maroc',
+                freeShippingTitle: 'Livraison Gratuite dès 300 DH',
+                freeShippingDesc: 'Commandez 300 DH ou plus et profitez de la livraison gratuite partout au Maroc !',
+                paymentMethodTitle: 'Mode de Paiement',
+                codTitle: 'Paiement à la Livraison',
+                codDesc: 'Payez à la réception de votre commande. Aucun prépaiement requis.',
+                howItWorksTitle: 'Comment Commander',
+                step1Title: 'Commandez via WhatsApp',
+                step1Desc: 'Ajoutez des articles au panier et envoyez votre commande',
+                step2Title: 'Confirmation',
+                step2Desc: 'Nous confirmons votre commande et les détails de livraison',
+                step3Title: 'Expédition',
+                step3Desc: 'Votre commande est expédiée avec suivi',
+                step4Title: 'Livraison',
+                step4Desc: 'Payez en espèces à la réception de votre commande',
+                importantNotesTitle: 'Notes Importantes',
+                note1: '- Les délais de livraison sont en jours ouvrables (hors week-ends et jours fériés)',
+                note2: '- Vous recevrez un numéro de suivi une fois votre commande expédiée',
+                note3: '- Veuillez vous assurer que quelqu\'un est disponible pour recevoir le colis',
+                note4: '- Les commandes passées avant 14h sont généralement expédiées le jour même',
+                questionsText: 'Des questions sur votre livraison ?',
+                contactWhatsApp: 'Contactez-nous sur WhatsApp',
+                footerRights: '© 2026 KoraKick. Tous droits réservés.'
+            }
+        };
+
+        // Language management
+        let currentLang = localStorage.getItem('korakick-lang') || 'fr';
+
+        function updateLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('korakick-lang', lang);
+
+            // Update toggle button text
+            document.getElementById('langToggle').textContent = lang === 'fr' ? 'EN' : 'FR';
+
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+
+            // Update all translated elements
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+        }
+
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateLanguage(currentLang);
+
+            // Language toggle handler
+            document.getElementById('langToggle').addEventListener('click', () => {
+                const newLang = currentLang === 'fr' ? 'en' : 'fr';
+                updateLanguage(newLang);
+            });
+        });
+    </script>
 
 </body>
 </html>
