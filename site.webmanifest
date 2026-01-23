@@ -1,0 +1,21 @@
+{
+    "name": "KoraKick",
+    "short_name": "KoraKick",
+    "description": "Application #1 au Maroc pour trouver des adversaires de foot",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#10b981",
+    "icons": [
+        {
+            "src": "images/logo.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "images/logo.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
