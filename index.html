@@ -521,6 +521,59 @@
             50% { box-shadow: 0 0 40px rgba(16, 185, 129, 0.6); }
         }
 
+        /* Teams Section Animation */
+        .teams-section .teams-grid {
+            position: relative;
+            min-height: 500px;
+        }
+
+        .teams-section .teams-content {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+            transition-delay: 0.8s;
+        }
+
+        .teams-section .teams-mockup {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 1.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+            z-index: 10;
+            will-change: transform;
+        }
+
+        .teams-section.animate-in .teams-content {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .teams-section.animate-in .teams-mockup {
+            transform: translate(40%, -50%);
+        }
+
+        @media (max-width: 1024px) {
+            .teams-section .teams-grid {
+                min-height: auto;
+            }
+            .teams-section .teams-mockup {
+                position: relative;
+                left: auto;
+                top: auto;
+                transform: scale(0.9);
+                opacity: 0;
+                transition: opacity 1s ease-out, transform 1s ease-out;
+            }
+            .teams-section.animate-in .teams-mockup {
+                transform: scale(1);
+                opacity: 1;
+            }
+            .teams-section .teams-content {
+                transition-delay: 0.3s;
+            }
+        }
+
         .sponsor-logo {
             transition: all 0.4s ease;
         }
@@ -1006,10 +1059,10 @@
     </section>
 
     <!-- Teams & Players -->
-    <section class="py-20 px-6 lg:px-8">
+    <section id="teams-section" class="teams-section py-20 px-6 lg:px-8 overflow-hidden">
         <div class="max-w-7xl mx-auto">
-            <div class="grid lg:grid-cols-2 gap-16 items-center mb-16">
-                <div>
+            <div class="teams-grid grid lg:grid-cols-2 gap-16 items-center mb-16 min-h-[500px]">
+                <div class="teams-content">
                     <span class="text-soccer-green font-semibold text-sm tracking-wider" data-translate="teamsLabel">FOR TEAMS & PLAYERS</span>
                     <h2 class="text-4xl lg:text-5xl font-bold mt-3 mb-6" data-translate="teamsTitle">Whether You're a Team or Solo Player</h2>
                     <p class="text-xl text-gray-600 dark:text-gray-400 mb-8 leading-relaxed" data-translate="teamsDesc">
@@ -1062,7 +1115,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="relative flex justify-center lg:justify-end">
+                <div class="teams-mockup relative flex justify-center lg:justify-end">
                     <div class="absolute inset-0 bg-gradient-to-l from-soccer-green/10 to-transparent rounded-full blur-3xl"></div>
                     <img src="images/iMockup - iPhone 15 Pro Max (2).png" alt="KoraKick - Fonctionnalités gestion équipe football" class="phone-mockup w-60 lg:w-80 mx-auto drop-shadow-2xl relative z-10">
                 </div>
@@ -1733,6 +1786,22 @@
                 observer.observe(section);
             });
         });
+
+        // Teams Section Animation Observer
+        const teamsSection = document.getElementById('teams-section');
+        if (teamsSection) {
+            const teamsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Small delay to let user see the mockup centered first
+                        setTimeout(() => {
+                            entry.target.classList.add('animate-in');
+                        }, 300);
+                    }
+                });
+            }, { threshold: 0.15 });
+            teamsObserver.observe(teamsSection);
+        }
 
         // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
