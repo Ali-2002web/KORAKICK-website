@@ -485,10 +485,33 @@
             transform: translateY(0) scale(1);
         }
         .feature-card:nth-child(1) { transition-delay: 0s; }
-        .feature-card:nth-child(2) { transition-delay: 0.1s; }
-        .feature-card:nth-child(3) { transition-delay: 0.2s; }
-        .feature-card:nth-child(4) { transition-delay: 0.3s; }
-        .feature-card:nth-child(5) { transition-delay: 0.4s; }
+        .feature-card:nth-child(2) { transition-delay: 0.05s; }
+        .feature-card:nth-child(3) { transition-delay: 0.1s; }
+        .feature-card:nth-child(4) { transition-delay: 0.15s; }
+        .feature-card:nth-child(5) { transition-delay: 0.2s; }
+
+        /* Team Cards Slide Animation */
+        .team-card {
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+            will-change: transform, opacity;
+        }
+        .team-card-left {
+            transform: translateX(-100px);
+        }
+        .team-card-right {
+            transform: translateX(100px);
+        }
+        #team-section.animate-in .team-card {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        #team-section.animate-in .team-card-left {
+            transition-delay: 0s;
+        }
+        #team-section.animate-in .team-card-right {
+            transition-delay: 0.2s;
+        }
 
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
@@ -1126,7 +1149,7 @@
     </section>
 
     <!-- Account Team & Tournaments -->
-    <section class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-dark-green-light/50">
+    <section id="team-section" class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-dark-green-light/50">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-10 sm:mb-16">
                 <span class="text-soccer-green font-semibold text-xs sm:text-sm tracking-wider" data-translate="accountTeamLabel">ACCOUNT TEAM MODE</span>
@@ -1136,9 +1159,9 @@
                 </p>
             </div>
 
-            <div class="grid lg:grid-cols-2 gap-6 sm:gap-12 items-center">
+            <div class="team-cards-container grid lg:grid-cols-2 gap-6 sm:gap-12 items-center">
                 <!-- Team Creation Card -->
-                <div class="bg-white dark:bg-dark-green p-4 sm:p-8 rounded-2xl shadow-lg glow-card">
+                <div class="team-card team-card-left bg-white dark:bg-dark-green p-4 sm:p-8 rounded-2xl shadow-lg glow-card">
                     <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
                         <div class="w-10 h-10 sm:w-12 sm:h-12 bg-soccer-green/10 rounded-xl flex items-center justify-center">
                             <svg class="w-5 h-5 sm:w-6 sm:h-6 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1209,7 +1232,7 @@
                 </div>
 
                 <!-- Tournament Card -->
-                <div class="bg-white dark:bg-dark-green p-4 sm:p-8 rounded-2xl shadow-lg glow-card">
+                <div class="team-card team-card-right bg-white dark:bg-dark-green p-4 sm:p-8 rounded-2xl shadow-lg glow-card">
                     <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
                         <div class="w-10 h-10 sm:w-12 sm:h-12 bg-yellow-500/10 rounded-xl flex items-center justify-center">
                             <svg class="w-5 h-5 sm:w-6 sm:h-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
@@ -1792,6 +1815,19 @@
                 });
             }, { threshold: 0.15 });
             teamsObserver.observe(teamsSection);
+        }
+
+        // Team Cards Section Animation Observer
+        const teamSection = document.getElementById('team-section');
+        if (teamSection) {
+            const teamCardsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, { threshold: 0.2 });
+            teamCardsObserver.observe(teamSection);
         }
 
         // Smooth scroll for navigation links
