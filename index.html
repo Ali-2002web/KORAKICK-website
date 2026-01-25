@@ -2194,11 +2194,20 @@
                 contactSubmitBtn.innerHTML = '<svg class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg><span>' + (currentLang === 'fr' ? 'Envoi en cours...' : 'Sending...') + '</span>';
 
                 // Prepare template parameters
+                const subjectValue = document.getElementById('contact-subject').value;
+
+                // Set recipient email based on subject
+                let recipientEmail = 'contact@korakick.app';
+                if (subjectValue === 'support') {
+                    recipientEmail = 'support@korakick.app';
+                }
+
                 const templateParams = {
                     user_name: document.getElementById('contact-name').value,
                     user_email: document.getElementById('contact-email').value,
-                    subject: document.getElementById('contact-subject').value,
-                    message: document.getElementById('contact-message').value
+                    subject: subjectValue,
+                    message: document.getElementById('contact-message').value,
+                    to_email: recipientEmail
                 };
 
                 // Send email using EmailJS
