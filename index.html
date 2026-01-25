@@ -701,6 +701,41 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* How It Works - Parallax Cards */
+        #how-it-works-cards {
+            perspective: 1200px;
+            transform-style: preserve-3d;
+        }
+
+        .how-card {
+            opacity: 0;
+            transform: translateY(100px) translateZ(-50px) rotateX(20deg) scale(0.85);
+            transform-origin: center bottom;
+            transition: opacity 0.6s ease-out, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            will-change: transform, opacity;
+            backface-visibility: hidden;
+        }
+
+        .how-card.animate-in {
+            opacity: 1;
+            transform: translateY(0) translateZ(0) rotateX(0) scale(1);
+        }
+
+        .how-card:nth-child(1) { transition-delay: 0s; }
+        .how-card:nth-child(2) { transition-delay: 0.12s; }
+        .how-card:nth-child(3) { transition-delay: 0.24s; }
+        .how-card:nth-child(4) { transition-delay: 0.36s; }
+
+        .how-card:hover {
+            transform: translateY(-12px) scale(1.03) !important;
+            box-shadow: 0 30px 60px -15px rgba(16, 185, 129, 0.3);
+            z-index: 10;
+        }
+
+        .dark .how-card:hover {
+            box-shadow: 0 30px 60px -15px rgba(16, 185, 129, 0.4), 0 0 40px rgba(16, 185, 129, 0.15);
+        }
     </style>
 
     <script>
@@ -846,70 +881,58 @@
     <!-- How It Works -->
     <section id="how-it-works" class="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 bg-white dark:bg-[#0d3320]">
         <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4" id="parallax-cards">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4" id="how-it-works-cards">
                 <!-- Card 1 - Find Your Game -->
-                <div class="parallax-card rounded-xl p-5 relative overflow-hidden bg-gray-100 dark:bg-[#0f3d28] border border-gray-200 dark:border-[#1a5c3a]">
-                    <!-- Icon -->
+                <div class="how-card parallax-card rounded-xl p-5 relative overflow-hidden bg-gray-100 dark:bg-[#0f3d28] border border-gray-200 dark:border-[#1a5c3a]">
                     <div class="w-9 h-9 rounded-full border-2 border-soccer-green flex items-center justify-center mb-3">
                         <svg class="w-4 h-4 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                         </svg>
                     </div>
-                    <!-- Content -->
                     <h3 class="text-lg lg:text-xl font-bold text-gray-900 dark:text-white mb-2" data-translate="step1Title">Find Your Game</h3>
                     <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed mb-4" data-translate="step1Desc">Explore hundreds of games at top facilities, with convenient times and skill levels that fit your preference.</p>
-                    <!-- Phone Mockup -->
                     <div class="flex justify-center">
                         <img src="images/iMockup - iPhone 16 Pro Max (1).png" alt="KoraKick - Trouver match de foot proche de vous" class="w-40 lg:w-48 drop-shadow-2xl">
                     </div>
                 </div>
 
-                <!-- Card 2 - Reserve Your Spot -->
-                <div class="parallax-card rounded-xl p-5 relative overflow-hidden bg-gray-100 dark:bg-[#0f3d28] border border-gray-200 dark:border-[#1a5c3a]">
-                    <!-- Icon -->
+                <!-- Card 2 - View Match Details -->
+                <div class="how-card parallax-card rounded-xl p-5 relative overflow-hidden bg-gray-100 dark:bg-[#0f3d28] border border-gray-200 dark:border-[#1a5c3a]">
                     <div class="w-9 h-9 rounded-full border-2 border-soccer-green flex items-center justify-center mb-3">
                         <svg class="w-4 h-4 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
                         </svg>
                     </div>
-                    <!-- Content -->
                     <h3 class="text-lg lg:text-xl font-bold text-gray-900 dark:text-white mb-2" data-translate="step2Title">View Match Details</h3>
                     <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed mb-4" data-translate="step2Desc">Check out all the game info: venue, time, team size and players already signed up before joining.</p>
-                    <!-- Phone Mockup -->
                     <div class="flex justify-center">
                         <img src="images/iMockup - iPhone 16 Pro Max.png" alt="KoraKick - Détails du match" class="w-40 lg:w-48 drop-shadow-2xl">
                     </div>
                 </div>
 
                 <!-- Card 3 - Waiting Room -->
-                <div class="parallax-card rounded-xl p-5 relative overflow-hidden bg-gray-100 dark:bg-[#0f3d28] border border-gray-200 dark:border-[#1a5c3a]">
-                    <!-- Icon -->
+                <div class="how-card parallax-card rounded-xl p-5 relative overflow-hidden bg-gray-100 dark:bg-[#0f3d28] border border-gray-200 dark:border-[#1a5c3a]">
                     <div class="w-9 h-9 rounded-full border-2 border-soccer-green flex items-center justify-center mb-3">
                         <svg class="w-4 h-4 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                         </svg>
                     </div>
-                    <!-- Content -->
                     <h3 class="text-lg lg:text-xl font-bold text-gray-900 dark:text-white mb-2" data-translate="step3Title">Waiting Room</h3>
                     <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed mb-4" data-translate="step3Desc">Join the waiting room to meet other players, chat before the game starts and coordinate with your teammates.</p>
-                    <!-- Phone Mockup -->
                     <div class="flex justify-center">
                         <img src="images/iMockup - iPhone 16 Pro Max (2).png" alt="KoraKick - Salle d'attente pour rejoindre équipe" class="w-40 lg:w-48 drop-shadow-2xl">
                     </div>
                 </div>
 
                 <!-- Card 4 - Show Up & Play -->
-                <div class="parallax-card rounded-xl p-5 relative overflow-hidden flex flex-col bg-gray-100 dark:bg-[#0f3d28] border border-gray-200 dark:border-[#1a5c3a]">
-                    <!-- Icon -->
+                <div class="how-card parallax-card rounded-xl p-5 relative overflow-hidden flex flex-col bg-gray-100 dark:bg-[#0f3d28] border border-gray-200 dark:border-[#1a5c3a]">
                     <div class="w-9 h-9 rounded-full border-2 border-soccer-green flex items-center justify-center mb-3">
                         <svg class="w-4 h-4 text-soccer-green" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 3.3l1.35-.95c1.82.56 3.37 1.76 4.38 3.34l-.39 1.34-1.35.46L13 6.7V5.3zm-3.35-.95L11 5.3v1.4L7.01 9.49l-1.35-.46-.39-1.34c1.01-1.58 2.56-2.78 4.38-3.34zM7.08 17.11l-1.14.1C4.73 15.81 4 13.99 4 12c0-.12.01-.23.02-.35l1-.73 1.38.48 1.46 4.34-.78 1.37zm7.42 2.48c-.79.26-1.63.41-2.5.41s-1.71-.15-2.5-.41l-.69-1.49.64-1.1h5.11l.64 1.11-.7 1.48zM14.27 15H9.73l-1.35-4.02L12 8.44l3.63 2.54L14.27 15zm3.79 2.21l-1.14-.1-.79-1.37 1.46-4.34 1.39-.47 1 .73c.01.11.02.22.02.34 0 1.99-.73 3.81-1.94 5.21z"/>
                         </svg>
                     </div>
-                    <!-- Content -->
                     <h3 class="text-lg lg:text-xl font-bold text-gray-900 dark:text-white mb-2" data-translate="step4Title">Show Up & Play</h3>
                     <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed mb-4" data-translate="step4Desc">Check-in at the facility, play the beautiful game and make new connections with people who share the same love for the sport.</p>
-                    <!-- Soccer Image -->
                     <div class="flex-1 rounded-lg overflow-hidden -mx-5 -mb-5 mt-auto">
                         <img src="images/imgsitekorakick.jpg" alt="Joueurs de football sur terrain - Match KoraKick Maroc" class="w-full h-full object-cover">
                     </div>
@@ -1799,6 +1822,48 @@
                 section.classList.add('section-animate');
                 observer.observe(section);
             });
+
+            // How It Works Cards - Parallax Animation
+            const howCardsContainer = document.getElementById('how-it-works-cards');
+            if (howCardsContainer) {
+                const howCards = howCardsContainer.querySelectorAll('.how-card');
+                let cardsAnimated = false;
+
+                // Initial reveal animation
+                const howCardsObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !cardsAnimated) {
+                            cardsAnimated = true;
+                            howCards.forEach((card) => {
+                                card.classList.add('animate-in');
+                            });
+                        }
+                    });
+                }, { threshold: 0.15 });
+                howCardsObserver.observe(howCardsContainer);
+
+                // Parallax scroll effect
+                const parallaxSpeeds = [0.05, 0.08, 0.06, 0.04];
+
+                window.addEventListener('scroll', () => {
+                    if (!cardsAnimated) return;
+
+                    const containerRect = howCardsContainer.getBoundingClientRect();
+                    const containerCenter = containerRect.top + containerRect.height / 2;
+                    const viewportCenter = window.innerHeight / 2;
+                    const distance = containerCenter - viewportCenter;
+
+                    howCards.forEach((card, index) => {
+                        const speed = parallaxSpeeds[index] || 0.05;
+                        const yOffset = distance * speed;
+                        const rotation = distance * 0.01;
+
+                        if (Math.abs(containerRect.top) < window.innerHeight * 1.5) {
+                            card.style.transform = `translateY(${yOffset}px) rotateX(${rotation * 0.5}deg)`;
+                        }
+                    });
+                }, { passive: true });
+            }
         });
 
         // Teams Section Animation Observer
