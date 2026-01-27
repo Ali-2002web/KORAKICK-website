@@ -156,6 +156,32 @@
         </div>
     </section>
 
+    <!-- Shipping Info Bar -->
+    <section class="py-4 px-6 lg:px-8 bg-soccer-green/10 dark:bg-soccer-green/20 border-b border-soccer-green/20">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-wrap justify-center gap-6 md:gap-12 text-sm font-medium">
+                <div class="flex items-center gap-2 text-gray-700 dark:text-gray-200">
+                    <svg class="w-5 h-5 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    <span data-translate="freeShipping">Free Shipping 300+ DH</span>
+                </div>
+                <div class="flex items-center gap-2 text-gray-700 dark:text-gray-200">
+                    <svg class="w-5 h-5 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                    </svg>
+                    <span data-translate="returns30Days">30-Day Returns</span>
+                </div>
+                <div class="flex items-center gap-2 text-gray-700 dark:text-gray-200">
+                    <svg class="w-5 h-5 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
+                    </svg>
+                    <span data-translate="codPayment">Cash on Delivery</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Filter Section -->
     <section class="py-8 px-6 lg:px-8 border-b border-gray-100 dark:border-dark-green-light sticky top-16 bg-white/95 dark:bg-dark-green/95 backdrop-blur-lg z-40">
         <div class="max-w-7xl mx-auto">
@@ -487,34 +513,6 @@
                     </div>
                 </div>
 
-            </div>
-        </div>
-    </section>
-
-    <!-- Promo Banner -->
-    <section class="py-16 px-6 lg:px-8 bg-gradient-to-br from-soccer-green to-emerald-600 text-white">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl lg:text-4xl font-bold mb-4" data-translate="promoTitle">Get 15% Off Your First Order</h2>
-            <p class="text-lg opacity-90 mb-8" data-translate="promoCode">Use code <span class="font-bold bg-white/20 px-3 py-1 rounded">KORAKICK15</span> at checkout</p>
-            <div class="flex flex-wrap gap-4 justify-center">
-                <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                    </svg>
-                    <span data-translate="freeShipping">Free Shipping 300+ DH</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                    </svg>
-                    <span data-translate="returns">30-Day Returns</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                    </svg>
-                    <span data-translate="codPayment">Cash on Delivery</span>
-                </div>
             </div>
         </div>
     </section>
@@ -1236,11 +1234,6 @@
                 checkout: 'Order via WhatsApp',
                 addToCart: 'Add to Cart',
                 buyNow: 'Buy Now',
-                promoTitle: 'Get 15% Off Your First Order',
-                promoCode: 'Use code KORAKICK15 at checkout',
-                freeShipping: 'Free Shipping 300+ DH',
-                returns: '30-Day Returns',
-                codPayment: 'Cash on Delivery',
                 weAccept: 'Payment:',
                 codOnly: 'Cash on Delivery Only',
                 shippingNote: 'Shipping calculated at checkout',
@@ -1286,7 +1279,10 @@
                 footerShipping: 'Shipping Info',
                 footerReturns: 'Returns & Exchanges',
                 footerContactTitle: 'Contact',
-                footerRights: 'All rights reserved.'
+                footerRights: 'All rights reserved.',
+                freeShipping: 'Free Shipping 300+ DH',
+                returns30Days: '30-Day Returns',
+                codPayment: 'Cash on Delivery'
             },
             fr: {
                 navHome: 'Accueil',
@@ -1304,11 +1300,6 @@
                 checkout: 'Commander via WhatsApp',
                 addToCart: 'Ajouter',
                 buyNow: 'Acheter',
-                promoTitle: 'Obtenez 15% de Reduction',
-                promoCode: 'Utilisez le code KORAKICK15',
-                freeShipping: 'Livraison Gratuite 300+ DH',
-                returns: 'Retours sous 30 Jours',
-                codPayment: 'Paiement a la Livraison',
                 weAccept: 'Paiement:',
                 codOnly: 'Paiement a la Livraison Uniquement',
                 shippingNote: 'Frais de livraison calcules a la caisse',
@@ -1354,7 +1345,10 @@
                 footerShipping: 'Livraison',
                 footerReturns: 'Retours & Echanges',
                 footerContactTitle: 'Contact',
-                footerRights: 'Tous droits reserves.'
+                footerRights: 'Tous droits reserves.',
+                freeShipping: 'Livraison Gratuite 300+ DH',
+                returns30Days: 'Retours sous 30 Jours',
+                codPayment: 'Paiement a la Livraison'
             }
         };
 
