@@ -1177,10 +1177,37 @@
             </div>
 
             <div class="team-cards-container grid lg:grid-cols-2 gap-6 sm:gap-12 items-center">
-                <!-- Team Creation Card - Mockups -->
-                <div class="team-card team-card-left relative flex items-center justify-center min-h-[400px] sm:min-h-[550px]">
-                    <img src="images/iMockup - iPhone 15 Pro Max (4).png" alt="KoraKick - Create Your Team" class="absolute left-0 sm:left-4 bottom-0 w-40 sm:w-56 lg:w-64 drop-shadow-2xl z-10">
-                    <img src="images/iMockup - iPhone 15 Pro Max (5).png" alt="KoraKick - Team Configuration" class="absolute right-0 sm:right-4 top-0 w-40 sm:w-56 lg:w-64 drop-shadow-2xl z-20">
+                <!-- Team Creation Card -->
+                <div class="team-card team-card-left bg-white dark:bg-dark-green p-4 sm:p-8 rounded-2xl shadow-lg glow-card">
+                    <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-soccer-green/10 rounded-xl flex items-center justify-center">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg sm:text-2xl font-bold" data-translate="createTeamTitle">Create Your Team</h3>
+                    </div>
+
+                    <!-- Mockups Visual -->
+                    <div class="relative w-full rounded-xl overflow-hidden flex items-end justify-center min-h-[250px] sm:min-h-[350px] p-4" style="background: linear-gradient(135deg, #052e16 0%, #0a1f14 100%);">
+                        <img src="images/iMockup - iPhone 15 Pro Max (4).png" alt="KoraKick - Create Your Team" class="w-32 sm:w-44 lg:w-48 drop-shadow-2xl relative z-10 -mr-6 sm:-mr-10 -mb-4">
+                        <img src="images/iMockup - iPhone 15 Pro Max (5).png" alt="KoraKick - Team Configuration" class="w-32 sm:w-44 lg:w-48 drop-shadow-2xl relative z-20 -ml-6 sm:-ml-10">
+                    </div>
+
+                    <ul class="mt-4 sm:mt-6 space-y-2 sm:space-y-3">
+                        <li class="flex items-center gap-2 sm:gap-3 text-gray-600 dark:text-gray-400 text-sm sm:text-base">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-soccer-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span data-translate="teamFeature1">Custom team logo & colors</span>
+                        </li>
+                        <li class="flex items-center gap-2 sm:gap-3 text-gray-600 dark:text-gray-400 text-sm sm:text-base">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-soccer-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span data-translate="teamFeature2">Team name & abbreviation</span>
+                        </li>
+                        <li class="flex items-center gap-2 sm:gap-3 text-gray-600 dark:text-gray-400 text-sm sm:text-base">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-soccer-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span data-translate="teamFeature3">Flexible team sizes: 5v5, 6v6, 7v7, 11v11</span>
+                        </li>
+                    </ul>
                 </div>
 
                 <!-- Tournament Card -->
