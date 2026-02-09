@@ -1177,75 +1177,10 @@
             </div>
 
             <div class="team-cards-container grid lg:grid-cols-2 gap-6 sm:gap-12 items-center">
-                <!-- Team Creation Card -->
-                <div class="team-card team-card-left bg-white dark:bg-dark-green p-4 sm:p-8 rounded-2xl shadow-lg glow-card">
-                    <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-soccer-green/10 rounded-xl flex items-center justify-center">
-                            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-lg sm:text-2xl font-bold" data-translate="createTeamTitle">Create Your Team</h3>
-                    </div>
-
-                    <!-- Team Creation Visual -->
-                    <div class="relative w-full rounded-xl overflow-hidden p-4 sm:p-6" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
-                        <!-- Team Logo & Name -->
-                        <div class="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
-                            <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-gradient-to-br from-soccer-green to-green-600 flex items-center justify-center border-2 border-white/20">
-                                <svg class="w-7 h-7 sm:w-9 sm:h-9 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M22 2L19 5.5C17.5 4 15.5 3 13 3C10 3 7 5 5 8L2 6L3.5 9C2.5 10.5 2 12.5 2 15C2 17 3 19 4 20L6 22L7.5 19C9 20.5 11 21.5 13 21.5C16.5 21.5 19.5 19 21 15.5L22 18L21.5 14C22 12.5 22 11 22 9.5C22 7 21.5 4.5 22 2ZM13 19C10.5 19 8.5 17.5 7.5 15.5L10 14L8 12L11 11L9 9L12 8.5C12.5 8.5 13 8.5 13.5 8.5C16 8.5 18 10.5 18.5 13C18.5 15.5 16 19 13 19ZM14 12C13.5 12 13 12.5 13 13C13 13.5 13.5 14 14 14C14.5 14 15 13.5 15 13C15 12.5 14.5 12 14 12Z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <div class="text-white font-bold text-sm sm:text-lg">FC Warriors</div>
-                                <div class="text-gray-400 text-xs sm:text-sm">FCW</div>
-                            </div>
-                            <div class="ml-auto">
-                                <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
-                                </svg>
-                            </div>
-                        </div>
-
-                        <!-- Team Size Selection -->
-                        <div class="mb-3 sm:mb-4">
-                            <div class="text-gray-400 text-xs mb-2" data-translate="teamSizeLabel">Team Size</div>
-                            <div class="flex flex-wrap gap-1.5 sm:gap-2">
-                                <div class="px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-gray-700/50 text-gray-400 text-xs sm:text-sm">5v5</div>
-                                <div class="px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-gray-700/50 text-gray-400 text-xs sm:text-sm">6v6</div>
-                                <div class="px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-soccer-green text-white text-xs sm:text-sm font-semibold">7v7</div>
-                                <div class="px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-gray-700/50 text-gray-400 text-xs sm:text-sm">11v11</div>
-                            </div>
-                        </div>
-
-                        <!-- Team Members Preview -->
-                        <div class="flex items-center gap-2">
-                            <div class="flex -space-x-2">
-                                <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-blue-500 border-2 border-gray-800 flex items-center justify-center text-white text-xs font-bold">A</div>
-                                <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-orange-500 border-2 border-gray-800 flex items-center justify-center text-white text-xs font-bold">M</div>
-                                <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-purple-500 border-2 border-gray-800 flex items-center justify-center text-white text-xs font-bold">K</div>
-                                <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-red-500 border-2 border-gray-800 flex items-center justify-center text-white text-xs font-bold">S</div>
-                                <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-600 border-2 border-dashed border-gray-500 flex items-center justify-center text-gray-400 text-xs">+3</div>
-                            </div>
-                            <span class="text-gray-400 text-xs sm:text-sm ml-2">4/7 <span data-translate="membersText">members</span></span>
-                        </div>
-                    </div>
-
-                    <ul class="mt-4 sm:mt-6 space-y-2 sm:space-y-3">
-                        <li class="flex items-center gap-2 sm:gap-3 text-gray-600 dark:text-gray-400 text-sm sm:text-base">
-                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-soccer-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                            <span data-translate="teamFeature1">Custom team logo & colors</span>
-                        </li>
-                        <li class="flex items-center gap-2 sm:gap-3 text-gray-600 dark:text-gray-400 text-sm sm:text-base">
-                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-soccer-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                            <span data-translate="teamFeature2">Team name & abbreviation</span>
-                        </li>
-                        <li class="flex items-center gap-2 sm:gap-3 text-gray-600 dark:text-gray-400 text-sm sm:text-base">
-                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-soccer-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                            <span data-translate="teamFeature3">Flexible team sizes: 5v5, 6v6, 7v7, 11v11</span>
-                        </li>
-                    </ul>
+                <!-- Team Creation Card - Mockups -->
+                <div class="team-card team-card-left flex items-end justify-center relative min-h-[350px] sm:min-h-[500px]">
+                    <img src="images/iMockup - iPhone 15 Pro Max (4).png" alt="KoraKick - Create Your Team" class="w-44 sm:w-64 lg:w-72 drop-shadow-2xl relative z-10 -mr-8 sm:-mr-12">
+                    <img src="images/iMockup - iPhone 15 Pro Max (5).png" alt="KoraKick - Team Configuration" class="w-40 sm:w-56 lg:w-64 drop-shadow-2xl relative z-20 -ml-8 sm:-ml-12 -mb-4">
                 </div>
 
                 <!-- Tournament Card -->
