@@ -578,10 +578,10 @@
         /* Footer SVG Stroke Draw Animation */
         @keyframes stroke-draw {
             0% {
-                stroke-dashoffset: 15000;
+                stroke-dashoffset: 4000;
                 fill-opacity: 0;
             }
-            80% {
+            65% {
                 stroke-dashoffset: 0;
                 fill-opacity: 0;
             }
@@ -594,8 +594,8 @@
         .korakick-draw-kora,
         .korakick-draw-kick {
             stroke-width: 2;
-            stroke-dasharray: 15000;
-            stroke-dashoffset: 15000;
+            stroke-dasharray: 4000;
+            stroke-dashoffset: 4000;
             fill-opacity: 0;
             paint-order: stroke fill;
         }
@@ -624,7 +624,7 @@
 
         .korakick-svg.animated .korakick-draw-kora,
         .korakick-svg.animated .korakick-draw-kick {
-            animation: stroke-draw 8s ease-in-out forwards;
+            animation: stroke-draw 5s ease-in-out forwards;
         }
 
         /* Teams Section Animation */
