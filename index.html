@@ -578,27 +578,27 @@
         /* Footer SVG Stroke Draw Animation */
         @keyframes stroke-draw {
             0% {
-                stroke-dashoffset: 1000;
+                stroke-dashoffset: 5000;
+                fill-opacity: 0;
+            }
+            70% {
+                stroke-dashoffset: 0;
+                fill-opacity: 0;
             }
             100% {
                 stroke-dashoffset: 0;
+                fill-opacity: 1;
             }
-        }
-
-        @keyframes fill-in {
-            0% { fill-opacity: 0; }
-            100% { fill-opacity: 1; }
         }
 
         .korakick-draw-text {
             stroke: url(#koraGradient);
-            stroke-width: 4;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
             fill: url(#koraGradient);
+            stroke-width: 2;
+            stroke-dasharray: 5000;
+            stroke-dashoffset: 5000;
             fill-opacity: 0;
+            paint-order: stroke fill;
         }
 
         .dark .korakick-draw-text {
@@ -607,7 +607,7 @@
         }
 
         .korakick-svg.animated .korakick-draw-text {
-            animation: stroke-draw 2.5s ease forwards, fill-in 1s ease 2s forwards;
+            animation: stroke-draw 4s ease forwards;
         }
 
         /* Teams Section Animation */
@@ -1648,34 +1648,19 @@
             </div>
             <!-- SVG Stroke Draw Animation -->
             <div class="pt-6 sm:pt-8 border-t border-gray-200 dark:border-dark-green-light mb-6">
-                <div class="flex justify-center items-center py-4">
-                    <svg class="korakick-svg w-full max-w-5xl" viewBox="0 0 1200 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <div class="flex justify-center items-center py-6 sm:py-8">
+                    <svg class="korakick-svg w-full max-w-5xl" viewBox="0 0 1000 130" xmlns="http://www.w3.org/2000/svg">
                         <defs>
                             <linearGradient id="koraGradient" x1="0%" y1="100%" x2="0%" y2="0%">
-                                <stop offset="0%" stop-color="#052e16"/>
-                                <stop offset="100%" stop-color="#10b981"/>
+                                <stop offset="5%" stop-color="#052e16"/>
+                                <stop offset="85%" stop-color="#10b981"/>
                             </linearGradient>
                             <linearGradient id="koraGradientLight" x1="0%" y1="100%" x2="0%" y2="0%">
-                                <stop offset="0%" stop-color="#065f46"/>
-                                <stop offset="100%" stop-color="#34d399"/>
+                                <stop offset="5%" stop-color="#065f46"/>
+                                <stop offset="85%" stop-color="#34d399"/>
                             </linearGradient>
                         </defs>
-                        <!-- K -->
-                        <path class="korakick-draw-text" d="M10 10 L10 130 M10 70 L60 10 M35 45 L70 130"/>
-                        <!-- O -->
-                        <path class="korakick-draw-text" d="M100 70 C100 35 110 10 140 10 C170 10 180 35 180 70 C180 105 170 130 140 130 C110 130 100 105 100 70 Z"/>
-                        <!-- R -->
-                        <path class="korakick-draw-text" d="M210 130 L210 10 L250 10 C275 10 285 20 285 40 C285 60 275 70 250 70 L210 70 M250 70 L290 130"/>
-                        <!-- A -->
-                        <path class="korakick-draw-text" d="M310 130 L345 10 L380 130 M320 85 L370 85"/>
-                        <!-- K -->
-                        <path class="korakick-draw-text" d="M410 10 L410 130 M410 70 L460 10 M435 45 L470 130"/>
-                        <!-- I -->
-                        <path class="korakick-draw-text" d="M510 10 L510 130"/>
-                        <!-- C -->
-                        <path class="korakick-draw-text" d="M600 30 C580 10 555 10 540 10 C515 10 500 35 500 70 C500 105 515 130 540 130 C555 130 580 130 600 110"/>
-                        <!-- K -->
-                        <path class="korakick-draw-text" d="M630 10 L630 130 M630 70 L680 10 M655 45 L690 130"/>
+                        <text class="korakick-draw-text" x="500" y="100" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="900" font-size="120" letter-spacing="8">KORAKICK</text>
                     </svg>
                 </div>
             </div>
