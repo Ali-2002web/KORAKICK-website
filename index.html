@@ -575,6 +575,21 @@
             50% { box-shadow: 0 0 40px rgba(16, 185, 129, 0.6); }
         }
 
+        /* Footer Marquee Animation */
+        @keyframes marquee-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .marquee-container {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .marquee-text {
+            animation: marquee-scroll 20s linear infinite;
+        }
+
         /* Teams Section Animation */
         .teams-section .teams-grid {
             position: relative;
@@ -1611,7 +1626,22 @@
                     </ul>
                 </div>
             </div>
-            <div class="pt-6 sm:pt-8 border-t border-gray-200 dark:border-dark-green-light flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-600 dark:text-gray-400 text-center md:text-left">
+            <!-- Marquee Text Animation -->
+            <div class="pt-6 sm:pt-8 border-t border-gray-200 dark:border-dark-green-light overflow-hidden mb-6">
+                <div class="marquee-container">
+                    <div class="marquee-text flex whitespace-nowrap">
+                        <span class="text-4xl sm:text-6xl lg:text-8xl font-black uppercase tracking-wider text-gray-200/30 dark:text-white/5 mx-8">KORAKICK</span>
+                        <span class="text-4xl sm:text-6xl lg:text-8xl font-black uppercase tracking-wider text-soccer-green/20 mx-8">KORAKICK</span>
+                        <span class="text-4xl sm:text-6xl lg:text-8xl font-black uppercase tracking-wider text-gray-200/30 dark:text-white/5 mx-8">KORAKICK</span>
+                        <span class="text-4xl sm:text-6xl lg:text-8xl font-black uppercase tracking-wider text-soccer-green/20 mx-8">KORAKICK</span>
+                        <span class="text-4xl sm:text-6xl lg:text-8xl font-black uppercase tracking-wider text-gray-200/30 dark:text-white/5 mx-8">KORAKICK</span>
+                        <span class="text-4xl sm:text-6xl lg:text-8xl font-black uppercase tracking-wider text-soccer-green/20 mx-8">KORAKICK</span>
+                        <span class="text-4xl sm:text-6xl lg:text-8xl font-black uppercase tracking-wider text-gray-200/30 dark:text-white/5 mx-8">KORAKICK</span>
+                        <span class="text-4xl sm:text-6xl lg:text-8xl font-black uppercase tracking-wider text-soccer-green/20 mx-8">KORAKICK</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-600 dark:text-gray-400 text-center md:text-left">
                 <p data-translate="footerCopyright">Copyright © 2026 KoraKick. All rights reserved.</p>
                 <p data-translate="footerMadeWith">Organize. Play. Compete. (Morocco's #1 Football App)</p>
             </div>
