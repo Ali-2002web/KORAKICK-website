@@ -591,9 +591,8 @@
             }
         }
 
-        .korakick-draw-text {
-            stroke: url(#koraGradient);
-            fill: url(#koraGradient);
+        .korakick-draw-kora,
+        .korakick-draw-kick {
             stroke-width: 2;
             stroke-dasharray: 15000;
             stroke-dashoffset: 15000;
@@ -601,12 +600,30 @@
             paint-order: stroke fill;
         }
 
-        .dark .korakick-draw-text {
-            stroke: url(#koraGradientLight);
-            fill: url(#koraGradientLight);
+        /* KORA - dark in light mode, white in dark mode */
+        .korakick-draw-kora {
+            stroke: #1f2937;
+            fill: #1f2937;
         }
 
-        .korakick-svg.animated .korakick-draw-text {
+        .dark .korakick-draw-kora {
+            stroke: #ffffff;
+            fill: #ffffff;
+        }
+
+        /* KICK - green (#65FF13) */
+        .korakick-draw-kick {
+            stroke: #65FF13;
+            fill: #65FF13;
+        }
+
+        .dark .korakick-draw-kick {
+            stroke: #65FF13;
+            fill: #65FF13;
+        }
+
+        .korakick-svg.animated .korakick-draw-kora,
+        .korakick-svg.animated .korakick-draw-kick {
             animation: stroke-draw 8s ease-in-out forwards;
         }
 
@@ -1660,7 +1677,8 @@
                                 <stop offset="85%" stop-color="#34d399"/>
                             </linearGradient>
                         </defs>
-                        <text class="korakick-draw-text" x="500" y="125" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="900" font-size="150" letter-spacing="10">KORAKICK</text>
+                        <text class="korakick-draw-kora" x="310" y="125" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="900" font-size="150" letter-spacing="10">KORA</text>
+                        <text class="korakick-draw-kick" x="700" y="125" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="900" font-size="150" letter-spacing="10">KICK</text>
                     </svg>
                 </div>
             </div>
