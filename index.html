@@ -575,19 +575,38 @@
             50% { box-shadow: 0 0 40px rgba(16, 185, 129, 0.6); }
         }
 
-        /* Footer Marquee Animation */
-        @keyframes marquee-scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        /* Footer SVG Stroke Draw Animation */
+        @keyframes stroke-draw {
+            0% {
+                stroke-dashoffset: 3000;
+                fill-opacity: 0;
+            }
+            60% {
+                stroke-dashoffset: 0;
+                fill-opacity: 0;
+            }
+            100% {
+                stroke-dashoffset: 0;
+                fill-opacity: 1;
+            }
         }
 
-        .marquee-container {
-            overflow: hidden;
-            width: 100%;
+        .korakick-draw-text {
+            stroke: url(#koraGradient);
+            stroke-width: 1.5;
+            stroke-dasharray: 3000;
+            stroke-dashoffset: 3000;
+            fill: url(#koraGradient);
+            fill-opacity: 0;
         }
 
-        .marquee-text {
-            animation: marquee-scroll 20s linear infinite;
+        .dark .korakick-draw-text {
+            stroke: url(#koraGradientLight);
+            fill: url(#koraGradientLight);
+        }
+
+        .korakick-svg.animated .korakick-draw-text {
+            animation: stroke-draw 3s ease forwards;
         }
 
         /* Teams Section Animation */
@@ -1626,19 +1645,22 @@
                     </ul>
                 </div>
             </div>
-            <!-- Marquee Text Animation -->
-            <div class="pt-6 sm:pt-8 border-t border-gray-200 dark:border-dark-green-light overflow-hidden mb-6">
-                <div class="marquee-container">
-                    <div class="marquee-text flex whitespace-nowrap">
-                        <span class="text-4xl sm:text-6xl lg:text-8xl font-black uppercase tracking-wider text-gray-200/30 dark:text-white/5 mx-8">KORAKICK</span>
-                        <span class="text-4xl sm:text-6xl lg:text-8xl font-black uppercase tracking-wider text-soccer-green/20 mx-8">KORAKICK</span>
-                        <span class="text-4xl sm:text-6xl lg:text-8xl font-black uppercase tracking-wider text-gray-200/30 dark:text-white/5 mx-8">KORAKICK</span>
-                        <span class="text-4xl sm:text-6xl lg:text-8xl font-black uppercase tracking-wider text-soccer-green/20 mx-8">KORAKICK</span>
-                        <span class="text-4xl sm:text-6xl lg:text-8xl font-black uppercase tracking-wider text-gray-200/30 dark:text-white/5 mx-8">KORAKICK</span>
-                        <span class="text-4xl sm:text-6xl lg:text-8xl font-black uppercase tracking-wider text-soccer-green/20 mx-8">KORAKICK</span>
-                        <span class="text-4xl sm:text-6xl lg:text-8xl font-black uppercase tracking-wider text-gray-200/30 dark:text-white/5 mx-8">KORAKICK</span>
-                        <span class="text-4xl sm:text-6xl lg:text-8xl font-black uppercase tracking-wider text-soccer-green/20 mx-8">KORAKICK</span>
-                    </div>
+            <!-- SVG Stroke Draw Animation -->
+            <div class="pt-6 sm:pt-8 border-t border-gray-200 dark:border-dark-green-light mb-6">
+                <div class="flex justify-center items-center py-4">
+                    <svg class="korakick-svg w-full max-w-4xl" viewBox="0 0 900 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="koraGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+                                <stop offset="0%" stop-color="#052e16"/>
+                                <stop offset="100%" stop-color="#10b981"/>
+                            </linearGradient>
+                            <linearGradient id="koraGradientLight" x1="0%" y1="100%" x2="0%" y2="0%">
+                                <stop offset="0%" stop-color="#065f46"/>
+                                <stop offset="100%" stop-color="#34d399"/>
+                            </linearGradient>
+                        </defs>
+                        <text class="korakick-draw-text" x="450" y="90" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="900" font-size="110" letter-spacing="12">KORAKICK</text>
+                    </svg>
                 </div>
             </div>
             <div class="flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-600 dark:text-gray-400 text-center md:text-left">
@@ -2114,6 +2136,19 @@
         }, { threshold: 0.1 });
 
         featureCards.forEach(card => featureObserver.observe(card));
+
+        // SVG Stroke Draw Animation on scroll
+        const korakickSvg = document.querySelector('.korakick-svg');
+        if (korakickSvg) {
+            const svgObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, { threshold: 0.3 });
+            svgObserver.observe(korakickSvg);
+        }
 
         // ==========================================
         // EmailJS Configuration and Form Handling
