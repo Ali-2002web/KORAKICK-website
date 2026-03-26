@@ -487,10 +487,11 @@
 
                 fetch(GOOGLE_SHEET_URL, {
                     method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain' },
                     body: JSON.stringify(payload)
                 })
-                .then(function(response) { return response.json(); })
-                .then(function(data) {
+                .then(function() {
                     formContainer.classList.add('hidden');
                     successContainer.classList.remove('hidden');
                 })
