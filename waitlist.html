@@ -203,6 +203,9 @@
 </head>
 <body class="antialiased">
 
+    <!-- Hidden iframe for form submission -->
+    <iframe name="hidden-iframe" id="hidden-iframe" style="display:none;"></iframe>
+
     <!-- Background effects -->
     <div class="fixed inset-0 pointer-events-none" style="z-index: 0;">
         <div class="orb-1"></div>
@@ -485,26 +488,34 @@
                     email: document.getElementById('waitlist-email').value
                 };
 
-                fetch(GOOGLE_SHEET_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'text/plain' },
-                    body: JSON.stringify(payload)
-                })
-                .then(function() {
+                // Use hidden iframe to avoid CORS issues
+                var iframe = document.getElementById('hidden-iframe');
+                var tempForm = document.createElement('form');
+                tempForm.method = 'POST';
+                tempForm.action = GOOGLE_SHEET_URL;
+                tempForm.target = 'hidden-iframe';
+
+                var nameField = document.createElement('input');
+                nameField.type = 'hidden';
+                nameField.name = 'name';
+                nameField.value = payload.name;
+                tempForm.appendChild(nameField);
+
+                var emailField = document.createElement('input');
+                emailField.type = 'hidden';
+                emailField.name = 'email';
+                emailField.value = payload.email;
+                tempForm.appendChild(emailField);
+
+                document.body.appendChild(tempForm);
+                tempForm.submit();
+                document.body.removeChild(tempForm);
+
+                // Show success after a short delay
+                setTimeout(function() {
                     formContainer.classList.add('hidden');
                     successContainer.classList.remove('hidden');
-                })
-                .catch(function(error) {
-                    waitlistStatus.textContent = currentLang === 'fr'
-                        ? 'Erreur. Veuillez r\u00E9essayer.'
-                        : 'Something went wrong. Please try again.';
-                    waitlistStatus.className = 'text-sm text-red-400 mt-4';
-                    waitlistStatus.classList.remove('hidden');
-                    waitlistSubmitBtn.disabled = false;
-                    waitlistSubmitBtn.innerHTML = originalBtnText;
-                    console.error('Waitlist Error:', error);
-                });
+                }, 1500);
             });
         }
     </script>
