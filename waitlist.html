@@ -35,9 +35,6 @@
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#10b981">
 
-    <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
     <!-- Google Fonts - Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -483,11 +480,9 @@
         });
 
         // ==========================================
-        // EmailJS - Waitlist Form
+        // Google Sheets - Waitlist Form
         // ==========================================
-        (function() {
-            emailjs.init('BwEc0kZUMgGkGMZpm');
-        })();
+        const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbzNF0MgM9c4ax6BTsIgud3vmd3yv2Da_A50tko9vZTpekeTpvaBxNEw1EwC9uqqKlV6/exec';
 
         const waitlistForm = document.getElementById('waitlist-form');
         const waitlistStatus = document.getElementById('waitlist-status');
@@ -501,35 +496,39 @@
                 waitlistSubmitBtn.disabled = true;
                 waitlistSubmitBtn.innerHTML = '<svg class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg><span>' + (currentLang === 'fr' ? 'Inscription...' : 'Joining...') + '</span>';
 
-                const templateParams = {
-                    user_name: document.getElementById('waitlist-name').value,
-                    user_email: document.getElementById('waitlist-email').value,
-                    subject: 'Waitlist Signup',
-                    message: 'New waitlist signup from: ' + document.getElementById('waitlist-name').value + ' (' + document.getElementById('waitlist-email').value + ')',
-                    to_email: 'contact@korakick.app'
+                const payload = {
+                    name: document.getElementById('waitlist-name').value,
+                    email: document.getElementById('waitlist-email').value
                 };
 
-                emailjs.send('service_dtde65y', 'template_195wh8w', templateParams)
-                    .then(function(response) {
-                        waitlistStatus.textContent = currentLang === 'fr'
-                            ? 'Vous \u00EAtes sur la liste ! Nous vous contacterons bient\u00F4t.'
-                            : 'You\'re on the list! We\'ll notify you when we launch.';
-                        waitlistStatus.className = 'text-sm text-green-500 text-center mt-3';
-                        waitlistStatus.classList.remove('hidden');
-                        waitlistForm.reset();
-                    }, function(error) {
-                        waitlistStatus.textContent = currentLang === 'fr'
-                            ? 'Erreur. Veuillez r\u00E9essayer.'
-                            : 'Something went wrong. Please try again.';
-                        waitlistStatus.className = 'text-sm text-red-500 text-center mt-3';
-                        waitlistStatus.classList.remove('hidden');
-                        console.error('Waitlist EmailJS Error:', error);
-                    })
-                    .finally(function() {
-                        waitlistSubmitBtn.disabled = false;
-                        waitlistSubmitBtn.innerHTML = originalBtnText;
-                        setTimeout(() => waitlistStatus.classList.add('hidden'), 5000);
-                    });
+                fetch(GOOGLE_SHEET_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(payload)
+                })
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(data) {
+                    waitlistStatus.textContent = currentLang === 'fr'
+                        ? 'Vous \u00EAtes sur la liste ! Nous vous contacterons bient\u00F4t.'
+                        : 'You\'re on the list! We\'ll notify you when we launch.';
+                    waitlistStatus.className = 'text-sm text-green-500 text-center mt-3';
+                    waitlistStatus.classList.remove('hidden');
+                    waitlistForm.reset();
+                })
+                .catch(function(error) {
+                    waitlistStatus.textContent = currentLang === 'fr'
+                        ? 'Erreur. Veuillez r\u00E9essayer.'
+                        : 'Something went wrong. Please try again.';
+                    waitlistStatus.className = 'text-sm text-red-500 text-center mt-3';
+                    waitlistStatus.classList.remove('hidden');
+                    console.error('Waitlist Error:', error);
+                })
+                .finally(function() {
+                    waitlistSubmitBtn.disabled = false;
+                    waitlistSubmitBtn.innerHTML = originalBtnText;
+                    setTimeout(function() { waitlistStatus.classList.add('hidden'); }, 5000);
+                });
             });
         }
     </script>
