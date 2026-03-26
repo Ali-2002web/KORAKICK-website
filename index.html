@@ -834,6 +834,7 @@
                     <a href="#features" class="nav-link text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition" data-translate="navFeatures">Features</a>
                     <a href="#how-it-works" class="nav-link text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition" data-translate="navHowItWorks">How It Works</a>
                     <a href="shop.html" class="nav-link text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition" data-translate="navShop">Shop</a>
+                    <a href="#waitlist" class="nav-link text-sm font-medium text-soccer-green hover:text-emerald-400 transition" data-translate="navWaitlist">Waitlist</a>
                 </div>
                 <div class="flex items-center gap-2 sm:gap-3">
                     <!-- Language Toggle -->
@@ -869,6 +870,7 @@
                     <a href="#features" class="mobile-nav-link text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" data-translate="navFeatures">Features</a>
                     <a href="#how-it-works" class="mobile-nav-link text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" data-translate="navHowItWorks">How It Works</a>
                     <a href="shop.html" class="mobile-nav-link text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" data-translate="navShop">Shop</a>
+                    <a href="#waitlist" class="mobile-nav-link text-sm font-medium text-soccer-green hover:text-emerald-400 transition py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" data-translate="navWaitlist">Waitlist</a>
                     <a href="#" class="bg-soccer-green text-white px-4 py-2.5 rounded-lg text-sm font-semibold hover:bg-emerald-600 transition text-center mt-2" data-translate="getStarted">Get Started</a>
                 </div>
             </div>
@@ -1491,6 +1493,42 @@
     <!-- Sponsors Section moved to hidden-sections.html -->
 
     <!-- Contact Section -->
+    <!-- Waitlist -->
+    <section id="waitlist" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-[#0d3320] relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-10 left-10 w-64 h-64 bg-soccer-green rounded-full blur-3xl"></div>
+            <div class="absolute bottom-10 right-10 w-64 h-64 bg-soccer-green rounded-full blur-3xl"></div>
+        </div>
+        <div class="max-w-3xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-soccer-green/10 text-soccer-green rounded-full text-xs sm:text-sm font-medium mb-6 border border-soccer-green/20">
+                <span class="w-2 h-2 bg-soccer-green rounded-full animate-pulse"></span>
+                <span data-translate="waitlistBadge">Coming Soon</span>
+            </div>
+            <h2 class="text-2xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" data-translate="waitlistTitle">Be the First to Play</h2>
+            <p class="text-gray-600 dark:text-gray-400 text-base sm:text-lg mb-8 sm:mb-10 max-w-xl mx-auto" data-translate="waitlistDesc">Join the waitlist and get early access when KoraKick launches. Be among the first players to find matches, book fields, and build your team.</p>
+
+            <form id="waitlist-form" class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto mb-4">
+                <input type="text" id="waitlist-name" name="waitlist_name" required
+                    class="flex-shrink-0 sm:w-40 px-4 py-3 sm:py-4 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-dark-green text-gray-900 dark:text-white focus:ring-2 focus:ring-soccer-green focus:border-transparent transition text-sm sm:text-base"
+                    data-translate-placeholder="waitlistNamePlaceholder"
+                    placeholder="Your name">
+                <input type="email" id="waitlist-email" name="waitlist_email" required
+                    class="flex-1 px-4 py-3 sm:py-4 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-dark-green text-gray-900 dark:text-white focus:ring-2 focus:ring-soccer-green focus:border-transparent transition text-sm sm:text-base"
+                    data-translate-placeholder="waitlistEmailPlaceholder"
+                    placeholder="Enter your email">
+                <button type="submit" id="waitlist-submit"
+                    class="bg-soccer-green text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold hover:bg-emerald-600 transition transform hover:scale-105 shadow-lg text-sm sm:text-base whitespace-nowrap flex items-center justify-center gap-2">
+                    <span data-translate="waitlistButton">Join Waitlist</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                    </svg>
+                </button>
+            </form>
+            <p id="waitlist-status" class="text-sm hidden"></p>
+            <p class="text-gray-500 dark:text-gray-500 text-xs sm:text-sm mt-4" data-translate="waitlistNote">No spam, ever. We'll only notify you when we launch.</p>
+        </div>
+    </section>
+
     <section id="contact" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gray-100 dark:bg-[#0a1f14]">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-10 sm:mb-16">
@@ -1850,6 +1888,7 @@
                 navFeatures: 'Features',
                 navHowItWorks: 'How It Works',
                 navShop: 'Shop',
+                navWaitlist: 'Waitlist',
                 getStarted: 'GET THE APP',
                 heroTagline: '10,000+ Active Players',
                 heroTitle: 'Find Soccer Opponents. Play More.',
@@ -1972,13 +2011,22 @@
                 contactLocationTitle: 'Location',
                 contactLocationDesc: 'Based in Morocco, serving players nationwide',
                 contactSocialTitle: 'Follow Us',
-                contactSocialDesc: 'Stay updated with the latest news'
+                contactSocialDesc: 'Stay updated with the latest news',
+                // Waitlist
+                waitlistBadge: 'Coming Soon',
+                waitlistTitle: 'Be the First to Play',
+                waitlistDesc: 'Join the waitlist and get early access when KoraKick launches. Be among the first players to find matches, book fields, and build your team.',
+                waitlistButton: 'Join Waitlist',
+                waitlistNote: 'No spam, ever. We\'ll only notify you when we launch.',
+                waitlistNamePlaceholder: 'Your name',
+                waitlistEmailPlaceholder: 'Enter your email'
             },
             fr: {
                 navAbout: 'À Propos',
                 navFeatures: 'Fonctionnalités',
                 navHowItWorks: 'Comment Ça Marche',
                 navShop: 'Boutique',
+                navWaitlist: 'Liste d\'Attente',
                 getStarted: 'OBTENIR L\'APPLICATION',
                 heroTagline: '10,000+ Joueurs Actifs',
                 heroTitle: 'Trouvez des Adversaires. Jouez Plus.',
@@ -2102,7 +2150,15 @@
                 contactLocationDesc: 'Basé au Maroc, au service des joueurs à l\'échelle nationale',
                 contactSocialTitle: 'Suivez-nous',
                 contactSocialDesc: 'Restez informé des dernières nouvelles',
-                newsletterTitle: 'Restez Informé'
+                newsletterTitle: 'Restez Informé',
+                // Waitlist
+                waitlistBadge: 'Bientôt Disponible',
+                waitlistTitle: 'Soyez les Premiers à Jouer',
+                waitlistDesc: 'Rejoignez la liste d\'attente et obtenez un accès anticipé au lancement de KoraKick. Soyez parmi les premiers joueurs à trouver des matchs, réserver des terrains et créer votre équipe.',
+                waitlistButton: 'Rejoindre la Liste',
+                waitlistNote: 'Pas de spam. Nous vous contacterons uniquement au lancement.',
+                waitlistNamePlaceholder: 'Votre nom',
+                waitlistEmailPlaceholder: 'Entrez votre email'
             }
         };
 
@@ -2120,6 +2176,9 @@
                     el.textContent = translations[lang][key];
                 }
             });
+
+            // Update waitlist placeholders
+            if (typeof updateWaitlistPlaceholders === 'function') updateWaitlistPlaceholders();
         }
 
         // Initialize language on page load
@@ -2233,6 +2292,59 @@
                         setTimeout(() => formStatus.classList.add('hidden'), 5000);
                     });
             });
+        }
+
+        // Waitlist Form Handler
+        const waitlistForm = document.getElementById('waitlist-form');
+        const waitlistStatus = document.getElementById('waitlist-status');
+        const waitlistSubmitBtn = document.getElementById('waitlist-submit');
+
+        if (waitlistForm) {
+            waitlistForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const originalBtnText = waitlistSubmitBtn.innerHTML;
+                waitlistSubmitBtn.disabled = true;
+                waitlistSubmitBtn.innerHTML = '<svg class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg><span>' + (currentLang === 'fr' ? 'Inscription...' : 'Joining...') + '</span>';
+
+                const templateParams = {
+                    user_name: document.getElementById('waitlist-name').value,
+                    user_email: document.getElementById('waitlist-email').value,
+                    subject: 'Waitlist Signup',
+                    message: 'New waitlist signup from: ' + document.getElementById('waitlist-name').value + ' (' + document.getElementById('waitlist-email').value + ')',
+                    to_email: 'contact@korakick.app'
+                };
+
+                emailjs.send('service_dtde65y', 'template_195wh8w', templateParams)
+                    .then(function(response) {
+                        waitlistStatus.textContent = currentLang === 'fr'
+                            ? 'Vous êtes sur la liste ! Nous vous contacterons bientôt.'
+                            : 'You\'re on the list! We\'ll notify you when we launch.';
+                        waitlistStatus.className = 'text-sm text-green-500 text-center';
+                        waitlistStatus.classList.remove('hidden');
+                        waitlistForm.reset();
+                    }, function(error) {
+                        waitlistStatus.textContent = currentLang === 'fr'
+                            ? 'Erreur. Veuillez réessayer.'
+                            : 'Something went wrong. Please try again.';
+                        waitlistStatus.className = 'text-sm text-red-500 text-center';
+                        waitlistStatus.classList.remove('hidden');
+                        console.error('Waitlist EmailJS Error:', error);
+                    })
+                    .finally(function() {
+                        waitlistSubmitBtn.disabled = false;
+                        waitlistSubmitBtn.innerHTML = originalBtnText;
+                        setTimeout(() => waitlistStatus.classList.add('hidden'), 5000);
+                    });
+            });
+        }
+
+        // Waitlist placeholder translations
+        function updateWaitlistPlaceholders() {
+            const namePlaceholder = document.getElementById('waitlist-name');
+            const emailPlaceholder = document.getElementById('waitlist-email');
+            if (namePlaceholder) namePlaceholder.placeholder = currentLang === 'fr' ? 'Votre nom' : 'Your name';
+            if (emailPlaceholder) emailPlaceholder.placeholder = currentLang === 'fr' ? 'Entrez votre email' : 'Enter your email';
         }
 
     </script>
