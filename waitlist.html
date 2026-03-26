@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KoraKick - Join the Waitlist | Get Early Access</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Join the KoraKick waitlist and be the first to access Morocco's #1 football app. Find matches, book fields, and build your team. Sign up for early access now!">
+    <meta name="keywords" content="KoraKick waitlist, early access, football app Morocco, soccer app, join waitlist, korakick app, كورا كيك">
+    <meta name="author" content="KoraKick">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://korakick.app/waitlist.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://korakick.app/waitlist.html">
+    <meta property="og:title" content="KoraKick - Join the Waitlist | Get Early Access">
+    <meta property="og:description" content="Be the first to access Morocco's #1 football app. Find matches, book fields, and build your team.">
+    <meta property="og:image" content="https://korakick.app/images/og-image.png">
+    <meta property="og:site_name" content="KoraKick">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="KoraKick - Join the Waitlist">
+    <meta name="twitter:description" content="Be the first to access Morocco's #1 football app.">
+    <meta name="twitter:image" content="https://korakick.app/images/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="192x192" href="images/newfavi.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/newfavi.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/newfavi.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#10b981">
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <!-- Google Fonts - Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'soccer-green': '#10b981',
+                        'dark-green': '#052e16',
+                        'dark-green-light': '#14532d',
+                    },
+                    fontFamily: {
+                        'sans': ['Poppins', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body { overflow-x: hidden; max-width: 100vw; }
+
+        body, nav, section, footer, main, header {
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        h1, h2, h3, h4, h5, h6, p, span, a, li {
+            transition: color 0.3s ease;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f8fafc; }
+        .dark ::-webkit-scrollbar-track { background: #052e16; }
+        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #059669; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .float-animation { animation: float 6s ease-in-out infinite; }
+        .float-animation-delay { animation: float 6s ease-in-out 2s infinite; }
+
+        @keyframes count-up {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-up-delay-1 { animation-delay: 0.2s; }
+        .fade-in-up-delay-2 { animation-delay: 0.4s; }
+        .fade-in-up-delay-3 { animation-delay: 0.6s; }
+    </style>
+
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+</head>
+<body class="bg-white dark:bg-dark-green text-gray-900 dark:text-gray-100 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 bg-white/90 dark:bg-dark-green/90 backdrop-blur-lg border-b border-gray-100 dark:border-dark-green-light">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex items-center gap-2">
+                    <img src="images/logo.png" alt="KoraKick" class="w-8 h-8">
+                    <span class="text-lg font-bold">Kora<span style="color: #65FF13;">Kick</span></span>
+                </a>
+                <div class="hidden md:flex gap-8">
+                    <a href="index.html#about" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition" data-translate="navAbout">About</a>
+                    <a href="index.html#features" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition" data-translate="navFeatures">Features</a>
+                    <a href="index.html#how-it-works" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition" data-translate="navHowItWorks">How It Works</a>
+                    <a href="shop.html" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition" data-translate="navShop">Shop</a>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button id="lang-toggle" class="px-3 py-1.5 text-sm font-semibold border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                        FR
+                    </button>
+                    <button id="theme-toggle" class="relative flex items-center justify-between w-16 h-8 bg-gray-200 dark:bg-emerald-600 rounded-full px-2 transition-colors duration-300 cursor-pointer">
+                        <span class="absolute w-6 h-6 bg-white dark:bg-gray-800 rounded-full shadow-md transition-all duration-300 left-1 dark:left-9"></span>
+                        <svg class="w-4 h-4 text-yellow-500 z-10" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                        </svg>
+                        <svg class="w-4 h-4 text-gray-400 dark:text-white z-10" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                    </button>
+                    <button id="mobile-menu-btn" class="md:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition">
+                        <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                        <svg id="close-icon" class="hidden w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col gap-2">
+                    <a href="index.html#about" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" data-translate="navAbout">About</a>
+                    <a href="index.html#features" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" data-translate="navFeatures">Features</a>
+                    <a href="index.html#how-it-works" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" data-translate="navHowItWorks">How It Works</a>
+                    <a href="shop.html" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-soccer-green transition py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" data-translate="navShop">Shop</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center pt-16 relative overflow-hidden">
+        <!-- Background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-emerald-50 dark:from-dark-green dark:via-[#0a1f14] dark:to-[#0d3320]"></div>
+        <div class="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-soccer-green rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-soccer-green rounded-full blur-3xl"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-soccer-green rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 relative z-10 w-full">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <!-- Left: Content -->
+                <div class="text-center lg:text-left">
+                    <div class="fade-in-up inline-flex items-center gap-2 px-4 py-1.5 bg-soccer-green/10 text-soccer-green rounded-full text-xs sm:text-sm font-medium mb-6 sm:mb-8 border border-soccer-green/20">
+                        <span class="w-2 h-2 bg-soccer-green rounded-full animate-pulse"></span>
+                        <span data-translate="waitlistBadge">Coming Soon</span>
+                    </div>
+
+                    <h1 class="fade-in-up fade-in-up-delay-1 text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6">
+                        <span data-translate="waitlistHeroTitle1">Be the First</span><br>
+                        <span data-translate="waitlistHeroTitle2">to </span><span class="text-soccer-green" data-translate="waitlistHeroTitle3">Play.</span>
+                    </h1>
+
+                    <p class="fade-in-up fade-in-up-delay-2 text-gray-600 dark:text-gray-400 text-base sm:text-lg lg:text-xl mb-8 sm:mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed" data-translate="waitlistHeroDesc">
+                        Join the waitlist and get early access when KoraKick launches. Be among the first players to find matches, book fields, and build your team in Morocco.
+                    </p>
+
+                    <!-- Waitlist Form -->
+                    <div class="fade-in-up fade-in-up-delay-3">
+                        <form id="waitlist-form" class="space-y-3 max-w-md mx-auto lg:mx-0">
+                            <div class="flex flex-col sm:flex-row gap-3">
+                                <input type="text" id="waitlist-name" name="waitlist_name" required
+                                    class="flex-1 px-4 py-3.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-green-light text-gray-900 dark:text-white focus:ring-2 focus:ring-soccer-green focus:border-transparent transition text-sm"
+                                    placeholder="Your name">
+                                <input type="email" id="waitlist-email" name="waitlist_email" required
+                                    class="flex-1 px-4 py-3.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-green-light text-gray-900 dark:text-white focus:ring-2 focus:ring-soccer-green focus:border-transparent transition text-sm"
+                                    placeholder="Enter your email">
+                            </div>
+                            <button type="submit" id="waitlist-submit"
+                                class="w-full bg-soccer-green text-white px-6 py-3.5 rounded-xl font-semibold hover:bg-emerald-600 transition transform hover:scale-[1.02] shadow-lg hover:shadow-xl text-sm sm:text-base flex items-center justify-center gap-2">
+                                <span data-translate="waitlistButton">Join the Waitlist</span>
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                                </svg>
+                            </button>
+                        </form>
+                        <p id="waitlist-status" class="text-sm mt-3 hidden"></p>
+                        <p class="text-gray-500 dark:text-gray-500 text-xs sm:text-sm mt-4" data-translate="waitlistNote">No spam, ever. We'll only notify you when we launch.</p>
+                    </div>
+                </div>
+
+                <!-- Right: Visual -->
+                <div class="hidden lg:flex justify-center items-center relative">
+                    <div class="relative">
+                        <!-- Phone mockup -->
+                        <img src="images/iMockup - iPhone 15 Pro Max (5).png" alt="KoraKick App Preview" class="w-72 drop-shadow-2xl float-animation relative z-10">
+                        <!-- Floating cards -->
+                        <div class="absolute -top-4 -left-16 bg-white dark:bg-dark-green-light p-4 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 float-animation-delay">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-soccer-green/10 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-semibold" data-translate="floatCard1Title">Find Matches</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400" data-translate="floatCard1Desc">Near you</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-4 -right-16 bg-white dark:bg-dark-green-light p-4 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 float-animation">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-soccer-green/10 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-semibold" data-translate="floatCard2Title">Build Teams</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400" data-translate="floatCard2Desc">5v5 to 11v11</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Join Section -->
+    <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-[#0a1f14]">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12 sm:mb-16">
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4" data-translate="whyJoinTitle">Why Join Early?</h2>
+                <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-translate="whyJoinDesc">Early members get exclusive perks when we launch.</p>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Perk 1 -->
+                <div class="bg-white dark:bg-dark-green p-6 sm:p-8 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-lg hover:border-soccer-green/30 transition-all duration-300">
+                    <div class="w-12 h-12 bg-soccer-green/10 rounded-xl flex items-center justify-center mb-5">
+                        <svg class="w-6 h-6 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2" data-translate="perk1Title">Early Access</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed" data-translate="perk1Desc">Be the first to use KoraKick before anyone else. Get a head start on finding matches and booking fields.</p>
+                </div>
+                <!-- Perk 2 -->
+                <div class="bg-white dark:bg-dark-green p-6 sm:p-8 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-lg hover:border-soccer-green/30 transition-all duration-300">
+                    <div class="w-12 h-12 bg-soccer-green/10 rounded-xl flex items-center justify-center mb-5">
+                        <svg class="w-6 h-6 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2" data-translate="perk2Title">Exclusive Badge</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed" data-translate="perk2Desc">Get a unique "OG Player" badge on your profile that shows you were here from the beginning.</p>
+                </div>
+                <!-- Perk 3 -->
+                <div class="bg-white dark:bg-dark-green p-6 sm:p-8 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-lg hover:border-soccer-green/30 transition-all duration-300 sm:col-span-2 lg:col-span-1">
+                    <div class="w-12 h-12 bg-soccer-green/10 rounded-xl flex items-center justify-center mb-5">
+                        <svg class="w-6 h-6 text-soccer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2" data-translate="perk3Title">Shape the App</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed" data-translate="perk3Desc">Give us your feedback and help shape the features you want. Your voice matters as we build KoraKick.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof / Stats -->
+    <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-[#0d3320]">
+        <div class="max-w-4xl mx-auto">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center">
+                <div>
+                    <p class="text-3xl sm:text-4xl font-bold text-soccer-green">12+</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mt-1" data-translate="stat1">Cities Covered</p>
+                </div>
+                <div>
+                    <p class="text-3xl sm:text-4xl font-bold text-soccer-green">500+</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mt-1" data-translate="stat2">Fields Listed</p>
+                </div>
+                <div>
+                    <p class="text-3xl sm:text-4xl font-bold text-soccer-green">5v5</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mt-1" data-translate="stat3">to 11v11</p>
+                </div>
+                <div>
+                    <p class="text-3xl sm:text-4xl font-bold text-soccer-green">100%</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mt-1" data-translate="stat4">Free Forever</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-soccer-green via-emerald-600 to-emerald-700 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-48 sm:w-96 h-48 sm:h-96 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-48 sm:w-96 h-48 sm:h-96 bg-white rounded-full blur-3xl"></div>
+        </div>
+        <div class="max-w-3xl mx-auto text-center relative z-10">
+            <h2 class="text-2xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" data-translate="ctaTitle">Don't Miss the Kickoff</h2>
+            <p class="text-base sm:text-xl opacity-95 mb-8 sm:mb-10 px-4" data-translate="ctaDesc">Be part of the football revolution in Morocco. Join the waitlist today.</p>
+            <a href="#" onclick="document.getElementById('waitlist-name').focus(); window.scrollTo({top: 0, behavior: 'smooth'}); return false;"
+                class="inline-flex items-center gap-2 bg-white text-soccer-green px-8 sm:px-10 py-3.5 sm:py-4 rounded-xl font-bold text-base sm:text-lg hover:bg-gray-100 transition shadow-2xl transform hover:scale-105">
+                <span data-translate="ctaButton">Join the Waitlist</span>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 bg-white dark:bg-dark-green border-t border-gray-100 dark:border-dark-green-light">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-2">
+                    <img src="images/logo.png" alt="KoraKick Logo" class="w-8 h-8">
+                    <span class="text-lg font-bold">Kora<span style="color: #65FF13;">Kick</span></span>
+                </div>
+                <div class="flex gap-4">
+                    <a href="https://www.facebook.com/profile.php?id=61588537395934" target="_blank" class="w-10 h-10 bg-gray-200 dark:bg-dark-green-light rounded-lg flex items-center justify-center hover:bg-soccer-green hover:text-white transition">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/korakickapp/" target="_blank" class="w-10 h-10 bg-gray-200 dark:bg-dark-green-light rounded-lg flex items-center justify-center hover:bg-soccer-green hover:text-white transition">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+                    </a>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400 text-sm" data-translate="footerCopyright">Copyright &copy; 2026 KoraKick. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        themeToggleBtn.addEventListener('click', function() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+
+        // Language Translation
+        const translations = {
+            en: {
+                navAbout: 'About',
+                navFeatures: 'Features',
+                navHowItWorks: 'How It Works',
+                navShop: 'Shop',
+                waitlistBadge: 'Coming Soon',
+                waitlistHeroTitle1: 'Be the First',
+                waitlistHeroTitle2: 'to ',
+                waitlistHeroTitle3: 'Play.',
+                waitlistHeroDesc: 'Join the waitlist and get early access when KoraKick launches. Be among the first players to find matches, book fields, and build your team in Morocco.',
+                waitlistButton: 'Join the Waitlist',
+                waitlistNote: 'No spam, ever. We\'ll only notify you when we launch.',
+                floatCard1Title: 'Find Matches',
+                floatCard1Desc: 'Near you',
+                floatCard2Title: 'Build Teams',
+                floatCard2Desc: '5v5 to 11v11',
+                whyJoinTitle: 'Why Join Early?',
+                whyJoinDesc: 'Early members get exclusive perks when we launch.',
+                perk1Title: 'Early Access',
+                perk1Desc: 'Be the first to use KoraKick before anyone else. Get a head start on finding matches and booking fields.',
+                perk2Title: 'Exclusive Badge',
+                perk2Desc: 'Get a unique "OG Player" badge on your profile that shows you were here from the beginning.',
+                perk3Title: 'Shape the App',
+                perk3Desc: 'Give us your feedback and help shape the features you want. Your voice matters as we build KoraKick.',
+                stat1: 'Cities Covered',
+                stat2: 'Fields Listed',
+                stat3: 'to 11v11',
+                stat4: 'Free Forever',
+                ctaTitle: 'Don\'t Miss the Kickoff',
+                ctaDesc: 'Be part of the football revolution in Morocco. Join the waitlist today.',
+                ctaButton: 'Join the Waitlist',
+                footerCopyright: 'Copyright \u00A9 2026 KoraKick. All rights reserved.'
+            },
+            fr: {
+                navAbout: '\u00C0 Propos',
+                navFeatures: 'Fonctionnalit\u00E9s',
+                navHowItWorks: 'Comment \u00C7a Marche',
+                navShop: 'Boutique',
+                waitlistBadge: 'Bient\u00F4t Disponible',
+                waitlistHeroTitle1: 'Soyez les Premiers',
+                waitlistHeroTitle2: '\u00E0 ',
+                waitlistHeroTitle3: 'Jouer.',
+                waitlistHeroDesc: 'Rejoignez la liste d\'attente et obtenez un acc\u00E8s anticipé au lancement de KoraKick. Soyez parmi les premiers joueurs \u00E0 trouver des matchs, réserver des terrains et créer votre équipe au Maroc.',
+                waitlistButton: 'Rejoindre la Liste',
+                waitlistNote: 'Pas de spam. Nous vous contacterons uniquement au lancement.',
+                floatCard1Title: 'Trouver des Matchs',
+                floatCard1Desc: 'Pr\u00E8s de chez vous',
+                floatCard2Title: 'Créer des Équipes',
+                floatCard2Desc: '5v5 \u00E0 11v11',
+                whyJoinTitle: 'Pourquoi S\'inscrire T\u00F4t ?',
+                whyJoinDesc: 'Les premiers membres obtiennent des avantages exclusifs au lancement.',
+                perk1Title: 'Acc\u00E8s Anticipé',
+                perk1Desc: 'Soyez le premier \u00E0 utiliser KoraKick. Prenez une longueur d\'avance pour trouver des matchs et réserver des terrains.',
+                perk2Title: 'Badge Exclusif',
+                perk2Desc: 'Obtenez un badge unique "Joueur OG" sur votre profil qui montre que vous étiez l\u00E0 d\u00E8s le début.',
+                perk3Title: 'Façonnez l\'Appli',
+                perk3Desc: 'Donnez-nous vos retours et aidez-nous \u00E0 construire les fonctionnalités que vous souhaitez. Votre avis compte.',
+                stat1: 'Villes Couvertes',
+                stat2: 'Terrains Référencés',
+                stat3: '\u00E0 11v11',
+                stat4: 'Gratuit Pour Toujours',
+                ctaTitle: 'Ne Ratez Pas le Coup d\'Envoi',
+                ctaDesc: 'Faites partie de la révolution du football au Maroc. Rejoignez la liste d\'attente.',
+                ctaButton: 'Rejoindre la Liste',
+                footerCopyright: 'Copyright \u00A9 2026 KoraKick. Tous droits réservés.'
+            }
+        };
+
+        let currentLang = localStorage.getItem('korakick-lang') || 'en';
+        const langToggle = document.getElementById('lang-toggle');
+
+        function updateLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('korakick-lang', lang);
+            langToggle.textContent = lang === 'en' ? 'FR' : 'EN';
+
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.dataset.translate;
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            // Update placeholders
+            const nameInput = document.getElementById('waitlist-name');
+            const emailInput = document.getElementById('waitlist-email');
+            if (nameInput) nameInput.placeholder = lang === 'fr' ? 'Votre nom' : 'Your name';
+            if (emailInput) emailInput.placeholder = lang === 'fr' ? 'Entrez votre email' : 'Enter your email';
+        }
+
+        updateLanguage(currentLang);
+
+        langToggle.addEventListener('click', () => {
+            updateLanguage(currentLang === 'en' ? 'fr' : 'en');
+        });
+
+        // ==========================================
+        // EmailJS - Waitlist Form
+        // ==========================================
+        (function() {
+            emailjs.init('BwEc0kZUMgGkGMZpm');
+        })();
+
+        const waitlistForm = document.getElementById('waitlist-form');
+        const waitlistStatus = document.getElementById('waitlist-status');
+        const waitlistSubmitBtn = document.getElementById('waitlist-submit');
+
+        if (waitlistForm) {
+            waitlistForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const originalBtnText = waitlistSubmitBtn.innerHTML;
+                waitlistSubmitBtn.disabled = true;
+                waitlistSubmitBtn.innerHTML = '<svg class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg><span>' + (currentLang === 'fr' ? 'Inscription...' : 'Joining...') + '</span>';
+
+                const templateParams = {
+                    user_name: document.getElementById('waitlist-name').value,
+                    user_email: document.getElementById('waitlist-email').value,
+                    subject: 'Waitlist Signup',
+                    message: 'New waitlist signup from: ' + document.getElementById('waitlist-name').value + ' (' + document.getElementById('waitlist-email').value + ')',
+                    to_email: 'contact@korakick.app'
+                };
+
+                emailjs.send('service_dtde65y', 'template_195wh8w', templateParams)
+                    .then(function(response) {
+                        waitlistStatus.textContent = currentLang === 'fr'
+                            ? 'Vous \u00EAtes sur la liste ! Nous vous contacterons bient\u00F4t.'
+                            : 'You\'re on the list! We\'ll notify you when we launch.';
+                        waitlistStatus.className = 'text-sm text-green-500 text-center mt-3';
+                        waitlistStatus.classList.remove('hidden');
+                        waitlistForm.reset();
+                    }, function(error) {
+                        waitlistStatus.textContent = currentLang === 'fr'
+                            ? 'Erreur. Veuillez r\u00E9essayer.'
+                            : 'Something went wrong. Please try again.';
+                        waitlistStatus.className = 'text-sm text-red-500 text-center mt-3';
+                        waitlistStatus.classList.remove('hidden');
+                        console.error('Waitlist EmailJS Error:', error);
+                    })
+                    .finally(function() {
+                        waitlistSubmitBtn.disabled = false;
+                        waitlistSubmitBtn.innerHTML = originalBtnText;
+                        setTimeout(() => waitlistStatus.classList.add('hidden'), 5000);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
