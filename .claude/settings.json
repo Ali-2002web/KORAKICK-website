@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -L \"https://script.google.com/macros/s/AKfycbzc-YltqWNlmQcHg5a52oHl5RiF2nFv1-CCtEGa1FsZ-7U11VorOP6z9TZxgimZrIs5/exec?name=TestUser&email=test@test.com\")",
+      "Bash(curl -s -L -o /dev/null -w \"%{http_code}\" \"https://script.google.com/macros/s/AKfycbzc-YltqWNlmQcHg5a52oHl5RiF2nFv1-CCtEGa1FsZ-7U11VorOP6z9TZxgimZrIs5/exec?name=TestCurl&email=curl@test.com\")",
+      "Bash(curl -s -L \"https://script.google.com/macros/s/AKfycbzc-YltqWNlmQcHg5a52oHl5RiF2nFv1-CCtEGa1FsZ-7U11VorOP6z9TZxgimZrIs5/exec?name=TestCurl&email=curl@test.com\")"
+    ]
+  }
+}
