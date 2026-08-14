@@ -6,7 +6,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://korakick.app/</loc>
-    <lastmod>2026-01-23</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://korakick.app/"/>
@@ -18,10 +18,50 @@
     </image:image>
   </url>
 
+  <!-- Shop -->
+  <url>
+    <loc>https://korakick.app/shop.html</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Waitlist -->
+  <url>
+    <loc>https://korakick.app/waitlist.html</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Size Guide -->
+  <url>
+    <loc>https://korakick.app/size-guide.html</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Shipping -->
+  <url>
+    <loc>https://korakick.app/shipping.html</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Returns & Exchanges -->
+  <url>
+    <loc>https://korakick.app/returns.html</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
   <!-- Privacy Policy -->
   <url>
     <loc>https://korakick.app/privacy.html</loc>
-    <lastmod>2026-01-23</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://korakick.app/privacy.html"/>
@@ -31,7 +71,7 @@
   <!-- Terms & Conditions -->
   <url>
     <loc>https://korakick.app/terms.html</loc>
-    <lastmod>2026-01-23</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://korakick.app/terms.html"/>
@@ -41,35 +81,35 @@
   <!-- Homepage Sections (Anchor URLs for deep linking) -->
   <url>
     <loc>https://korakick.app/#about</loc>
-    <lastmod>2026-01-23</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://korakick.app/#features</loc>
-    <lastmod>2026-01-23</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://korakick.app/#how-it-works</loc>
-    <lastmod>2026-01-23</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://korakick.app/#contact</loc>
-    <lastmod>2026-01-23</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://korakick.app/#download</loc>
-    <lastmod>2026-01-23</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
